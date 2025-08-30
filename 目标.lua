@@ -1,5 +1,5 @@
 -- 加载 WindUI 库
-local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua"))()
+local WindUI = loadstring(game:HttpGet("https://github.com/greatjakson-lgtm/-2/blob/main/%E7%9B%AE%E6%A0%87.lua"))()
 
 -- 创建主窗口
 local Window = WindUI:CreateWindow({
