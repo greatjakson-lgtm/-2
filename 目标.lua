@@ -1,11 +1,4 @@
-local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/main/%E7%9B%AE%E6%A0%87.lua"))()
-
-WindUI:Notify({
-    Title = "WindUI 加载成功",
-    Content = "UI库已成功加载！",
-    Icon = "check",
-    Duration = 3
-})
+local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 
 -- 创建主窗口
 local Window = WindUI:CreateWindow({
