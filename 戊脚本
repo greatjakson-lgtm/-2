@@ -154,6 +154,175 @@ WindUI:Notify({
     Icon = "bird",
 })
 local Button = Tab:Button({
+    Title = "inkgame void ware",
+    Desc = "点击运行void ware脚本",
+    Locked = false,
+    Callback = function()
+        print("loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/inkgame.lua", true))()")
+    end
+})
+WindUI:Notify({
+    Title = "inkgame voidware",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+local Button = Tab:Button({
+    Title = "inkgame az中心",
+    Desc = "点击运行az脚本",
+    Locked = false,
+    Callback = function()
+        print("loadstring(game:HttpGet("https://raw.githubusercontent.com/ScripterVaz/InkGameAzure/main/Protected_7974105512464815.lua.txt"))()")
+    end
+})
+WindUI:Notify({
+    Title = "inkgame az中心",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+local Button = Tab:Button({
+    Title = "墨水xa",
+    Desc = "点击运行xa脚本",
+    Locked = false,
+    Callback = function()
+        print("loadstring(game:HttpGet("https://raw.githubusercontent.com/Xingtaiduan/Script/refs/heads/main/Games/墨水游戏.lua"))()")
+    end
+})
+WindUI:Notify({
+    Title = "墨水xa脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+local Button = Tab:Button({
+    Title = "inkgame ringta",
+    Desc = "点击运行ringta脚本",
+    Locked = false,
+    Callback = function()
+        print("loadstring(game:HttpGet("https://raw.githubusercontent.com/wefwef127382/inkgames.github.io/refs/heads/main/ringta.lua"))()")
+    end
+})
+WindUI:Notify({
+    Title = "ringta",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+local Button = Tab:Button({
+    Title = "isis",
+    Desc = "点击运行isis脚本key=ISIS-KEY-2025",
+    Locked = false,
+    Callback = function()
+        print("loadstring(game:HttpGet('https://raw.githubusercontent.com/S-WTB/-/refs/heads/main/ISIS加载器'))()")
+    end
+})
+WindUI:Notify({
+    Title = "isis脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+local Button = Tab:Button({
+    Title = "99夜Linux脚本",
+    Desc = "点击运行Linux脚本",
+    Locked = false,
+    Callback = function()
+        print("loadstring(game:HttpGet("https://raw.githubusercontent.com/LinuxDevBr/99-Nights-In-the-Forest/refs/heads/main/Script.txt"))()")
+    end
+})
+WindUI:Notify({
+    Title = "Linux脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+local Button = Tab:Button({
+    Title = "NOL免费版",
+    Desc = "点击运行NOL脚本",
+    Locked = false,
+    Callback = function()
+        print("getfenv().ADittoKey="NOL_FRERKEY_THISISFOR"---Put in key
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Syndromehsh/NOL/refs/heads/main/Nolsaken"))()")
+    end
+})
+WindUI:Notify({
+    Title = "nol免费版",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+local Button = Tab:Button({
+    Title = "不知名死亡之死脚本",
+    Desc = "点击运行死亡之死脚本",
+    Locked = false,
+    Callback = function()
+        print("loadstring(game:HttpGet("https://raw.githubusercontent.com/thuker-evader/Die-of-death/refs/heads/main/Red%20hub"))()"))()")
+    end
+})
+WindUI:Notify({
+    Title = "死亡之死脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+local Button = Tab:Button({
+    Title = "自然灾害黑洞v6脚本",
+    Desc = "点击运行黑洞v6脚本",
+    Locked = false,
+    Callback = function()
+        print("loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V6.txt"))()")
+    end
+})
+WindUI:Notify({
+    Title = "黑洞v6脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+local Button = Tab:Button({
+    Title = "力量传奇vg脚本",
+    Desc = "点击运行vg脚本",
+    Locked = false,
+    Callback = function()
+        print("loadstring(game:HttpGet("https://raw.githubusercontent.com/1201for/littlegui/main/MuscleLegends"))()")
+    end
+})
+WindUI:Notify({
+    Title = "vg脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+local Button = Tab:Button({
+    Title = "红叶子脚本",
+    Desc = "点击运行红叶子脚本",
+    Locked = false,
+    Callback = function()
+        print("loadstring(game:HttpGet("https://getnative.cc/script/loader"))()")
+    end
+})
+WindUI:Notify({
+    Title = "红叶子脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+local Button = Tab:Button({
+    Title = "通用vape",
+    Desc = "点击运行vape脚本",
+    Locked = false,
+    Callback = function()
+        print("loadstring(utf8.char(table.unpack({108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,34,104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,55,71,114,97,110,100,68,97,100,80,71,78,47,86,97,112,101,86,52,70,111,114,82,111,98,108,111,120,47,109,97,105,110,47,78,101,119,77,97,105,110,83,99,114,105,112,116,46,108,117,97,34,44,32,116,114,117,101,41,41,40,41})))()")
+    end
+})
+WindUI:Notify({
+    Title = "vape脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+local Button = Tab:Button({
     Title = "speed x fisch",
     Desc = "点击运行fisch脚本",
     Locked = false,
@@ -167,6 +336,77 @@ WindUI:Notify({
     Duration = 3, -- 3 seconds
     Icon = "bird",
 })
+local Button = Tab:Button({
+    Title = "死铁轨nat中心",
+    Desc = "点击运行nat脚本",
+    Locked = false,
+    Callback = function()
+        print("loadstring(game:HttpGet("https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/NatHub.lua"))();")
+    end
+})
+WindUI:Notify({
+    Title = "nat",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+local Button = Tab:Button({
+    Title = "rb脚本中心",
+    Desc = "点击运行rb脚本",
+    Locked = false,
+    Callback = function()
+        print("loadstring(game:HttpGet("https://raw.githubusercontent.com/Yungengxin/roblox/refs/heads/main/Rb-Hub"))()")
+    end
+})
+WindUI:Notify({
+    Title = "rb中心",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+local Button = Tab:Button({
+    Title = "小叶脚本中心",
+    Desc = "点击运行小叶脚本",
+    Locked = false,
+    Callback = function()
+        print("loadstring(game:HttpGet("https://raw.githubusercontent.com/roblox-ye/QQ515966991/refs/heads/main/ROBLOX-CNVIP-XIAOYE.lua"))()")
+    end
+})
+WindUI:Notify({
+    Title = "小叶脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+local Button = Tab:Button({
+    Title = "皮脚本",
+    Desc = "点击运行皮脚本",
+    Locked = false,
+    Callback = function()
+        print("getgenv().XiaoPi="皮脚本QQ群1002100032" loadstring(game:HttpGet("https://raw.githubusercontent.com/xiaopi77/xiaopi77/main/QQ1002100032-Roblox-Pi-script.lua"))()")
+    end
+})
+WindUI:Notify({
+    Title = "皮脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+local Button = Tab:Button({
+    Title = "tx v4",
+    Desc = "点击运行tx脚本",
+    Locked = false,
+    Callback = function()
+        print("loadstring(game:HttpGet("https://raw.githubusercontent.com/dzq1311056/k/refs/heads/main/Protected_6797390536487459.lua"))()")
+    end
+})
+WindUI:Notify({
+    Title = "tx v4",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+
 -- 创建 Tab
 local Tab = Window:Tab({
     Title = "设置区",
