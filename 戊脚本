@@ -124,6 +124,19 @@ local XKButton = Tab:Button({
             Icon = "bird",
         })
     end
+})-- 创建 Tab
+local Tab = Window:Tab({
+    Title = "设置区",
+    Icon = "bird",
+    Locked = false,
+})
+Window:SelectTab(1)
+
+-- 创建 Section
+local Section = Tab:Section({ 
+    Title = "设置",
+    TextXAlignment = "Left",
+    TextSize = 17,
 })
 -- 其它控件示例（可删减）
 local Button = Tab:Button({
