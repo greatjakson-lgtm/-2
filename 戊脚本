@@ -88,10 +88,32 @@ Window:Tag({
     Color = Color3.fromHex("#30ff6a")
 })
 
+-- 创建 Tab
+local Tab = Window:Tab({
+    Title = "通用区",
+    Icon = "bird",
+    Locked = false,
+})
+Window:SelectTab(1)
+
+-- 创建 Section
+local Section = Tab:Section({ 
+    Title = "通用功能",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+local Button = Tab:Button({
+    Title = "飞行 v3",
+    Desc = "点击运行戊飞行v3脚本",
+    Locked = false,
+    Callback = function()
+       loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/70a71eeabf5f141852374be101bc910bf9444036/fly.lua"))()
+    end
+})
 WindUI:Notify({
-    Title = "Notification Title",
-    Content = "Notification Content example!",
-    Duration = 3,
+    Title = "飞行v3",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
     Icon = "bird",
 })
 
