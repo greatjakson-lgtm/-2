@@ -132,7 +132,7 @@ local NZButton = Tab:Button({
     Desc = "点击运行doors nz脚本",
     Locked = false,
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/NuIlFire/NullFire/main/loader.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/TeamNullFire/NullFire/main/loader.lua"))()
         WindUI:Notify({
             Title = "doors nz",
             Content = "加载成功",
