@@ -120,9 +120,6 @@ WindUI:Notify({
 -- 创建指定的大类（作为标签页）
 local Tabs = {
     Home = Window:Tab({ Title = "主页", Icon = "crown" }),
-    Main = Window:Tab({ Title = "主要功能", Icon = "zap" }),
-    Ninja = Window:Tab({ Title = "传送", Icon = "user" }),
-    ESP = Window:Tab({ Title = "透视", Icon = "dumbbell" }),
     Misc = Window:Tab({ Title = "其他", Icon = "settings" }),
 }
 
