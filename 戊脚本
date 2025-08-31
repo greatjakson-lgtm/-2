@@ -51,11 +51,11 @@ local Window = WindUI:CreateWindow({
         API = {
             {
                 Type = "mysuperservicetogetkey",
-                ServiceId = 1234,
+                ServiceId = wu-nb-666,
             },
             {
                 Type = "platoboost",
-                ServiceId = 1234,
+                ServiceId = wu-nb-666,
                 Secret = "platoboost-secret",
             },
             {
@@ -125,7 +125,20 @@ local XKButton = Tab:Button({
         })
     end
 })
+-- 创建 Tab
+local Tab = Window:Tab({
+    Title = "设置区",
+    Icon = "bird",
+    Locked = false,
+})
+Window:SelectTab(1)
 
+-- 创建 Section
+local Section = Tab:Section({ 
+    Title = "设置",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
 -- 其它控件示例（可删减）
 local Button = Tab:Button({
     Title = "普通测试按钮",
