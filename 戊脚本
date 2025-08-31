@@ -73,7 +73,7 @@ Window:SetToggleKey(Enum.KeyCode.H)
 Window:ToggleTransparency(true)
 Window:IsResizable(false)
 Window:EditOpenButton({
-    Title = "Open 戊 hub",
+    Title = "戊脚本中心",
     Icon = "monitor",
     CornerRadius = UDim.new(0,16),
     StrokeThickness = 2,
