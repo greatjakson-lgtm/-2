@@ -117,6 +117,89 @@ WindUI:Notify({
     Icon = "bird",
 })
 
+-- 创建指定的大类（作为标签页）
+local Tabs = {
+    Home = Window:Tab({ Title = "主页", Icon = "crown" }),
+    Main = Window:Tab({ Title = "主要功能", Icon = "zap" }),
+    Ninja = Window:Tab({ Title = "传送", Icon = "user" }),
+    ESP = Window:Tab({ Title = "透视", Icon = "dumbbell" }),
+    Misc = Window:Tab({ Title = "其他", Icon = "settings" }),
+}
+
+Window:SelectTab(1)
+
+-- 全局服务引用
+local Players = game:GetService("Players")
+local Workspace = game:GetService("Workspace")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RunService = game:GetService("RunService")
+local ProximityPromptService = game:GetService("ProximityPromptService")
+
+-- 本地玩家引用
+local LP = Players.LocalPlayer
+local Character = LP.Character or LP.CharacterAdded:Wait()
+
+-- 功能状态
+local Features = {
+    KillAura = false,
+    AutoChop = false,
+    AutoEat = false,
+    ChildESP = false,
+    ChestESP = false,
+    InstantInteract = false
+}
+
+-- 黑名单
+local Blacklist = {}
+
+-- 客户端模块
+local ClientModule
+local EatRemote
+local function GetClientModule()
+    if not ClientModule then
+        ClientModule = require(LP:WaitForChild("PlayerScripts"):WaitForChild("Client"))
+        EatRemote = ClientModule and ClientModule.Events and ClientModule.Events.RequestConsumeItem
+    end
+    return ClientModule, EatRemote
+end
+
+-- 修复后的ESP功能管理
+local espData = {}
+local function createESP(target, name)
+    local rootPart = target:FindFirstChild("HumanoidRootPart") or target.PrimaryPart or target:FindFirstChildWhichIsA("BasePart")
+    if not rootPart or espData[target] then return end
+
+    local billboard = Instance.new("BillboardGui")
+    billboard.Adornee = rootPart
+    billboard.Size = UDim2.new(0, 100, 0, 100)
+    billboard.StudsOffset = Vector3.new(0, 3, 0)
+    billboard.AlwaysOnTop = true
+    billboard.Parent = rootPart
+    billboard.Enabled = true
+
+    local label = Instance.new("TextLabel")
+    label.Text = name .. "\n" .. "0m"
+    label.Size = UDim2.new(1, 0, 0, 40)
+    label.Position = UDim2.new(0, 0, 0, 0)
+    label.BackgroundTransparency = 1
+    label.TextColor3 = Color3.new(1, 1, 1)
+    label.TextStrokeTransparency = 0.3
+    label.Font = Enum.Font.GothamBold
+    label.TextSize = 14
+    label.Parent = billboard
+
+    if name:match("Chest") then
+        local image = Instance.new("ImageLabel")
+        image.Position = UDim2.new(0, 20, 0, 40)
+        image.Size = UDim2.new(0, 60, 0, 60)
+        image.Image = "rbxassetid://18660563116"
+        image.BackgroundTransparency = 1
+        image.Parent = billboard
+    end
+
+    espData[target] = {gui = billboard, label = label, image = image}
+end
+
 -- 创建 Tab
 local Tab = Window:Tab({
     Title = "功能区",
