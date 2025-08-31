@@ -1,0 +1,270 @@
+-- 加载 WindUI 主库
+local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua"))()
+
+-- 注册自定义 Key 验证服务（如有需要）
+WindUI.Services.mysuperservicetogetkey = {
+    Name = "My Super Service",
+    Icon = "droplet", -- lucide, rbxassetid, raw img link
+    Args = { "ServiceId" },
+    New = function(ServiceId)
+        function validateKey(key)
+            if not key then
+                return false, "Key is invalid!" 
+            end
+            return true, "Key is valid!" 
+        end
+        function copyLink()
+            return setclipboard("link to key system service.")
+        end
+        return {
+            Verify = validateKey,
+            Copy = copyLink
+        }
+    end
+}
+
+-- 创建主窗口
+local Window = WindUI:CreateWindow({
+    Title = "戊脚本",
+    Icon = "door-open",
+    Author = "Example UI",
+    Folder = "MyTestHub",
+    Theme = "Dark",
+    Size = UDim2.fromOffset(580, 460),
+    Transparent = true,
+    Resizable = true,
+    SideBarWidth = 200,
+    BackgroundImageTransparency = 0.42,
+    HideSearchBar = true,
+    ScrollBarEnabled = false,
+
+    User = {
+        Enabled = true,
+        Anonymous = true,
+        Callback = function()
+            print("clicked user icon")
+        end,
+    },
+
+    KeySystem = {
+        Note = "Example Key System. With your custom service.",
+        API = {
+            {
+                Type = "mysuperservicetogetkey",
+                ServiceId = 1234,
+            },
+            {
+                Type = "platoboost",
+                ServiceId = 1234,
+                Secret = "platoboost-secret",
+            },
+            {
+                Type = "pandadevelopment",
+                ServiceId = "myServiceId",
+            },
+        },
+    }
+})
+
+-- 设置窗口背景
+Window:SetBackgroundImage("rbxassetid://id-here")
+Window:SetBackgroundImageTransparency(0.5)
+Window:SetToggleKey(Enum.KeyCode.H)
+Window:ToggleTransparency(true)
+Window:IsResizable(false)
+Window:EditOpenButton({
+    Title = "Open Example UI",
+    Icon = "monitor",
+    CornerRadius = UDim.new(0,16),
+    StrokeThickness = 2,
+    Color = ColorSequence.new(Color3.fromHex("FF0F7B"), Color3.fromHex("F89B29")),
+    OnlyMobile = false,
+    Enabled = true,
+    Draggable = true,
+})
+
+Window:Tag({
+    Title = "v1.6.4",
+    Color = Color3.fromHex("#30ff6a")
+})
+
+WindUI:Notify({
+    Title = "Notification Title",
+    Content = "Notification Content example!",
+    Duration = 3,
+    Icon = "bird",
+})
+
+-- 创建 Tab
+local Tab = Window:Tab({
+    Title = "Tab Title",
+    Icon = "bird",
+    Locked = false,
+})
+Window:SelectTab(1)
+
+-- 创建 Section
+local Section = Tab:Section({ 
+    Title = "Section",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+-- 创建按钮
+local Button = Tab:Button({
+    Title = "Button",
+    Desc = "Test Button",
+    Locked = false,
+    Callback = function()
+        print("clicked")
+    end
+})
+Button:SetTitle("Title Example")
+Button:SetDesc("Description Example")
+
+-- 创建代码显示
+local Code = Tab:Code({
+    Title = "Code",
+    Code = [[print("Hello World!")]]
+})
+Code:SetCode([[print("New code!")]])
+
+-- 创建颜色选择器
+local Colorpicker = Tab:Colorpicker({
+    Title = "Colorpicker",
+    Desc = "Colorpicker Description",
+    Default = Color3.fromRGB(0, 255, 0),
+    Transparency = 0,
+    Locked = false,
+    Callback = function(color) 
+        print("Background color: " .. tostring(color))
+    end
+})
+
+-- 创建下拉框
+local Dropdown = Tab:Dropdown({
+    Title = "Dropdown (Multi)",
+    Values = { "Category A", "Category B", "Category C" },
+    Value = { "Category A" },
+    Multi = true,
+    AllowNone = true,
+    Callback = function(option) 
+        print("Categories selected: " .. game:GetService("HttpService"):JSONEncode(option)) 
+    end
+})
+
+-- 创建输入框
+local Input = Tab:Input({
+    Title = "Input",
+    Desc = "Input Description",
+    Value = "Default value",
+    InputIcon = "bird",
+    Type = "Input", -- or "Textarea"
+    Placeholder = "Enter text...",
+    Callback = function(input) 
+        print("text entered: " .. input)
+    end
+})
+
+-- 创建按键绑定
+local Keybind = Tab:Keybind({
+    Title = "Keybind",
+    Desc = "Keybind to open ui",
+    Value = "G",
+    Callback = function(v)
+        Window:SetToggleKey(Enum.KeyCode[v])
+    end
+})
+
+-- 创建段落
+local Paragraph = Tab:Paragraph({
+    Title = "Paragraph with Image, Thumbnail, Buttons",
+    Desc = "Test Paragraph",
+    Color = "Red",
+    Image = "",
+    ImageSize = 30,
+    Thumbnail = "",
+    ThumbnailSize = 80,
+    Locked = false,
+    Buttons = {
+        {
+            Icon = "bird",
+            Title = "Button",
+            Callback = function() print("1 Button") end,
+        }
+    }
+})
+
+-- 创建滑块
+local Slider = Tab:Slider({
+    Title = "Slider",
+    Step = 1,
+    Value = {
+        Min = 20,
+        Max = 120,
+        Default = 70,
+    },
+    Callback = function(value)
+        print(value)
+    end
+})
+
+-- 创建切换按钮（Toggle）
+local Toggle = Tab:Toggle({
+    Title = "Toggle Example",
+    Desc = "Toggle Description",
+    Value = false,
+    Callback = function(val)
+        print("Toggle changed to: ", val)
+    end
+})
+
+-- 配置管理器示例
+local ConfigManager = Window.ConfigManager
+local myConfig = ConfigManager:CreateConfig("myConfigExample")
+myConfig:Register("SpecialNameExample", Button)
+myConfig:Save()
+myConfig:Load()
+ConfigManager:AllConfigs() -- 返回所有配置表
+
+-- 弹窗、对话框示例
+local Dialog = Window:Dialog({
+    Icon = "bird",
+    Title = "Dialog Title",
+    Content = "Content Text",
+    Buttons = {
+        {
+            Title = "Confirm",
+            Callback = function()
+                print("Confirmed!")
+            end,
+        },
+        {
+            Title = "Cancel",
+            Callback = function()
+                print("Cancelled!")
+            end,
+        },
+    },
+})
+Dialog:Show()
+Dialog:Close()
+
+WindUI:Popup({
+    Title = "Popup Title",
+    Icon = "info",
+    Content = "Popup content",
+    Buttons = {
+        {
+            Title = "Cancel",
+            Callback = function() end,
+            Variant = "Tertiary",
+        },
+        {
+            Title = "Continue",
+            Icon = "arrow-right",
+            Callback = function() end,
+            Variant = "Primary",
+        }
+    }
+})
