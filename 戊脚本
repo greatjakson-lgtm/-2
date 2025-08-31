@@ -51,11 +51,11 @@ local Window = WindUI:CreateWindow({
         API = {
             {
                 Type = "mysuperservicetogetkey",
-                ServiceId = wu-nb-666,
+                ServiceId = 1234,
             },
             {
                 Type = "platoboost",
-                ServiceId = wu-nb-666,
+                ServiceId = 1234,
                 Secret = "platoboost-secret",
             },
             {
