@@ -3,7 +3,7 @@ local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footag
 
 -- 注册自定义 Key 验证服务（如有需要）
 WindUI.Services.mysuperservicetogetkey = {
-    Name = "My Super Service",
+    Name = "戊脚本",
     Icon = "droplet", -- lucide, rbxassetid, raw img link
     Args = { "ServiceId" },
     New = function(ServiceId)
