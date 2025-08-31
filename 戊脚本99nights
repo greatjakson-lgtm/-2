@@ -591,7 +591,7 @@ Tabs.ESP:Button({
     end
 })
 
--- Cat Hub 原有功能
+-- 戊脚本 原有功能
 local autoLoops = {}
 
 local function startLoop(name, callback, delay)
