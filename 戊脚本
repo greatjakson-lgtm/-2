@@ -124,7 +124,50 @@ local XKButton = Tab:Button({
             Icon = "bird",
         })
     end
-})-- 创建 Tab
+})
+local Button = Tab:Button({
+    Title = "doors nz",
+    Desc = "点击运行doors nz脚本",
+    Locked = false,
+    Callback = function()
+        print("loadstring(game:HttpGet("https://raw.githubusercontent.com/NuIlFire/NullFire/main/loader.lua"))()")
+    end
+})
+WindUI:Notify({
+    Title = "doors nz",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+local Button = Tab:Button({
+    Title = "doors prohax",
+    Desc = "点击运行prohax脚本",
+    Locked = false,
+    Callback = function()
+        print("loadstring(game:HttpGet('https://raw.githubusercontent.com/TheHunterSolo1/Scripts/refs/heads/main/Protected_2809220311826785.lua.txt')()")
+    end
+})
+WindUI:Notify({
+    Title = "doors prohax",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+local Button = Tab:Button({
+    Title = "speed x fisch",
+    Desc = "点击运行fisch脚本",
+    Locked = false,
+    Callback = function()
+        print("loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()")
+    end
+})
+WindUI:Notify({
+    Title = "speed x fisch",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+-- 创建 Tab
 local Tab = Window:Tab({
     Title = "设置区",
     Icon = "bird",
