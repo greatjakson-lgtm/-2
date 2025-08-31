@@ -21,11 +21,11 @@ repeat wait() until Confirmed
 
 -- 修复后的代码将所有功能整合到一个统一的 WindUI 窗口中
 local Window = WindUI:CreateWindow({
-    Title = "Cat Hub",
+    Title = "戊脚本",
     Icon = "rbxassetid://129260712070622",
     IconThemed = true,
     Author = "感谢游玩",
-    Folder = "CatHub",
+    Folder = "戊脚本",
     Size = UDim2.fromOffset(580, 340),
     Transparent = true,
     Theme = "Dark",
