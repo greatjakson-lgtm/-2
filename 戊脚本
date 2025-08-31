@@ -276,6 +276,21 @@ local LinuxButton = Tab:Button({
     end
 })
 
+local Button = Tab:Button({
+    Title = "戊99nights",
+    Desc = "点击运行戊99nights脚本",
+    Locked = false,
+    Callback = function()
+       loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/936b1f9af081ca7b8febf3c3eff669a62a4ec54f/%E6%88%8A%E8%84%9A%E6%9C%AC99nights"))()
+    end
+})
+WindUI:Notify({
+    Title = "戊脚本99nigtes",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+
 -- NOL 免费版 按钮
 local NolButton = Tab:Button({
     Title = "NOL免费版",
