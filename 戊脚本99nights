@@ -622,7 +622,7 @@ Tabs.Home:Paragraph({
 
 Tabs.Home:Paragraph({
     Title = "欢迎",
-    Desc = "需要时开启反挂机。脚本仍在更新中... 作者: Ccat\n脚本免费, 请勿倒卖。",
+    Desc = "需要时开启反挂机。脚本仍在更新中... 作者: 戊\n脚本免费, 请勿倒卖。",
 })
 -- 反挂机 (通过外部链接加载)
 Tabs.Home:Button({
