@@ -39,11 +39,11 @@ Window:Tag({
         Color = Color3.fromHex("#30ff6a")
     })
     Window:Tag({
-        Title = "99夜", 
+        Title = "99nights", 
         Color = Color3.fromHex("#315dff")
     })
     local TimeTag = Window:Tag({
-        Title = "正在开发更多服务器",
+        Title = "戊",
         Color = Color3.fromHex("#000000")
     })
 
@@ -612,11 +612,11 @@ end
 
 --- 主页 Tab ---
 Tabs.Home:Paragraph({
-    Title = "666这么帅",
-    Desc = "必须帅",
-    Image = "https://raw.githubusercontent.com/Guo61/Cat-/refs/heads/main/1756468599211.png",
+    Title = "雾",
+    Desc = "戊",
+    Image = "https://raw.githubusercontent.com/greatjakson-lgtm/-2/fbe1d54847da1b794e15f01fd9137aab1c43c57e/new_logo.png",
     ImageSize = 42,
-    Thumbnail = "https://raw.githubusercontent.com/Guo61/Cat-/refs/heads/main/1756468641440.jpg",
+    Thumbnail = "https://raw.githubusercontent.com/greatjakson-lgtm/-2/fbe1d54847da1b794e15f01fd9137aab1c43c57e/177435794.png",
     ThumbnailSize = 120
 })
 
