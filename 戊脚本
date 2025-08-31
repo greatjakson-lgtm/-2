@@ -97,7 +97,7 @@ WindUI:Notify({
 
 -- 创建 Tab
 local Tab = Window:Tab({
-    Title = "Tab Title",
+    Title = "功能区",
     Icon = "bird",
     Locked = false,
 })
@@ -105,34 +105,46 @@ Window:SelectTab(1)
 
 -- 创建 Section
 local Section = Tab:Section({ 
-    Title = "Section",
+    Title = "脚本区",
     TextXAlignment = "Left",
     TextSize = 17,
 })
 
--- 创建按钮
-local Button = Tab:Button({
-    Title = "Button",
-    Desc = "Test Button",
+-- doors xk 按钮
+local XKButton = Tab:Button({
+    Title = "doors xk",
+    Desc = "点击运行xk脚本",
     Locked = false,
     Callback = function()
-        print("clicked")
+        loadstring(game:HttpGet("https://github.com/devslopo/DVES/raw/main/XK%20Hub"))()
+        WindUI:Notify({
+            Title = "doors xk",
+            Content = "加载成功",
+            Duration = 3,
+            Icon = "bird",
+        })
     end
 })
-Button:SetTitle("Title Example")
-Button:SetDesc("Description Example")
 
--- 创建代码显示
+-- 其它控件示例（可删减）
+local Button = Tab:Button({
+    Title = "普通测试按钮",
+    Desc = "点击测试",
+    Locked = false,
+    Callback = function()
+        print("clicked test button")
+    end
+})
+
 local Code = Tab:Code({
-    Title = "Code",
+    Title = "代码区",
     Code = [[print("Hello World!")]]
 })
 Code:SetCode([[print("New code!")]])
 
--- 创建颜色选择器
 local Colorpicker = Tab:Colorpicker({
-    Title = "Colorpicker",
-    Desc = "Colorpicker Description",
+    Title = "颜色选择器",
+    Desc = "选个颜色吧",
     Default = Color3.fromRGB(0, 255, 0),
     Transparency = 0,
     Locked = false,
@@ -141,45 +153,41 @@ local Colorpicker = Tab:Colorpicker({
     end
 })
 
--- 创建下拉框
 local Dropdown = Tab:Dropdown({
-    Title = "Dropdown (Multi)",
-    Values = { "Category A", "Category B", "Category C" },
-    Value = { "Category A" },
+    Title = "下拉框 (多选)",
+    Values = { "A", "B", "C" },
+    Value = { "A" },
     Multi = true,
     AllowNone = true,
     Callback = function(option) 
-        print("Categories selected: " .. game:GetService("HttpService"):JSONEncode(option)) 
+        print("选中的分类: " .. game:GetService("HttpService"):JSONEncode(option)) 
     end
 })
 
--- 创建输入框
 local Input = Tab:Input({
-    Title = "Input",
-    Desc = "Input Description",
-    Value = "Default value",
+    Title = "输入框",
+    Desc = "输入内容",
+    Value = "默认值",
     InputIcon = "bird",
     Type = "Input", -- or "Textarea"
-    Placeholder = "Enter text...",
+    Placeholder = "请输入...",
     Callback = function(input) 
-        print("text entered: " .. input)
+        print("输入内容: " .. input)
     end
 })
 
--- 创建按键绑定
 local Keybind = Tab:Keybind({
-    Title = "Keybind",
-    Desc = "Keybind to open ui",
+    Title = "快捷键",
+    Desc = "用来打开 UI",
     Value = "G",
     Callback = function(v)
         Window:SetToggleKey(Enum.KeyCode[v])
     end
 })
 
--- 创建段落
 local Paragraph = Tab:Paragraph({
-    Title = "Paragraph with Image, Thumbnail, Buttons",
-    Desc = "Test Paragraph",
+    Title = "段落区",
+    Desc = "展示段落",
     Color = "Red",
     Image = "",
     ImageSize = 30,
@@ -189,15 +197,14 @@ local Paragraph = Tab:Paragraph({
     Buttons = {
         {
             Icon = "bird",
-            Title = "Button",
-            Callback = function() print("1 Button") end,
+            Title = "段落按钮",
+            Callback = function() print("段落按钮被点了") end,
         }
     }
 })
 
--- 创建滑块
 local Slider = Tab:Slider({
-    Title = "Slider",
+    Title = "滑块",
     Step = 1,
     Value = {
         Min = 20,
@@ -209,10 +216,9 @@ local Slider = Tab:Slider({
     end
 })
 
--- 创建切换按钮（Toggle）
 local Toggle = Tab:Toggle({
-    Title = "Toggle Example",
-    Desc = "Toggle Description",
+    Title = "切换开关",
+    Desc = "开关描述",
     Value = false,
     Callback = function(val)
         print("Toggle changed to: ", val)
@@ -222,7 +228,7 @@ local Toggle = Tab:Toggle({
 -- 配置管理器示例
 local ConfigManager = Window.ConfigManager
 local myConfig = ConfigManager:CreateConfig("myConfigExample")
-myConfig:Register("SpecialNameExample", Button)
+myConfig:Register("SpecialNameExample", XKButton)
 myConfig:Save()
 myConfig:Load()
 ConfigManager:AllConfigs() -- 返回所有配置表
