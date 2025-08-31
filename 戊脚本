@@ -406,7 +406,6 @@ WindUI:Notify({
     Duration = 3, -- 3 seconds
     Icon = "bird",
 })
-
 -- 创建 Tab
 local Tab = Window:Tab({
     Title = "设置区",
