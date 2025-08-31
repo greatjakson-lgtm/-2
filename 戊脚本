@@ -27,7 +27,7 @@ WindUI.Services.mysuperservicetogetkey = {
 local Window = WindUI:CreateWindow({
     Title = "戊脚本",
     Icon = "door-open",
-    Author = "Example UI",
+    Author = "戊 hub",
     Folder = "MyTestHub",
     Theme = "Dark",
     Size = UDim2.fromOffset(580, 460),
@@ -73,7 +73,7 @@ Window:SetToggleKey(Enum.KeyCode.H)
 Window:ToggleTransparency(true)
 Window:IsResizable(false)
 Window:EditOpenButton({
-    Title = "Open Example UI",
+    Title = "Open 戊 hub",
     Icon = "monitor",
     CornerRadius = UDim.new(0,16),
     StrokeThickness = 2,
@@ -571,8 +571,8 @@ ConfigManager:AllConfigs() -- 返回所有配置表
 -- 弹窗、对话框示例
 local Dialog = Window:Dialog({
     Icon = "bird",
-    Title = "Dialog Title",
-    Content = "Content Text",
+    Title = "戊",
+    Content = "戊提醒您",
     Buttons = {
         {
             Title = "Confirm",
