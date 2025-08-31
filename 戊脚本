@@ -1241,36 +1241,64 @@ local V6Button = Tab:Button({
     end
 })
 
--- 力量传奇vg 按钮
-local VGButton = Tab:Button({
-    Title = "力量传奇vg脚本",
-    Desc = "点击运行vg脚本",
+local Button = Tab:Button({
+    Title = "bald力量传奇脚本",
+    Desc = "点击运行bald脚本",
     Locked = false,
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/1201for/littlegui/main/MuscleLegends"))()
-        WindUI:Notify({
-            Title = "vg脚本",
-            Content = "加载成功",
-            Duration = 3,
-            Icon = "bird",
-        })
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Omgshit/Scripts/main/MainLoader.lua"))()
     end
 })
+WindUI:Notify({
+    Title = "bald脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
 
--- 红叶子 按钮
-local RedLeafButton = Tab:Button({
-    Title = "红叶子脚本",
-    Desc = "点击运行红叶子脚本",
+local Button = Tab:Button({
+    Title = "relz极速传奇脚本",
+    Desc = "点击运行relz脚本",
     Locked = false,
     Callback = function()
-        loadstring(game:HttpGet("https://getnative.cc/script/loader"))()
-        WindUI:Notify({
-            Title = "红叶子脚本",
-            Content = "加载成功",
-            Duration = 3,
-            Icon = "bird",
-        })
+        loadstring(game:HttpGet("https://relzhub.farrghii.com/loader.lua"))()
     end
+})
+WindUI:Notify({
+    Title = "relz脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+
+local Button = Tab:Button({
+    Title = "不知名极速传奇脚本",
+    Desc = "点击运行极速传奇脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://ervcommunity.com/desynced.lua", true))()
+    end
+})
+WindUI:Notify({
+    Title = "极速传奇脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+
+local Button = Tab:Button({
+    Title = "lunor flsch脚本",
+    Desc = "点击运行lunor脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://lunor.dev/loader"))()
+    end
+})
+WindUI:Notify({
+    Title = "lunor脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
 })
 
 -- vape 按钮
