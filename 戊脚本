@@ -47,7 +47,7 @@ local Window = WindUI:CreateWindow({
     },
 
     KeySystem = {
-        Note = "Example Key System. With your custom service.",
+        Note = "戊-nb-666",
         API = {
             {
                 Type = "mysuperservicetogetkey",
@@ -74,7 +74,7 @@ Window:ToggleTransparency(true)
 Window:IsResizable(false)
 Window:EditOpenButton({
     Title = "戊脚本中心",
-    Icon = "monitor",
+    Icon = "crown",
     CornerRadius = UDim.new(0,16),
     StrokeThickness = 2,
     Color = ColorSequence.new(Color3.fromHex("FF0F7B"), Color3.fromHex("F89B29")),
@@ -84,14 +84,14 @@ Window:EditOpenButton({
 })
 
 Window:Tag({
-    Title = "v1.6.4",
+    Title = "v1.0",
     Color = Color3.fromHex("#30ff6a")
 })
 
 -- 创建 Tab
 local Tab = Window:Tab({
     Title = "通用区",
-    Icon = "bird",
+    Icon = "wave",
     Locked = false,
 })
 Window:SelectTab(1)
@@ -199,22 +199,19 @@ end
 
 --- 主页 Tab ---
 Tabs.Home:Paragraph({
-    Title = "雾",
-    Desc = "戊",
+    Title = "戊",
+    Desc = "吃饭了吗",
     Image = "https://raw.githubusercontent.com/greatjakson-lgtm/-2/fbe1d54847da1b794e15f01fd9137aab1c43c57e/new_logo.png",
     ImageSize = 42,
-    Thumbnail = "https://raw.githubusercontent.com/greatjakson-lgtm/-2/fbe1d54847da1b794e15f01fd9137aab1c43c57e/177435794.png",
-    ThumbnailSize = 120
-})
 
 Tabs.Home:Paragraph({
     Title = "欢迎",
-    Desc = "需要时开启反挂机。脚本仍在更新中... 作者: 戊\n脚本免费, 请勿倒卖。",
+    Desc = "需要时开启反挂机,作者: 戊\n脚本免费",
 })
 -- 反挂机 (通过外部链接加载)
 Tabs.Home:Button({
     Title = "反挂机",
-    Desc = "从GitHub加载并执行反挂机",
+    Desc = "执行反挂机",
     Callback = function()
         pcall(function()
             local response = game:HttpGet("https://raw.githubusercontent.com/Guo61/Cat-/refs/heads/main/%E5%8F%8D%E6%8C%82%E6%9C%BA.lua", true)
@@ -973,7 +970,7 @@ Tabs.Home:Button({
 Tabs.Misc:Button({
     Title = "复制作者QQ",
     Callback = function()
-        setclipboard("3395858053")
+        setclipboard("3848974452")
         WindUI:Notify({Title = "QQ群号", Content = "群号已复制到剪贴板", Duration = 3})
     end
 })
@@ -1021,7 +1018,7 @@ Tabs.Misc:Code({
 -- 创建 Tab
 local Tab = Window:Tab({
     Title = "功能区",
-    Icon = "bird",
+    Icon = "wave",
     Locked = false,
 })
 Window:SelectTab(1)
