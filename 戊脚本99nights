@@ -617,6 +617,7 @@ Tabs.Home:Paragraph({
     Image = "https://raw.githubusercontent.com/greatjakson-lgtm/-2/fbe1d54847da1b794e15f01fd9137aab1c43c57e/new_logo.png",
     ImageSize = 42,
 })
+
 local Button = Tab:Button({
     Title = "防挂机脚本",
     Desc = "点击运行防挂机脚本",
@@ -626,11 +627,12 @@ local Button = Tab:Button({
     end
 })
 WindUI:Notify({
-    Title = "放挂机脚本",
+    Title = "防挂机脚本",
     Content = "加载成功",
     Duration = 3, -- 3 seconds
     Icon = "bird",
 })
+
 -- FPS 显示
 Tabs.Home:Toggle({
     Title = "显示FPS",
