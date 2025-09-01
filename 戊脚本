@@ -104,7 +104,7 @@ local Section = Tab:Section({
 })
 local Button = Tab:Button({
     Title = "飞行 v3",
-    Desc = "点击运行戊飞行v3脚本",
+    Desc = "点击运行飞行v3脚本",
     Locked = false,
     Callback = function()
        loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/70a71eeabf5f141852374be101bc910bf9444036/fly.lua"))()
@@ -214,7 +214,7 @@ Tabs.Home:Button({
     Desc = "执行反挂机",
     Callback = function()
         pcall(function()
-            local response = game:HttpGet("https://raw.githubusercontent.com/Guo61/Cat-/refs/heads/main/%E5%8F%8D%E6%8C%82%E6%9C%BA.lua", true)
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/main/99nights%E5%8F%8D%E6%8C%82%E6%9C%BA%E8%84%9A%E6%9C%AC"))()
             if response and #response > 100 then
                 loadstring(response)()
             end
@@ -1179,7 +1179,7 @@ local Button = Tab:Button({
     Desc = "点击运行戊99nights脚本",
     Locked = false,
     Callback = function()
-       loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/936b1f9af081ca7b8febf3c3eff669a62a4ec54f/%E6%88%8A%E8%84%9A%E6%9C%AC99nights"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/973e40c55ced3257fbe0e88b453869ba312a272d/%E6%88%8A%E8%84%9A%E6%9C%AC99nights"))()
     end
 })
 WindUI:Notify({
