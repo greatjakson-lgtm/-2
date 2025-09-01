@@ -200,7 +200,7 @@ end
 --- 主页 Tab ---
 Tabs.Home:Paragraph({
     Title = "戊",
-    Desc = "吃饭了吗",
+    Desc = "点完加载不了就是用不了",
     Image = "https://raw.githubusercontent.com/greatjakson-lgtm/-2/fbe1d54847da1b794e15f01fd9137aab1c43c57e/new_logo.png",
     ImageSize = 42,
 
@@ -317,14 +317,14 @@ Tabs.Home:Toggle({
 -- 半隐身, 玩家入退提示, 甩飞
 Tabs.Home:Button({
     Title = "半隐身",
-    Desc = "从GitHub加载并执行隐身脚本",
+    Desc = "加载隐身脚本",
     Callback = function()
         pcall(function() loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Invisible-35376"))() end)
     end
 })
 Tabs.Home:Button({
     Title = "玩家入退提示",
-    Desc = "从GitHub加载并执行提示脚本",
+    Desc = "加载提示脚本",
     Callback = function()
         pcall(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/boyscp/scriscriptsc/main/bbn.lua"))() end)
     end
@@ -648,7 +648,7 @@ game.Players.PlayerRemoving:Connect(refreshPlayerDropdown)
 -- 飞行, 无限跳, 自瞄, 子弹追踪, 夜视, 穿墙
 Tabs.Home:Button({
     Title = "飞行",
-    Desc = "从GitHub加载并执行飞行脚本",
+    Desc = "加载飞行脚本",
     Callback = function()
         pcall(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/70a71eeabf5f141852374be101bc910bf9444036/fly.lua"))() end)
     end
