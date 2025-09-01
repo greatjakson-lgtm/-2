@@ -1,71 +1,74 @@
--- 99 Nights 反挂机脚本 (无UI版)
-local AntiAFK = {}
-
--- 模拟用户活动
-function AntiAFK:SimulateActivity()
-    -- 模拟鼠标移动
-    local virtualInput = game:GetService("VirtualInputManager")
-    local screenSize = workspace.CurrentCamera.ViewportSize
-    
-    -- 在屏幕范围内随机移动鼠标
-    virtualInput:SendMouseMoveEvent(
-        math.random(0, screenSize.X),
-        math.random(0, screenSize.Y),
-        game:GetService("Players").LocalPlayer:GetMouse().TargetFilter
-    )
-    
-    -- 随机按下键盘按键 (空格键)
-    if math.random(1, 10) == 1 then
-        virtualInput:SendKeyEvent(true, Enum.KeyCode.Space, false, nil)
-        task.wait(0.1)
-        virtualInput:SendKeyEvent(false, Enum.KeyCode.Space, false, nil)
-    end
-    
-    -- 随机按下WASD键
-    local movementKeys = {Enum.KeyCode.W, Enum.KeyCode.A, Enum.KeyCode.S, Enum.KeyCode.D}
-    local randomKey = movementKeys[math.random(1, #movementKeys)]
-    
-    virtualInput:SendKeyEvent(true, randomKey, false, nil)
-    task.wait(0.05)
-    virtualInput:SendKeyEvent(false, randomKey, false, nil)
+if getgenv().AntiAfk then
+    getgenv().AntiAfk:Disconnect()
+    getgenv().AntiAfk = nil
 end
 
--- 检测玩家状态
-function AntiAFK:CheckPlayerState()
-    local player = game:GetService("Players").LocalPlayer
-    local character = player.Character or player.CharacterAdded:Wait()
-    
-    -- 检查角色是否存活
-    if character:FindFirstChild("Humanoid") then
-        local humanoid = character.Humanoid
-        if humanoid.Health <= 0 then
-            return false
-        end
-    end
-    
-    return true
-end
+local VirtualUser = game:GetService("VirtualUser")
+local Players = game:GetService("Players")
 
--- 主循环
-function AntiAFK:Start()
-    print("99 Nights 反挂机脚本已启动")
-    
-    while task.wait(math.random(25, 35)) do -- 随机间隔25-35秒
-        if not self:CheckPlayerState() then
-            print("玩家状态异常，暂停反挂机")
-            task.wait(5)
-            continue
-        end
-        
-        -- 执行模拟活动
-        self:SimulateActivity()
-        print("执行反挂机操作: " .. os.date("%H:%M:%S"))
-    end
-end
-
--- 自动启动
-task.spawn(function()
-    AntiAFK:Start()
+getgenv().AntiAfk = game:GetService("RunService").Stepped:Connect(function()
+    pcall(function()
+        VirtualUser:CaptureController()
+        VirtualUser:ClickButton2(Vector2.new())
+    end)
 end)
 
-return AntiAFK
+spawn(function()
+    while wait(1800) do
+        pcall(function()
+            game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(
+                "防挂机保护中...", "All"
+            )
+        end)
+    end
+end)
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "AntiAfkNotify"
+ScreenGui.Parent = game:GetService("CoreGui")
+
+local Frame = Instance.new("Frame")
+Frame.Size = UDim2.new(0, 300, 0, 150)
+Frame.Position = UDim2.new(0.5, -150, 0.05, 0)
+Frame.BackgroundColor3 = Color3.fromRGB(30, 30, 40)
+Frame.BorderSizePixel = 0
+Frame.Parent = ScreenGui
+
+local Corner = Instance.new("UICorner")
+Corner.CornerRadius = UDim.new(0, 8)
+Corner.Parent = Frame
+
+local Title = Instance.new("TextLabel")
+Title.Size = UDim2.new(1, 0, 0, 40)
+Title.BackgroundColor3 = Color3.fromRGB(40, 40, 50)
+Title.Text = "99夜防挂机工具"
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.Font = Enum.Font.GothamBold
+Title.Parent = Frame
+
+local Status = Instance.new("TextLabel")
+Status.Size = UDim2.new(1, 0, 0, 60)
+Status.Position = UDim2.new(0, 0, 0, 40)
+Status.BackgroundTransparency = 1
+Status.Text = "状态: 已启用\n防踢保护中..."
+Status.TextColor3 = Color3.fromRGB(0, 255, 0)
+Status.Font = Enum.Font.Gotham
+Status.Parent = Frame
+
+local CloseBtn = Instance.new("TextButton")
+CloseBtn.Size = UDim2.new(0, 100, 0, 30)
+CloseBtn.Position = UDim2.new(0.5, -50, 0, 110)
+CloseBtn.BackgroundColor3 = Color3.fromRGB(76, 201, 240)
+CloseBtn.Text = "关闭提示"
+CloseBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+CloseBtn.Parent = Frame
+
+CloseBtn.MouseButton1Click:Connect(function()
+    ScreenGui:Destroy()
+end)
+
+wait(5)
+Frame:TweenSize(UDim2.new(0, 200, 0, 40), "Out", "Quad", 0.5)
+Frame:TweenPosition(UDim2.new(1, -210, 0, 10), "Out", "Quad", 0.5)
+Status.Visible = false
+CloseBtn.Visible = false
