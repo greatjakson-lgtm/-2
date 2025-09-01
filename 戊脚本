@@ -47,7 +47,7 @@ local Window = WindUI:CreateWindow({
     },
 
     KeySystem = {
-        Note = "戊-nb-666",
+        Note = "Example Key System. With your custom service.",
         API = {
             {
                 Type = "mysuperservicetogetkey",
