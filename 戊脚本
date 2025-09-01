@@ -91,7 +91,7 @@ Window:Tag({
 -- 创建 Tab
 local Tab = Window:Tab({
     Title = "通用区",
-    Icon = "wave",
+    Icon = "crown",
     Locked = false,
 })
 Window:SelectTab(1)
@@ -1018,7 +1018,7 @@ Tabs.Misc:Code({
 -- 创建 Tab
 local Tab = Window:Tab({
     Title = "功能区",
-    Icon = "wave",
+    Icon = "crown",
     Locked = false,
 })
 Window:SelectTab(1)
@@ -1535,7 +1535,7 @@ ConfigManager:AllConfigs() -- 返回所有配置表
 local Dialog = Window:Dialog({
     Icon = "bird",
     Title = "戊",
-    Content = "戊提醒您",
+    Content = "404就是用不了老外删库了",
     Buttons = {
         {
             Title = "Confirm",
