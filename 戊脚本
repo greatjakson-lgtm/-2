@@ -200,8 +200,10 @@ end
 --- 主页 Tab ---
 Tabs.Home:Paragraph({
     Title = "戊",
-    Desc = "点完没反应就是用不了",
-
+    Desc = "点击完没加载就是用不了",
+    Image = "https://raw.githubusercontent.com/greatjakson-lgtm/-2/fbe1d54847da1b794e15f01fd9137aab1c43c57e/new_logo.png",
+    ImageSize = 42,
+})
 Tabs.Home:Paragraph({
     Title = "欢迎",
     Desc = "需要时开启反挂机。作者: 戊\n脚本免费",
