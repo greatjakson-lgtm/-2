@@ -116,6 +116,7 @@ WindUI:Notify({
     Duration = 3, -- 3 seconds
     Icon = "bird",
 })
+
 -- vape 按钮
 local VapeButton = Tab:Button({
     Title = "通用vape",
@@ -131,6 +132,7 @@ local VapeButton = Tab:Button({
         })
     end
 })
+
 -- 创建指定的大类（作为标签页）
 local Tabs = {
     Home = Window:Tab({ Title = "主页", Icon = "crown" }),
@@ -1175,19 +1177,20 @@ local LinuxButton = Tab:Button({
     end
 })
 
-local Button = Tab:Button({
-    Title = "戊99nights",
+-- 戊99nights脚本 按钮
+local LinuxButton = Tab:Button({
+    Title = "戊99nights脚本",
     Desc = "点击运行戊99nights脚本",
     Locked = false,
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/973e40c55ced3257fbe0e88b453869ba312a272d/%E6%88%8A%E8%84%9A%E6%9C%AC99nights"))()
+        WindUI:Notify({
+            Title = "戊99夜nights脚本",
+            Content = "加载成功",
+            Duration = 3,
+            Icon = "bird",
+        })
     end
-})
-WindUI:Notify({
-    Title = "戊脚本99nigtes",
-    Content = "加载成功",
-    Duration = 3, -- 3 seconds
-    Icon = "bird",
 })
 
 -- 创建 Tab
@@ -1204,6 +1207,7 @@ local Section = Tab:Section({
     TextXAlignment = "Left",
     TextSize = 17,
 })
+
 -- NOL 免费版 按钮
 local NolButton = Tab:Button({
     Title = "NOL免费版",
@@ -1483,6 +1487,7 @@ local IsisButton = Tab:Button({
         })
     end
 })
+
 -- 创建 Tab
 local Tab = Window:Tab({
     Title = "设置区",
