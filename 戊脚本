@@ -74,7 +74,7 @@ Window:ToggleTransparency(true)
 Window:IsResizable(false)
 Window:EditOpenButton({
     Title = "戊脚本中心",
-    Icon = "crown",
+    Icon = "monitor",
     CornerRadius = UDim.new(0,16),
     StrokeThickness = 2,
     Color = ColorSequence.new(Color3.fromHex("FF0F7B"), Color3.fromHex("F89B29")),
@@ -84,14 +84,14 @@ Window:EditOpenButton({
 })
 
 Window:Tag({
-    Title = "v1.0",
+    Title = "v1.6.4",
     Color = Color3.fromHex("#30ff6a")
 })
 
 -- 创建 Tab
 local Tab = Window:Tab({
     Title = "通用区",
-    Icon = "crown",
+    Icon = "bird",
     Locked = false,
 })
 Window:SelectTab(1)
@@ -104,7 +104,7 @@ local Section = Tab:Section({
 })
 local Button = Tab:Button({
     Title = "飞行 v3",
-    Desc = "点击运行飞行v3脚本",
+    Desc = "点击运行戊飞行v3脚本",
     Locked = false,
     Callback = function()
        loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/70a71eeabf5f141852374be101bc910bf9444036/fly.lua"))()
@@ -200,21 +200,19 @@ end
 --- 主页 Tab ---
 Tabs.Home:Paragraph({
     Title = "戊",
-    Desc = "点完加载不了就是用不了",
-    Image = "https://raw.githubusercontent.com/greatjakson-lgtm/-2/fbe1d54847da1b794e15f01fd9137aab1c43c57e/new_logo.png",
-    ImageSize = 42,
+    Desc = "点完没反应就是用不了",
 
 Tabs.Home:Paragraph({
     Title = "欢迎",
-    Desc = "需要时开启反挂机,作者: 戊\n脚本免费",
+    Desc = "需要时开启反挂机。脚本仍在更新中... 作者: 戊\n脚本免费, 请勿倒卖。",
 })
 -- 反挂机 (通过外部链接加载)
 Tabs.Home:Button({
     Title = "反挂机",
-    Desc = "执行反挂机",
+    Desc = "加载反挂机",
     Callback = function()
         pcall(function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/main/99nights%E5%8F%8D%E6%8C%82%E6%9C%BA%E8%84%9A%E6%9C%AC"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/main/99nights%E5%8F%8D%E6%8C%82%E6%9C%BA%E8%84%9A%E6%9C%AC"))()
             if response and #response > 100 then
                 loadstring(response)()
             end
@@ -324,7 +322,7 @@ Tabs.Home:Button({
 })
 Tabs.Home:Button({
     Title = "玩家入退提示",
-    Desc = "加载提示脚本",
+    Desc = "从GitHub加载并执行提示脚本",
     Callback = function()
         pcall(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/boyscp/scriscriptsc/main/bbn.lua"))() end)
     end
@@ -648,7 +646,7 @@ game.Players.PlayerRemoving:Connect(refreshPlayerDropdown)
 -- 飞行, 无限跳, 自瞄, 子弹追踪, 夜视, 穿墙
 Tabs.Home:Button({
     Title = "飞行",
-    Desc = "加载飞行脚本",
+    Desc = "从GitHub加载并执行飞行脚本",
     Callback = function()
         pcall(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/70a71eeabf5f141852374be101bc910bf9444036/fly.lua"))() end)
     end
@@ -922,20 +920,6 @@ Tabs.Home:Button({
 })
 
 Tabs.Home:Button({
-    Title = "复制服务器邀请链接",
-    Desc = "复制当前服务器的邀请链接到剪贴板",
-    Callback = function()
-        local inviteLink = "roblox://experiences/start?placeId=" .. game.PlaceId .. "&gameInstanceId=" .. game.JobId
-        setclipboard(inviteLink)
-        WindUI:Notify({
-            Title = "邀请链接已复制",
-            Content = "链接已复制到剪贴板",
-            Duration = 3
-        })
-    end
-})
-
-Tabs.Home:Button({
     Title = "复制服务器ID",
     Desc = "复制当前服务器的Job ID到剪贴板",
     Callback = function()
@@ -947,7 +931,6 @@ Tabs.Home:Button({
         })
     end
 })
-
 
 Tabs.Home:Button({
     Title = "服务器信息",
@@ -1018,7 +1001,7 @@ Tabs.Misc:Code({
 -- 创建 Tab
 local Tab = Window:Tab({
     Title = "功能区",
-    Icon = "crown",
+    Icon = "bird",
     Locked = false,
 })
 Window:SelectTab(1)
@@ -1313,23 +1296,6 @@ local VapeButton = Tab:Button({
         })
     end
 })
-
--- speed x fisch 按钮
-local FischButton = Tab:Button({
-    Title = "speed x fisch",
-    Desc = "点击运行fisch脚本",
-    Locked = false,
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
-        WindUI:Notify({
-            Title = "speed x fisch",
-            Content = "加载成功",
-            Duration = 3,
-            Icon = "bird",
-        })
-    end
-})
-
 -- 死铁轨nat 按钮
 local NatButton = Tab:Button({
     Title = "死铁轨nat中心",
@@ -1355,22 +1321,6 @@ local RBButton = Tab:Button({
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Yungengxin/roblox/refs/heads/main/Rb-Hub"))()
         WindUI:Notify({
             Title = "rb中心",
-            Content = "加载成功",
-            Duration = 3,
-            Icon = "bird",
-        })
-    end
-})
-
--- 小叶脚本 按钮
-local XiaoyeButton = Tab:Button({
-    Title = "小叶脚本中心",
-    Desc = "点击运行小叶脚本",
-    Locked = false,
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/roblox-ye/QQ515966991/refs/heads/main/ROBLOX-CNVIP-XIAOYE.lua"))()
-        WindUI:Notify({
-            Title = "小叶脚本",
             Content = "加载成功",
             Duration = 3,
             Icon = "bird",
@@ -1535,7 +1485,7 @@ ConfigManager:AllConfigs() -- 返回所有配置表
 local Dialog = Window:Dialog({
     Icon = "bird",
     Title = "戊",
-    Content = "404就是用不了老外删库了",
+    Content = "点完404就是用不了",
     Buttons = {
         {
             Title = "Confirm",
