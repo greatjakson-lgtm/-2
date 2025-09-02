@@ -1,5 +1,5 @@
 -- 加载 WindUI 主库
-local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/58e9bba0f16df3c875d57225ad65992d03f77b16/%E6%88%8A%E8%84%9A%E6%9C%AC"))()
+local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua"))()
 
 -- 注册自定义 Key 验证服务（如有需要）
 WindUI.Services.mysuperservicetogetkey = {
@@ -204,7 +204,7 @@ Tabs.Home:Paragraph({
 
 Tabs.Home:Paragraph({
     Title = "欢迎",
-    Desc = "需要时开启反挂机。脚本仍在更新中... 作者: 戊\n脚本免费",
+    Desc = "需要时开启反挂机。作者: 戊\n脚本免费",
 })
 -- 反挂机 (通过外部链接加载)
 Tabs.Home:Button({
@@ -322,7 +322,7 @@ Tabs.Home:Button({
 })
 Tabs.Home:Button({
     Title = "玩家入退提示",
-    Desc = "从GitHub加载并执行提示脚本",
+    Desc = "加载提示脚本",
     Callback = function()
         pcall(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/boyscp/scriscriptsc/main/bbn.lua"))() end)
     end
@@ -646,7 +646,7 @@ game.Players.PlayerRemoving:Connect(refreshPlayerDropdown)
 -- 飞行, 无限跳, 自瞄, 子弹追踪, 夜视, 穿墙
 Tabs.Home:Button({
     Title = "飞行",
-    Desc = "从GitHub加载并执行飞行脚本",
+    Desc = "加载飞行脚本",
     Callback = function()
         pcall(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/70a71eeabf5f141852374be101bc910bf9444036/fly.lua"))() end)
     end
@@ -959,24 +959,12 @@ Tabs.Misc:Button({
 })
 
 Tabs.Misc:Button({
-    Title = "脚本信息",
-    Desc = "显示脚本相关信息",
-    Callback = function()
-        WindUI:Notify({
-            Title = "脚本信息",
-            Content = "戊脚本\n作者: 戊\nQQ群: 912837219",
-            Duration = 10
-        })
-    end
-})
-
-Tabs.Misc:Button({
     Title = "检查更新",
     Desc = "检查脚本是否有更新",
     Callback = function()
         WindUI:Notify({
             Title = "更新检查",
-            Content = "当前版本: v1.15\n已是最新版本",
+            Content = "当前版本: v1.0\n已是最新版本",
             Duration = 5
         })
     end
