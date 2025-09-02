@@ -84,7 +84,7 @@ Window:EditOpenButton({
 })
 
 Window:Tag({
-    Title = "v1.6.4",
+    Title = "v1.0",
     Color = Color3.fromHex("#30ff6a")
 })
 
@@ -115,6 +115,22 @@ WindUI:Notify({
     Content = "加载成功",
     Duration = 3, -- 3 seconds
     Icon = "bird",
+})
+
+-- vape 按钮
+local VapeButton = Tab:Button({
+    Title = "通用vape",
+    Desc = "点击运行vape脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(utf8.char(table.unpack({108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,34,104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,55,71,114,97,110,100,68,97,100,80,71,78,47,86,97,112,101,86,52,70,111,114,82,111,98,108,111,120,47,109,97,105,110,47,78,101,119,77,97,105,110,83,99,114,105,112,116,46,108,117,97,34,44,32,116,114,117,101,41,41,40,41})))()
+        WindUI:Notify({
+            Title = "vape脚本",
+            Content = "加载成功",
+            Duration = 3,
+            Icon = "bird",
+        })
+    end
 })
 
 -- 创建指定的大类（作为标签页）
@@ -990,7 +1006,7 @@ Tabs.Misc:Code({
 
 -- 创建 Tab
 local Tab = Window:Tab({
-    Title = "功能区",
+    Title = "doors",
     Icon = "bird",
     Locked = false,
 })
@@ -998,7 +1014,7 @@ Window:SelectTab(1)
 
 -- 创建 Section
 local Section = Tab:Section({ 
-    Title = "脚本区",
+    Title = "doors类",
     TextXAlignment = "Left",
     TextSize = 17,
 })
@@ -1049,6 +1065,21 @@ local ProhaxButton = Tab:Button({
             Icon = "bird",
         })
     end
+})
+
+-- 创建 Tab
+local Tab = Window:Tab({
+    Title = "inkgame",
+    Icon = "bird",
+    Locked = false,
+})
+Window:SelectTab(1)
+
+-- 创建 Section
+local Section = Tab:Section({ 
+    Title = "inkgame类",
+    TextXAlignment = "Left",
+    TextSize = 17,
 })
 
 -- void ware 按钮
@@ -1115,20 +1146,19 @@ local RingtaButton = Tab:Button({
     end
 })
 
--- isis 按钮
-local IsisButton = Tab:Button({
-    Title = "isis",
-    Desc = "点击运行isis脚本key=ISIS-KEY-2025",
+-- 创建 Tab
+local Tab = Window:Tab({
+    Title = "99nights",
+    Icon = "bird",
     Locked = false,
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/S-WTB/-/refs/heads/main/ISIS加载器"))()
-        WindUI:Notify({
-            Title = "isis脚本",
-            Content = "加载成功",
-            Duration = 3,
-            Icon = "bird",
-        })
-    end
+})
+Window:SelectTab(1)
+
+-- 创建 Section
+local Section = Tab:Section({ 
+    Title = "99夜类",
+    TextXAlignment = "Left",
+    TextSize = 17,
 })
 
 -- Linux脚本 按钮
@@ -1162,10 +1192,24 @@ WindUI:Notify({
     Icon = "bird",
 })
 
+-- 创建 Tab
+local Tab = Window:Tab({
+    Title = "死亡之死",
+    Icon = "bird",
+    Locked = false,
+})
+Window:SelectTab(1)
+
+-- 创建 Section
+local Section = Tab:Section({ 
+    Title = "死亡之死类",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
 -- NOL 免费版 按钮
 local NolButton = Tab:Button({
     Title = "NOL免费版",
-    Desc = "点击运行NOL脚本",
+    Desc = "点击运行NOL脚本（被遗弃也可用）",
     Locked = false,
     Callback = function()
         getfenv().ADittoKey = "NOL_FRERKEY_THISISFOR" ---Put in key
@@ -1195,6 +1239,21 @@ local DieButton = Tab:Button({
     end
 })
 
+-- 创建 Tab
+local Tab = Window:Tab({
+    Title = "自然灾害",
+    Icon = "bird",
+    Locked = false,
+})
+Window:SelectTab(1)
+
+-- 创建 Section
+local Section = Tab:Section({ 
+    Title = "自然灾害类",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
 -- 黑洞v6 按钮
 local V6Button = Tab:Button({
     Title = "自然灾害黑洞v6脚本",
@@ -1211,6 +1270,21 @@ local V6Button = Tab:Button({
     end
 })
 
+-- 创建 Tab
+local Tab = Window:Tab({
+    Title = "力量传奇",
+    Icon = "bird",
+    Locked = false,
+})
+Window:SelectTab(1)
+
+-- 创建 Section
+local Section = Tab:Section({ 
+    Title = "力量传奇类",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
 local Button = Tab:Button({
     Title = "bald力量传奇脚本",
     Desc = "点击运行bald脚本",
@@ -1224,6 +1298,21 @@ WindUI:Notify({
     Content = "加载成功",
     Duration = 3, -- 3 seconds
     Icon = "bird",
+})
+
+-- 创建 Tab
+local Tab = Window:Tab({
+    Title = "极速传奇",
+    Icon = "bird",
+    Locked = false,
+})
+Window:SelectTab(1)
+
+-- 创建 Section
+local Section = Tab:Section({ 
+    Title = "极速传奇类",
+    TextXAlignment = "Left",
+    TextSize = 17,
 })
 
 local Button = Tab:Button({
@@ -1256,6 +1345,21 @@ WindUI:Notify({
     Icon = "bird",
 })
 
+-- 创建 Tab
+local Tab = Window:Tab({
+    Title = "flsch",
+    Icon = "bird",
+    Locked = false,
+})
+Window:SelectTab(1)
+
+-- 创建 Section
+local Section = Tab:Section({ 
+    Title = "flsch类",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
 local Button = Tab:Button({
     Title = "lunor flsch脚本",
     Desc = "点击运行lunor脚本",
@@ -1271,21 +1375,21 @@ WindUI:Notify({
     Icon = "bird",
 })
 
--- vape 按钮
-local VapeButton = Tab:Button({
-    Title = "通用vape",
-    Desc = "点击运行vape脚本",
+-- 创建 Tab
+local Tab = Window:Tab({
+    Title = "死铁轨",
+    Icon = "bird",
     Locked = false,
-    Callback = function()
-        loadstring(utf8.char(table.unpack({108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,34,104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,55,71,114,97,110,100,68,97,100,80,71,78,47,86,97,112,101,86,52,70,111,114,82,111,98,108,111,120,47,109,97,105,110,47,78,101,119,77,97,105,110,83,99,114,105,112,116,46,108,117,97,34,44,32,116,114,117,101,41,41,40,41})))()
-        WindUI:Notify({
-            Title = "vape脚本",
-            Content = "加载成功",
-            Duration = 3,
-            Icon = "bird",
-        })
-    end
 })
+Window:SelectTab(1)
+
+-- 创建 Section
+local Section = Tab:Section({ 
+    Title = "死铁轨类",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
 -- 死铁轨nat 按钮
 local NatButton = Tab:Button({
     Title = "死铁轨nat中心",
@@ -1300,6 +1404,21 @@ local NatButton = Tab:Button({
             Icon = "bird",
         })
     end
+})
+
+-- 创建 Tab
+local Tab = Window:Tab({
+    Title = "其他脚本中心",
+    Icon = "bird",
+    Locked = false,
+})
+Window:SelectTab(1)
+
+-- 创建 Section
+local Section = Tab:Section({ 
+    Title = "脚本区",
+    TextXAlignment = "Left",
+    TextSize = 17,
 })
 
 -- rb中心 按钮
@@ -1344,6 +1463,22 @@ local TxButton = Tab:Button({
         loadstring(game:HttpGet("https://raw.githubusercontent.com/dzq1311056/k/refs/heads/main/Protected_6797390536487459.lua"))()
         WindUI:Notify({
             Title = "tx v4",
+            Content = "加载成功",
+            Duration = 3,
+            Icon = "bird",
+        })
+    end
+}）
+
+-- isis 按钮
+local IsisButton = Tab:Button({
+    Title = "isis",
+    Desc = "点击运行isis脚本key=ISIS-KEY-2025",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/S-WTB/-/refs/heads/main/ISIS加载器"))()
+        WindUI:Notify({
+            Title = "isis脚本",
             Content = "加载成功",
             Duration = 3,
             Icon = "bird",
