@@ -1,6 +1,11 @@
 -- 加载 WindUI 主库
 local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua"))()
-
+WindUI:Notify({
+    Title = "WindUI 加载成功",
+    Content = "UI库已成功加载！",
+    Icon = "check",
+    Duration = 3
+})
 -- 注册自定义 Key 验证服务（如有需要）
 WindUI.Services.mysuperservicetogetkey = {
     Name = "戊脚本",
