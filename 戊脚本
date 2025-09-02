@@ -116,7 +116,6 @@ WindUI:Notify({
     Duration = 3, -- 3 seconds
     Icon = "bird",
 })
-
 -- vape 按钮
 local VapeButton = Tab:Button({
     Title = "通用vape",
@@ -132,7 +131,6 @@ local VapeButton = Tab:Button({
         })
     end
 })
-
 -- 创建指定的大类（作为标签页）
 local Tabs = {
     Home = Window:Tab({ Title = "主页", Icon = "crown" }),
