@@ -1182,7 +1182,7 @@ local Button = Tab:Button({
     Desc = "点击运行戊99nights脚本",
     Locked = false,
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/d437edf78ebd91ba1bea8b4d2c37cbd63ee6b7e2/%E6%88%8A%E8%84%9A%E6%9C%AC99nights"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/29b54fa8069182f477846db8d1617dca390334da/%E6%88%8A%E8%84%9A%E6%9C%AC99nights"))()
     end
 })
 WindUI:Notify({
