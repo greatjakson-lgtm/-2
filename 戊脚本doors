@@ -1,11 +1,38 @@
 -- 加载 WindUI 主库
 local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua"))()
 
--- Create main window
-local MainWindow = Wind:CreateWindow({
-    Title = "戊脚本doors",
-    Center = true,
-    Size = UDim2.new(380,270)
+local Confirmed = false
+
+WindUI:Popup({
+    Title = " 戊脚本",
+    Icon = "rbxassetid://129260712070622",
+    IconThemed = true,
+    Content = "By:戊\nQQ群:912837219 欢迎使用99夜",
+    Buttons = {
+        {
+            Title = "进入脚本。",
+            Icon = "arrow-right",
+            Callback = function() Confirmed = true end,
+            Variant = "Primary",
+        }
+    }
+})
+
+repeat wait() until Confirmed
+
+-- 修复后的代码将所有功能整合到一个统一的 WindUI 窗口中
+local Window = WindUI:CreateWindow({
+    Title = "戊脚本",
+    Icon = "rbxassetid://129260712070622",
+    IconThemed = true,
+    Author = "感谢游玩",
+    Folder = "戊脚本",
+    Size = UDim2.fromOffset(540, 340),
+    Transparent = true,
+    Theme = "Dark",
+    User = { Enabled = true },
+    SideBarWidth = 200,
+    ScrollBarEnabled = true,
 })
 
 -- Create tabs
