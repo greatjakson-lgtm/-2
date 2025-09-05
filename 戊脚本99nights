@@ -614,7 +614,7 @@ end
 Tabs.Home:Paragraph({
     Title = "戊",
     Desc = "点击完没加载就是用不了",
-    Image = "https://raw.githubusercontent.com/greatjakson-lgtm/-2/bb78fa80e202c45cbd4f127270c3884928707cb6/Lucid_Origin_A_elegant_logo_of_the_letter_W_made_of_glowing_li_1.jpg",
+    Image = "https://raw.githubusercontent.com/greatjakson-lgtm/-2/98b663ee1e2381a82070a0001a17e2295f1cdb40/%E6%88%8A.jpg",
     ImageSize = 65,
 })
 Tabs.Home:Paragraph({
