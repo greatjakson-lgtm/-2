@@ -6,7 +6,7 @@ WindUI:Popup({
     Title = " 戊脚本",
     Icon = "rbxassetid://129260712070622",
     IconThemed = true,
-    Content = "By:戊\nQQ群:912837219 欢迎使用99夜",
+    Content = "By:誓约\nQQ群:1053715085 欢迎使用99夜",
     Buttons = {
         {
             Title = "进入脚本。",
@@ -614,12 +614,12 @@ end
 Tabs.Home:Paragraph({
     Title = "戊",
     Desc = "点击完没加载就是用不了",
-    Image = "https://raw.githubusercontent.com/greatjakson-lgtm/-2/fbe1d54847da1b794e15f01fd9137aab1c43c57e/new_logo.png",
-    ImageSize = 42,
+    Image = "https://raw.githubusercontent.com/greatjakson-lgtm/-2/bb78fa80e202c45cbd4f127270c3884928707cb6/Lucid_Origin_A_elegant_logo_of_the_letter_W_made_of_glowing_li_1.jpg",
+    ImageSize = 65,
 })
 Tabs.Home:Paragraph({
     Title = "欢迎",
-    Desc = "需要时开启反挂机,作者: 戊\n脚本免费",
+    Desc = "需要时开启反挂机,作者: 誓约\n脚本免费",
 })
 -- 反挂机 (通过外部链接加载)
 Tabs.Home:Button({
@@ -1384,7 +1384,7 @@ Tabs.Misc:Button({
     Title = "复制作者QQ",
     Callback = function()
         setclipboard("3848974452")
-        WindUI:Notify({Title = "QQ群号", Content = "群号已复制到剪贴板", Duration = 3})
+        WindUI:Notify({Title = "QQ号", Content = "qq号已复制到剪贴板", Duration = 3})
     end
 })
 
@@ -1394,7 +1394,7 @@ Tabs.Misc:Button({
     Callback = function()
         WindUI:Notify({
             Title = "脚本信息",
-            Content = "戊脚本\n作者: 戊\nQQ群: 912837219",
+            Content = "戊脚本\n作者: 誓约/nQQ群: 1053715085",
             Duration = 10
         })
     end
