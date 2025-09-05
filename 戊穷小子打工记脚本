@@ -1,4 +1,4 @@
-local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/UI-Wind/Wind-UI-Library/main/Source.lua"))()
+local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua"))()
 
 local Confirmed = false
 
@@ -26,7 +26,7 @@ local Window = WindUI:CreateWindow({
     IconThemed = true,
     Author = "感谢游玩",
     Folder = "穷小子打工记",
-    Size = UDim2.fromOffset(600, 450),
+    Size = UDim2.fromOffset(380, 270),
     Theme = "Dark",
     User = { Enabled = true },
 })
