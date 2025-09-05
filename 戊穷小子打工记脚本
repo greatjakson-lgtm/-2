@@ -1,12 +1,12 @@
-local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua"))()
+local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/UI-Wind/Wind-UI-Library/main/Source.lua"))()
 
 local Confirmed = false
 
 WindUI:Popup({
-    Title = " 戊穷小子打工记脚本",
+    Title = " 穷小子打工记脚本",
     Icon = "rbxassetid://129260712070622",
     IconThemed = true,
-    Content = "By: 誓约\nQQ群: 1053715085 欢迎使用",
+    Content = "By: 脚本作者\nQQ群: 912837219 欢迎使用",
     Buttons = {
         {
             Title = "进入脚本。",
@@ -19,14 +19,14 @@ WindUI:Popup({
 
 repeat wait() until Confirmed
 
--- 创建主窗口
+-- 修复后的代码将所有功能整合到一个统一的 WindUI 窗口中
 local Window = WindUI:CreateWindow({
-    Title = "戊穷小子打工记脚本",
+    Title = "穷小子打工记脚本",
     Icon = "rbxassetid://129260712070622",
     IconThemed = true,
     Author = "感谢游玩",
-    Folder = "戊穷小子打工记脚本",
-    Size = UDim2.fromOffset(600, 450),
+    Folder = "穷小子打工记",
+    Size = UDim2.fromOffset(540, 340),
     Transparent = true,
     Theme = "Dark",
     User = { Enabled = true },
@@ -35,26 +35,27 @@ local Window = WindUI:CreateWindow({
 })
 
 Window:Tag({
-    Title = "v1.0",
-    Color = Color3.fromHex("#30ff6a")
-})
-Window:Tag({
-    Title = "穷小子打工记", 
-    Color = Color3.fromHex("#315dff")
-})
-Window:Tag({
-    Title = "by誓约",
-    Color = Color3.fromHex("#000000")
-})
+        Title = "v1.0",
+        Color = Color3.fromHex("#30ff6a")
+    })
+    Window:Tag({
+        Title = "99nights", 
+        Color = Color3.fromHex("#315dff")
+    })
+    local TimeTag = Window:Tag({
+        Title = "by誓约",
+        Color = Color3.fromHex("#000000")
+    })
 
--- 创建标签页
+-- 创建指定的大类（作为标签页）
 local Tabs = {
-    Main = Window:CreateTab("主要功能", "home"),
-    Teleport = Window:CreateTab("传送功能", "map-pin"),
-    Automation = Window:CreateTab("自动化", "settings"),
-    SavedLocations = Window:CreateTab("位置保存", "bookmark"),
-    PlayerSettings = Window:CreateTab("玩家设置", "user"),
-    Misc = Window:CreateTab("其他功能", "star"),
+    Home = Window:Tab({ Title = "主页", Icon = "crown" }),
+    Main = Window:Tab({ Title = "主要功能", Icon = "zap" }),
+    Teleport = Window:Tab({ Title = "传送功能", Icon = "map-pin" }),
+    Automation = Window:Tab({ Title = "自动化", Icon = "settings" }),
+    SavedLocations = Window:Tab({ Title = "位置保存", Icon = "bookmark" }),
+    PlayerSettings = Window:Tab({ Title = "玩家设置", Icon = "user" }),
+    Misc = Window:Tab({ Title = "其他功能", Icon = "star" }),
 }
 
 Window:SelectTab(1)
@@ -65,7 +66,6 @@ local Workspace = game:GetService("Workspace")
 local HttpService = game:GetService("HttpService")
 local RunService = game:GetService("RunService")
 local ProximityPromptService = game:GetService("ProximityPromptService")
-local TweenService = game:GetService("TweenService")
 
 -- 本地玩家引用
 local LP = Players.LocalPlayer
@@ -79,11 +79,7 @@ local Locations = {
     ["彩票店"] = CFrame.new(150, 10, -100),
     ["办公楼"] = CFrame.new(-100, 20, 200),
     ["河岸"] = CFrame.new(300, 5, -50),
-    ["正新鸡排"] = CFrame.new(80, 15, -180),
-    ["商店"] = CFrame.new(-50, 5, 150),
-    ["银行"] = CFrame.new(200, 10, -80),
-    ["餐厅"] = CFrame.new(-120, 5, -200),
-    ["公园"] = CFrame.new(250, 20, 100)
+    ["正新鸡排"] = CFrame.new(80, 15, -180)
 }
 
 -- 保存的位置数据
@@ -96,52 +92,29 @@ local Features = {
     AutoDocument = false,
     AutoEat = false,
     AutoFish = false,
-    InstantInteract = false,
-    SpeedHack = false,
-    NoClip = false,
-    GodMode = false
+    InstantInteract = false
 }
 
 -- 自动功能循环
 local autoLoops = {}
 
--- 尝试加载保存的位置
-local function LoadSavedLocations()
-    local success, data = pcall(function()
-        if readfile and isfile and isfile(locationFileName) then
-            return HttpService:JSONDecode(readfile(locationFileName))
-        end
-        return {}
-    end)
-    
-    if success then
-        SavedLocations = data
-    else
-        SavedLocations = {}
-    end
-end
-
--- 保存位置到文件
-local function SaveLocationsToFile()
-    local success, err = pcall(function()
-        if writefile then
-            writefile(locationFileName, HttpService:JSONEncode(SavedLocations))
-        end
-    end)
-    
-    if not success then
-        WindUI:Notify("保存错误", "无法保存位置数据: " .. tostring(err), 3)
-    end
-end
-
--- 初始化加载保存的位置
-LoadSavedLocations()
+-- 主页选项卡
+Tabs.Home:Section({Title = "脚本信息"})
+Tabs.Home:Paragraph({
+    Title = "穷小子打工记",
+    Desc = "多功能脚本 - 包含所有功能",
+    Image = "rbxassetid://129260712070622",
+    ImageSize = 42,
+})
+Tabs.Home:Paragraph({
+    Title = "欢迎使用",
+    Desc = "按RightShift打开/关闭菜单\n作者: 开发者",
+})
 
 -- 主要功能选项卡
-Tabs.Main:CreateSection("玩家信息")
-local moneyLabel = Tabs.Main:CreateLabel("金钱: 加载中...")
-local levelLabel = Tabs.Main:CreateLabel("等级: 1")
-local positionLabel = Tabs.Main:CreateLabel("位置: 未知")
+Tabs.Main:Section({Title = "玩家信息"})
+local moneyLabel = Tabs.Main:Label({Title = "金钱: 加载中..."})
+local positionLabel = Tabs.Main:Label({Title = "位置: 未知"})
 
 -- 更新玩家信息
 local function updatePlayerInfo()
@@ -170,191 +143,215 @@ spawn(function()
     end
 end)
 
-Tabs.Main:CreateSection("快速操作")
-Tabs.Main:CreateButton("快速赚钱", function()
-    WindUI:Notify("快速赚钱", "开始执行任务...", 3)
-end)
+Tabs.Main:Section({Title = "快速操作"})
+Tabs.Main:Button({
+    Title = "快速赚钱",
+    Callback = function()
+        Window:Notify({Title = "快速赚钱", Content = "开始执行快速赚钱任务...", Duration = 3})
+    end
+})
 
-Tabs.Main:CreateButton("一键升级", function()
-    WindUI:Notify("一键升级", "开始任务...", 3)
-end)
+Tabs.Main:Button({
+    Title = "一键升级",
+    Callback = function()
+        Window:Notify({Title = "一键升级", Content = "开始执行升级任务...", Duration = 3})
+    end
+})
 
 -- 传送功能选项卡
-Tabs.Teleport:CreateSection("地点传送")
+Tabs.Teleport:Section({Title = "地点传送"})
 for name, cf in pairs(Locations) do
-    Tabs.Teleport:CreateButton(name, function()
-        if Character and Character.PrimaryPart then
-            Character:SetPrimaryPartCFrame(cf)
-            WindUI:Notify("传送成功", "已传送到: " .. name, 3)
-        else
-            WindUI:Notify("传送失败", "角色未加载完成", 3)
+    Tabs.Teleport:Button({
+        Title = name,
+        Callback = function()
+            if Character and Character.PrimaryPart then
+                Character:SetPrimaryPartCFrame(cf)
+                Window:Notify({Title = "传送成功", Content = "已传送到: " .. name, Duration = 3})
+            else
+                Window:Notify({Title = "传送失败", Content = "角色未加载完成", Duration = 3})
+            end
         end
-    end)
+    })
 end
 
-Tabs.Teleport:CreateSection("特殊传送")
-Tabs.Teleport:CreateButton("传送到最高点", function()
-    if Character and Character.PrimaryPart then
-        local highestPart = Workspace:FindFirstChildOfClass("Part")
-        if highestPart then
-            Character:SetPrimaryPartCFrame(CFrame.new(highestPart.Position + Vector3.new(0, 50, 0)))
-            WindUI:Notify("传送成功", "已传送到最高点", 3)
+Tabs.Teleport:Section({Title = "特殊传送"})
+Tabs.Teleport:Button({
+    Title = "传送到最高点",
+    Callback = function()
+        if Character and Character.PrimaryPart then
+            local highestPart = Workspace:FindFirstChildOfClass("Part")
+            if highestPart then
+                Character:SetPrimaryPartCFrame(CFrame.new(highestPart.Position + Vector3.new(0, 50, 0)))
+                Window:Notify({Title = "传送成功", Content = "已传送到最高点", Duration = 3})
+            end
         end
     end
-end)
-
-Tabs.Teleport:CreateButton("传送到隐藏区域", function()
-    WindUI:Notify("提示", "寻找隐藏区域中...", 3)
-end)
+})
 
 -- 自动化选项卡
-Tabs.Automation:CreateSection("工作自动化")
+Tabs.Automation:Section({Title = "工作自动化"})
 
-Tabs.Automation:CreateToggle("自动挖矿", false, function(value)
-    Features.AutoMine = value
-    if value then
-        WindUI:Notify("自动挖矿", "自动挖矿已开启", 3)
-        if autoLoops.AutoMine then autoLoops.AutoMine:Disconnect() end
-        autoLoops.AutoMine = RunService.Heartbeat:Connect(function()
-            if Features.AutoMine and Character and Character.PrimaryPart then
-                -- 模拟挖矿动作
-                local miningSpot = Workspace:FindFirstChild("MiningSpot") or Workspace:FindFirstChild("Rock")
-                if miningSpot then
-                    Character:SetPrimaryPartCFrame(miningSpot.CFrame + Vector3.new(0, 0, -5))
+Tabs.Automation:Toggle({
+    Title = "自动挖矿",
+    Default = false,
+    Callback = function(value)
+        Features.AutoMine = value
+        if value then
+            Window:Notify({Title = "自动挖矿", Content = "自动挖矿已开启", Duration = 3})
+            if autoLoops.AutoMine then autoLoops.AutoMine:Disconnect() end
+            autoLoops.AutoMine = RunService.Heartbeat:Connect(function()
+                if Features.AutoMine and Character and Character.PrimaryPart then
+                    local miningSpot = Workspace:FindFirstChild("MiningSpot") or Workspace:FindFirstChild("Rock")
+                    if miningSpot then
+                        Character:SetPrimaryPartCFrame(miningSpot.CFrame + Vector3.new(0, 0, -5))
+                    end
                 end
+            end)
+        else
+            if autoLoops.AutoMine then
+                autoLoops.AutoMine:Disconnect()
+                autoLoops.AutoMine = nil
             end
-        end)
-    else
-        if autoLoops.AutoMine then
-            autoLoops.AutoMine:Disconnect()
-            autoLoops.AutoMine = nil
+            Window:Notify({Title = "自动挖矿", Content = "自动挖矿已关闭", Duration = 3})
         end
-        WindUI:Notify("自动挖矿", "自动挖矿已关闭", 3)
     end
-end)
+})
 
-Tabs.Automation:CreateToggle("自动做文档", false, function(value)
-    Features.AutoDocument = value
-    if value then
-        WindUI:Notify("自动文档", "自动文档处理已开启", 3)
-        if autoLoops.AutoDocument then autoLoops.AutoDocument:Disconnect() end
-        autoLoops.AutoDocument = RunService.Heartbeat:Connect(function()
-            if Features.AutoDocument and Character and Character.PrimaryPart then
-                local officeDesk = Workspace:FindFirstChild("OfficeDesk") or Workspace:FindFirstChild("Desk")
-                if officeDesk then
-                    Character:SetPrimaryPartCFrame(officeDesk.CFrame + Vector3.new(0, 0, -3))
+Tabs.Automation:Toggle({
+    Title = "自动做文档",
+    Default = false,
+    Callback = function(value)
+        Features.AutoDocument = value
+        if value then
+            Window:Notify({Title = "自动文档", Content = "自动文档处理已开启", Duration = 3})
+            if autoLoops.AutoDocument then autoLoops.AutoDocument:Disconnect() end
+            autoLoops.AutoDocument = RunService.Heartbeat:Connect(function()
+                if Features.AutoDocument and Character and Character.PrimaryPart then
+                    local officeDesk = Workspace:FindFirstChild("OfficeDesk") or Workspace:FindFirstChild("Desk")
+                    if officeDesk then
+                        Character:SetPrimaryPartCFrame(officeDesk.CFrame + Vector3.new(0, 0, -3))
+                    end
                 end
+            end)
+        else
+            if autoLoops.AutoDocument then
+                autoLoops.AutoDocument:Disconnect()
+                autoLoops.AutoDocument = nil
             end
-        end)
-    else
-        if autoLoops.AutoDocument then
-            autoLoops.AutoDocument:Disconnect()
-            autoLoops.AutoDocument = nil
+            Window:Notify({Title = "自动文档", Content = "自动文档处理已关闭", Duration = 3})
         end
-        WindUI:Notify("自动文档", "自动文档处理已关闭", 3)
     end
-end)
+})
 
-Tabs.Automation:CreateToggle("自动钓鱼", false, function(value)
-    Features.AutoFish = value
-    if value then
-        WindUI:Notify("自动钓鱼", "自动钓鱼已开启", 3)
-        if autoLoops.AutoFish then autoLoops.AutoFish:Disconnect() end
-        autoLoops.AutoFish = RunService.Heartbeat:Connect(function()
-            if Features.AutoFish and Character and Character.PrimaryPart then
-                local fishingSpot = Workspace:FindFirstChild("FishingSpot") or Workspace:FindFirstChild("River")
-                if fishingSpot then
-                    Character:SetPrimaryPartCFrame(fishingSpot.CFrame + Vector3.new(0, 0, -3))
+Tabs.Automation:Toggle({
+    Title = "自动钓鱼",
+    Default = false,
+    Callback = function(value)
+        Features.AutoFish = value
+        if value then
+            Window:Notify({Title = "自动钓鱼", Content = "自动钓鱼已开启", Duration = 3})
+            if autoLoops.AutoFish then autoLoops.AutoFish:Disconnect() end
+            autoLoops.AutoFish = RunService.Heartbeat:Connect(function()
+                if Features.AutoFish and Character and Character.PrimaryPart then
+                    local fishingSpot = Workspace:FindFirstChild("FishingSpot") or Workspace:FindFirstChild("River")
+                    if fishingSpot then
+                        Character:SetPrimaryPartCFrame(fishingSpot.CFrame + Vector3.new(0, 0, -3))
+                    end
                 end
+            end)
+        else
+            if autoLoops.AutoFish then
+                autoLoops.AutoFish:Disconnect()
+                autoLoops.AutoFish = nil
             end
-        end)
-    else
-        if autoLoops.AutoFish then
-            autoLoops.AutoFish:Disconnect()
-            autoLoops.AutoFish = nil
+            Window:Notify({Title = "自动钓鱼", Content = "自动钓鱼已关闭", Duration = 3})
         end
-        WindUI:Notify("自动钓鱼", "自动钓鱼已关闭", 3)
     end
-end)
+})
 
-Tabs.Automation:CreateSection("生存自动化")
-Tabs.Automation:CreateToggle("自动吃食物", false, function(value)
-    Features.AutoEat = value
-    if value then
-        WindUI:Notify("自动进食", "自动进食已开启", 3)
-        if autoLoops.AutoEat then autoLoops.AutoEat:Disconnect() end
-        autoLoops.AutoEat = RunService.Heartbeat:Connect(function()
-            if Features.AutoEat and Character and Character.PrimaryPart then
-                local hunger = Humanoid:FindFirstChild("Hunger") or Humanoid:FindFirstChild("Food")
-                if hunger and hunger.Value < 50 then
-                    local food = Workspace:FindFirstChild("Food") or Workspace:FindFirstChild("Chicken")
-                    if food then
-                        Character:SetPrimaryPartCFrame(food.CFrame + Vector3.new(0, 0, -3))
-                        if hunger:IsA("NumberValue") then
-                            hunger.Value = math.min(hunger.Value + 10, 100)
+Tabs.Automation:Section({Title = "生存自动化"})
+Tabs.Automation:Toggle({
+    Title = "自动吃食物",
+    Default = false,
+    Callback = function(value)
+        Features.AutoEat = value
+        if value then
+            Window:Notify({Title = "自动进食", Content = "自动进食已开启", Duration = 3})
+            if autoLoops.AutoEat then autoLoops.AutoEat:Disconnect() end
+            autoLoops.AutoEat = RunService.Heartbeat:Connect(function()
+                if Features.AutoEat and Character and Character.PrimaryPart then
+                    local hunger = Humanoid:FindFirstChild("Hunger") or Humanoid:FindFirstChild("Food")
+                    if hunger and hunger.Value < 50 then
+                        local food = Workspace:FindFirstChild("Food") or Workspace:FindFirstChild("Chicken")
+                        if food then
+                            Character:SetPrimaryPartCFrame(food.CFrame + Vector3.new(0, 0, -3))
+                            if hunger:IsA("NumberValue") then
+                                hunger.Value = math.min(hunger.Value + 10, 100)
+                            end
                         end
                     end
                 end
+            end)
+        else
+            if autoLoops.AutoEat then
+                autoLoops.AutoEat:Disconnect()
+                autoLoops.AutoEat = nil
             end
-        end)
-    else
-        if autoLoops.AutoEat then
-            autoLoops.AutoEat:Disconnect()
-            autoLoops.AutoEat = nil
+            Window:Notify({Title = "自动进食", Content = "自动进食已关闭", Duration = 3})
         end
-        WindUI:Notify("自动进食", "自动进食已关闭", 3)
     end
-end)
+})
 
 -- 位置保存选项卡
-Tabs.SavedLocations:CreateSection("保存当前位置")
-local locationNameInput = Tabs.SavedLocations:CreateTextBox("位置名称", "输入位置名称", function(value) end)
+Tabs.SavedLocations:Section({Title = "保存当前位置"})
+local locationNameInput = Tabs.SavedLocations:Textbox({
+    Title = "位置名称",
+    Placeholder = "输入位置名称",
+    Callback = function(value) end
+})
 
-Tabs.SavedLocations:CreateButton("保存当前位置", function()
-    local name = locationNameInput:Get() or "未命名位置"
-    if name == "" then name = "未命名位置" end
-    
-    if Character and Character.PrimaryPart then
-        SavedLocations[name] = {
-            X = Character.PrimaryPart.Position.X,
-            Y = Character.PrimaryPart.Position.Y,
-            Z = Character.PrimaryPart.Position.Z
-        }
-        SaveLocationsToFile()
-        WindUI:Notify("位置已保存", "已保存位置: " .. name, 3)
-        CreateSavedLocationsList()
-    else
-        WindUI:Notify("保存失败", "无法获取角色位置", 3)
+Tabs.SavedLocations:Button({
+    Title = "保存当前位置",
+    Callback = function()
+        local name = locationNameInput:Get() or "未命名位置"
+        if name == "" then name = "未命名位置" end
+        
+        if Character and Character.PrimaryPart then
+            SavedLocations[name] = {
+                X = Character.PrimaryPart.Position.X,
+                Y = Character.PrimaryPart.Position.Y,
+                Z = Character.PrimaryPart.Position.Z
+            }
+            Window:Notify({Title = "位置已保存", Content = "已保存位置: " .. name, Duration = 3})
+        else
+            Window:Notify({Title = "保存失败", Content = "无法获取角色位置", Duration = 3})
+        end
     end
-end)
+})
 
-Tabs.SavedLocations:CreateSection("已保存的位置")
-local savedLocationsContainer = Tabs.SavedLocations:CreateFolder("我的位置")
+Tabs.SavedLocations:Section({Title = "已保存的位置"})
+local savedLocationsContainer = Tabs.SavedLocations:Folder({Title = "我的位置"})
 
 -- 创建保存的位置列表
 local function CreateSavedLocationsList()
     savedLocationsContainer:Clear()
     
     if next(SavedLocations) == nil then
-        savedLocationsContainer:CreateLabel("暂无保存的位置")
+        savedLocationsContainer:Label({Title = "暂无保存的位置"})
         return
     end
     
     for name, pos in pairs(SavedLocations) do
-        savedLocationsContainer:CreateButton(name, function()
-            local cf = CFrame.new(pos.X, pos.Y, pos.Z)
-            if Character and Character.PrimaryPart then
-                Character:SetPrimaryPartCFrame(cf)
-                WindUI:Notify("传送成功", "已传送到保存的位置: " .. name, 3)
+        savedLocationsContainer:Button({
+            Title = name,
+            Callback = function()
+                local cf = CFrame.new(pos.X, pos.Y, pos.Z)
+                if Character and Character.PrimaryPart then
+                    Character:SetPrimaryPartCFrame(cf)
+                    Window:Notify({Title = "传送成功", Content = "已传送到保存的位置: " .. name, Duration = 3})
+                end
             end
-        end)
-        
-        savedLocationsContainer:CreateButton("删除 " .. name, function()
-            SavedLocations[name] = nil
-            SaveLocationsToFile()
-            WindUI:Notify("位置已删除", "已删除位置: " .. name, 3)
-            CreateSavedLocationsList()
-        end)
+        })
     end
 end
 
@@ -362,127 +359,86 @@ end
 CreateSavedLocationsList()
 
 -- 玩家设置选项卡
-Tabs.PlayerSettings:CreateSection("移动设置")
+Tabs.PlayerSettings:Section({Title = "移动设置"})
 local originalWalkSpeed = 16
 local originalJumpPower = 50
 
-Tabs.PlayerSettings:CreateSlider("移动速度", 16, 100, 16, function(value)
-    if Humanoid then
-        Humanoid.WalkSpeed = value
-        WindUI:Notify("移动速度", "移动速度已设置为: " .. value, 3)
-    end
-end)
-
-Tabs.PlayerSettings:CreateSlider("跳跃高度", 50, 200, 50, function(value)
-    if Humanoid then
-        Humanoid.JumpPower = value
-        WindUI:Notify("跳跃高度", "跳跃高度已设置为: " .. value, 3)
-    end
-end)
-
-Tabs.PlayerSettings:CreateButton("重置移动设置", function()
-    if Humanoid then
-        Humanoid.WalkSpeed = originalWalkSpeed
-        Humanoid.JumpPower = originalJumpPower
-        WindUI:Notify("移动设置", "移动设置已重置", 3)
-    end
-end)
-
-Tabs.PlayerSettings:CreateSection("角色能力")
-Tabs.PlayerSettings:CreateToggle("无限跳跃", false, function(value)
-    if value then
-        if autoLoops.InfiniteJump then autoLoops.InfiniteJump:Disconnect() end
-        autoLoops.InfiniteJump = RunService.Heartbeat:Connect(function()
-            if Humanoid and Humanoid:GetState() == Enum.HumanoidStateType.Falling then
-                Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
-            end
-        end)
-        WindUI:Notify("无限跳跃", "无限跳跃已开启", 3)
-    else
-        if autoLoops.InfiniteJump then
-            autoLoops.InfiniteJump:Disconnect()
-            autoLoops.InfiniteJump = nil
+Tabs.PlayerSettings:Slider({
+    Title = "移动速度",
+    Min = 16,
+    Max = 100,
+    Default = 16,
+    Callback = function(value)
+        if Humanoid then
+            Humanoid.WalkSpeed = value
+            Window:Notify({Title = "移动速度", Content = "移动速度已设置为: " .. value, Duration = 3})
         end
-        WindUI:Notify("无限跳跃", "无限跳跃已关闭", 3)
     end
-end)
+})
 
-Tabs.PlayerSettings:CreateToggle("穿墙", false, function(value)
-    Features.NoClip = value
-    if value then
-        if autoLoops.NoClip then autoLoops.NoClip:Disconnect() end
-        autoLoops.NoClip = RunService.Stepped:Connect(function()
-            if Character then
-                for _, part in ipairs(Character:GetDescendants()) do
-                    if part:IsA("BasePart") then
-                        part.CanCollide = false
-                    end
-                end
-            end
-        end)
-        WindUI:Notify("穿墙", "穿墙已开启", 3)
-    else
-        if autoLoops.NoClip then
-            autoLoops.NoClip:Disconnect()
-            autoLoops.NoClip = nil
+Tabs.PlayerSettings:Slider({
+    Title = "跳跃高度",
+    Min = 50,
+    Max = 200,
+    Default = 50,
+    Callback = function(value)
+        if Humanoid then
+            Humanoid.JumpPower = value
+            Window:Notify({Title = "跳跃高度", Content = "跳跃高度已设置为: " .. value, Duration = 3})
         end
-        WindUI:Notify("穿墙", "穿墙已关闭", 3)
     end
-end)
+})
 
-Tabs.PlayerSettings:CreateToggle("无敌", false, function(value)
-    Features.GodMode = value
-    if value and Humanoid then
-        Humanoid.MaxHealth = math.huge
-        Humanoid.Health = math.huge
-        WindUI:Notify("无敌", "无敌已开启", 3)
-    elseif Humanoid then
-        Humanoid.MaxHealth = 100
-        Humanoid.Health = 100
-        WindUI:Notify("无敌", "无敌已关闭", 3)
+Tabs.PlayerSettings:Button({
+    Title = "重置移动设置",
+    Callback = function()
+        if Humanoid then
+            Humanoid.WalkSpeed = originalWalkSpeed
+            Humanoid.JumpPower = originalJumpPower
+            Window:Notify({Title = "移动设置", Content = "移动设置已重置", Duration = 3})
+        end
     end
-end)
+})
 
 -- 其他功能选项卡
-Tabs.Misc:CreateSection("互动设置")
-Tabs.Misc:CreateToggle("瞬间互动", false, function(value)
-    Features.InstantInteract = value
-    if value then
-        if autoLoops.InstantInteract then autoLoops.InstantInteract:Disconnect() end
-        autoLoops.InstantInteract = ProximityPromptService.PromptButtonHoldBegan:Connect(function(prompt)
-            prompt.HoldDuration = 0
-        end)
-        WindUI:Notify("瞬间互动", "瞬间互动已开启", 3)
-    else
-        if autoLoops.InstantInteract then
-            autoLoops.InstantInteract:Disconnect()
-            autoLoops.InstantInteract = nil
+Tabs.Misc:Section({Title = "互动设置"})
+Tabs.Misc:Toggle({
+    Title = "瞬间互动",
+    Default = false,
+    Callback = function(value)
+        Features.InstantInteract = value
+        if value then
+            if autoLoops.InstantInteract then autoLoops.InstantInteract:Disconnect() end
+            autoLoops.InstantInteract = ProximityPromptService.PromptButtonHoldBegan:Connect(function(prompt)
+                prompt.HoldDuration = 0
+            end)
+            Window:Notify({Title = "瞬间互动", Content = "瞬间互动已开启", Duration = 3})
+        else
+            if autoLoops.InstantInteract then
+                autoLoops.InstantInteract:Disconnect()
+                autoLoops.InstantInteract = nil
+            end
+            Window:Notify({Title = "瞬间互动", Content = "瞬间互动已关闭", Duration = 3})
         end
-        WindUI:Notify("瞬间互动", "瞬间互动已关闭", 3)
     end
-end)
+})
 
-Tabs.Misc:CreateSection("视觉设置")
-Tabs.Misc:CreateToggle("夜视模式", false, function(value)
-    if value then
-        game.Lighting.Ambient = Color3.new(1, 1, 1)
-        game.Lighting.Brightness = 2
-        WindUI:Notify("夜视模式", "夜视模式已开启", 3)
-    else
-        game.Lighting.Ambient = Color3.new(0.5, 0.5, 0.5)
-        game.Lighting.Brightness = 1
-        WindUI:Notify("夜视模式", "夜视模式已关闭", 3)
+Tabs.Misc:Section({Title = "视觉设置"})
+Tabs.Misc:Toggle({
+    Title = "夜视模式",
+    Default = false,
+    Callback = function(value)
+        if value then
+            game.Lighting.Ambient = Color3.new(1, 1, 1)
+            game.Lighting.Brightness = 2
+            Window:Notify({Title = "夜视模式", Content = "夜视模式已开启", Duration = 3})
+        else
+            game.Lighting.Ambient = Color3.new(0.5, 0.5, 0.5)
+            game.Lighting.Brightness = 1
+            Window:Notify({Title = "夜视模式", Content = "夜视模式已关闭", Duration = 3})
+        end
     end
-end)
-
-Tabs.Misc:CreateSection("工具功能")
-Tabs.Misc:CreateButton("清理场景", function()
-    WindUI:Notify("清理场景", "开始清理无用物体...", 3)
-end)
-
-Tabs.Misc:CreateButton("显示隐藏物品", function()
-    WindUI:Notify("显示隐藏物品", "显示所有隐藏物品...", 3)
-end)
+})
 
 -- 初始化
 if Humanoid then
@@ -491,6 +447,6 @@ if Humanoid then
 end
 
 -- 添加脚本加载完成提示
-WindUI:Notify("脚本加载完成", "穷小子打工记脚本已完全加载!\n包含所有功能!", 5)
+Window:Notify({Title = "脚本加载完成", Content = "穷小子打工记脚本已完全加载!\n按RightShift打开菜单", Duration = 5})
 
-print("穷小子打工记脚本完全加载完成! 包含所有功能!")
+print("穷小子打工记脚本完全加载完成! 按RightShift打开菜单")
