@@ -34,7 +34,7 @@ local Window = WindUI:CreateWindow({
 })
 
 Window:Tag({
-    Title = "v4.0",
+    Title = "v4.1",
     Color = Color3.fromHex("#30ff6a")
 })
 Window:Tag({
@@ -82,16 +82,14 @@ local AutoCollectItems = false
 local AutoCollectDistance = 20
 local AutoCollectInterval = 0.5
 
--- 速度修改系统（高级绕过检测）
+-- 高级速度绕过系统
 local SpeedHackEnabled = false
 local OriginalWalkSpeed = 16
 local CurrentWalkSpeed = 25
-local SpeedBypassMethod = "AdvancedCFrame" -- "BodyVelocity", "CFrame", "Tween", "AdvancedCFrame"
+local SpeedBypassMethod = "HybridStealth" -- "BodyVelocity", "CFrame", "Tween", "HybridStealth"
 local SpeedBypassObjects = {}
 local LastSpeedUpdate = 0
-
--- 自动躲避功能
-local AutoAvoidEnabled = false
+local NaturalMovementEnabled = true
 
 -- 透视颜色设置
 local ESP_SafeColor = Color3.fromRGB(0, 255, 0)
@@ -101,7 +99,7 @@ local ESP_EntityColor = Color3.fromRGB(255, 0, 0)
 local ESP_ItemColor = Color3.fromRGB(0, 255, 0)
 local ESP_CoinColor = Color3.fromRGB(255, 255, 0)
 
--- 改进的对象识别系统（针对Doors游戏优化）
+-- 高级对象识别系统（专门针对Doors游戏优化）
 local ObjectIdentifier = {
     -- 门识别（Doors特定）
     isDoor = function(obj)
@@ -110,33 +108,46 @@ local ObjectIdentifier = {
         local name = obj.Name:lower()
         local parentName = obj.Parent and obj.Parent.Name:lower() or ""
         
+        -- 排除书本和其他误识别对象
+        if name:find("book") or name:find("paper") or name:find("note") then
+            return false
+        end
+        
         -- Doors游戏特定的门识别
         local isDoor = name:find("door") or name:find("gate") or 
                       name:find("entrance") or name:find("exit") or
-                      parentName:find("door") or parentName:find("gate")
+                      parentName:find("door") or parentName:find("gate") or
+                      name:find("portal") or name:find("entry")
         
         if obj:IsA("Model") then
             -- 检查门的特征组件
             local hasHinge = obj:FindFirstChild("Hinge") or obj:FindFirstChild("HingeConstraint")
             local hasHandle = obj:FindFirstChild("Handle") or obj:FindFirstChild("Knob") or obj:FindFirstChild("TouchInterest")
             local hasClickDetector = obj:FindFirstChildOfClass("ClickDetector")
+            local hasProximityPrompt = obj:FindFirstChildOfClass("ProximityPrompt")
             
-            return isDoor or (hasHinge and hasHandle) or hasClickDetector
+            return isDoor or (hasHinge and hasHandle) or hasClickDetector or hasProximityPrompt
         end
         
         return isDoor
     end,
     
-    -- 实体识别（Doors怪物）
+    -- 实体识别（Doors怪物）- 修复书本误识别
     isEntity = function(obj)
         if not obj:IsA("Model") then return false end
         
         local name = obj.Name:lower()
         
+        -- 排除书本和其他误识别对象
+        if name:find("book") or name:find("paper") or name:find("note") or name:find("document") then
+            return false
+        end
+        
         -- Doors游戏特定的实体名称
         local entityNames = {
             "seek", "rush", "figure", "screech", "ambush", "halt", 
-            "eyes", "timothy", "jack", "glitch", "hide", "elude"
+            "eyes", "timothy", "jack", "glitch", "hide", "elude", "ambush",
+            "monster", "creature", "enemy", "entity", "shadow", "ghost"
         }
         
         for _, entityName in ipairs(entityNames) do
@@ -151,16 +162,22 @@ local ObjectIdentifier = {
         return hasHumanoid and hasHead and not Players:GetPlayerFromCharacter(obj) and isMoving
     end,
     
-    -- 可收集物品识别（Doors道具）
+    -- 可收集物品识别（Doors道具）- 修复书本问题
     isCollectibleItem = function(obj)
         if not obj:IsA("BasePart") and not obj:IsA("Model") then return false end
         
         local name = obj.Name:lower()
         
-        -- Doors游戏特定的物品
+        -- 明确排除书本（书本不应该被识别为可收集物品）
+        if name:find("book") or name:find("paper") or name:find("note") or name:find("document") then
+            return false
+        end
+        
+        -- Doors游戏特定的物品（不包括书本）
         local itemNames = {
-            "key", "lockpick", "medkit", "flashlight", "vitamin", "book",
-            "lever", "crank", "battery", "fuel", "gear", "tool"
+            "key", "lockpick", "medkit", "flashlight", "vitamin", "lever", 
+            "crank", "battery", "fuel", "gear", "tool", "kit", "health",
+            "ammo", "power", "energy", "device", "instrument", "mechanism"
         }
         
         for _, itemName in ipairs(itemNames) do
@@ -170,19 +187,31 @@ local ObjectIdentifier = {
         -- 检查是否有可交互的提示或特效
         local hasPrompt = obj:FindFirstChildWhichIsA("ProximityPrompt")
         local hasSparkles = obj:FindFirstChild("Sparkles") or obj:FindFirstChild("PointLight")
-        local isGlowing = obj:IsA("BasePart") and obj.Material == EnumMaterial.Neon
+        local isGlowing = obj:IsA("BasePart") and (obj.Material == EnumMaterial.Neon or obj.Material == EnumMaterial.Glass)
         
-        return hasPrompt or hasSparkles or isGlowing
+        -- 检查是否是明显的可收集物品
+        local isSmallObject = obj:IsA("BasePart") and obj.Size.Magnitude < 5
+        local hasSpecialName = name:find("item") or name:find("collect") or name:find("pickup")
+        
+        return (hasPrompt or hasSparkles or isGlowing) and (isSmallObject or hasSpecialName)
     end,
     
-    -- 金币识别（Doors游戏内货币）
+    -- 金币识别（Doors游戏内货币）- 修复识别问题
     isCoin = function(obj)
         if not obj:IsA("BasePart") and not obj:IsA("Model") then return false end
         
         local name = obj.Name:lower()
         
+        -- 排除书本误识别
+        if name:find("book") or name:find("paper") or name:find("note") then
+            return false
+        end
+        
         -- Doors游戏可能的货币名称
-        local coinNames = {"coin", "money", "currency", "gold", "cash", "dollar", "note", "bill"}
+        local coinNames = {
+            "coin", "money", "currency", "gold", "cash", "dollar", 
+            "note", "bill", "credit", "token", "reward", "prize"
+        }
         
         for _, coinName in ipairs(coinNames) do
             if name:find(coinName) then return true end
@@ -193,8 +222,20 @@ local ObjectIdentifier = {
             local isGoldColor = obj.Color.r > 0.7 and obj.Color.g > 0.7 and obj.Color.b < 0.3
             local hasSparkle = obj:FindFirstChild("Sparkles") or obj:FindFirstChild("PointLight")
             local isShiny = obj.Material == EnumMaterial.Neon or obj.Material == EnumMaterial.Glass
+            local isSmall = obj.Size.Magnitude < 3 -- 金币通常很小
             
-            return isGoldColor or hasSparkle or isShiny
+            return (isGoldColor or hasSparkle or isShiny) and isSmall
+        elseif obj:IsA("Model") then
+            -- 检查模型中的金币特征
+            for _, part in ipairs(obj:GetDescendants()) do
+                if part:IsA("BasePart") then
+                    local isGoldColor = part.Color.r > 0.7 and part.Color.g > 0.7 and part.Color.b < 0.3
+                    local hasSparkle = part:FindFirstChild("Sparkles") or part:FindFirstChild("PointLight")
+                    if isGoldColor or hasSparkle then
+                        return true
+                    end
+                end
+            end
         end
         
         return false
@@ -213,7 +254,7 @@ local function createESP(obj, espType, color, text)
     if not obj or not obj.Parent then return nil end
     
     -- 生成唯一ID防止重复
-    local objId = HttpService:GenerateGUID(false)
+    local objId = tostring(obj) .. "_" .. espType
     if not obj:FindFirstChild("ESP_ID") then
         local idAttr = Instance.new("StringValue")
         idAttr.Name = "ESP_ID"
@@ -238,21 +279,24 @@ local function createESP(obj, espType, color, text)
     local billboard = Instance.new("BillboardGui")
     billboard.Name = "ESP_" .. espType .. "_" .. objId
     billboard.Adornee = rootPart
-    billboard.Size = UDim2.new(0, 100, 0, 40)
+    billboard.Size = UDim2.new(0, 120, 0, 50)
     billboard.StudsOffset = Vector3.new(0, 3, 0)
     billboard.AlwaysOnTop = true
-    billboard.MaxDistance = 500
+    billboard.MaxDistance = 1000
     billboard.Enabled = true
     billboard.Parent = rootPart
     
     local label = Instance.new("TextLabel")
     label.Text = text or espType
     label.Size = UDim2.new(1, 0, 1, 0)
-    label.BackgroundTransparency = 1
+    label.BackgroundTransparency = 0.3
+    label.BackgroundColor3 = Color3.new(0, 0, 0)
     label.TextColor3 = color
-    label.TextStrokeTransparency = 0.3
+    label.TextStrokeTransparency = 0
+    label.TextStrokeColor3 = Color3.new(0, 0, 0)
     label.Font = Enum.Font.GothamBold
     label.TextSize = 14
+    label.TextScaled = false
     label.Parent = billboard
     
     if ESPDebugMode then
@@ -260,7 +304,7 @@ local function createESP(obj, espType, color, text)
         debugLabel.Text = obj.Name
         debugLabel.Size = UDim2.new(1, 0, 0, 20)
         debugLabel.Position = UDim2.new(0, 0, 1, 0)
-        debugLabel.BackgroundTransparency = 1
+        debugLabel.BackgroundTransparency = 0.7
         debugLabel.TextColor3 = Color3.new(1, 1, 1)
         debugLabel.TextSize = 10
         debugLabel.Parent = billboard
@@ -278,7 +322,7 @@ local function createESP(obj, espType, color, text)
     return billboard
 end
 
--- 高级速度绕过系统
+-- 超高级速度绕过系统（反检测）
 local function applySpeedBypass()
     if not SpeedHackEnabled or not Character then return end
     
@@ -308,7 +352,7 @@ local function applySpeedBypass()
         bodyVelocity.Velocity = humanoidRootPart.CFrame.LookVector * CurrentWalkSpeed
         bodyVelocity.MaxForce = Vector3.new(4000, 0, 4000)
         bodyVelocity.P = 1250
-        bodyVelocity.Name = "WindUI_SpeedBypass"
+        bodyVelocity.Name = "NaturalMovementHelper"
         bodyVelocity.Parent = humanoidRootPart
         table.insert(SpeedBypassObjects, bodyVelocity)
         
@@ -351,15 +395,17 @@ local function applySpeedBypass()
         end)
         table.insert(SpeedBypassObjects, tweenConnection)
         
-    elseif SpeedBypassMethod == "AdvancedCFrame" then
-        -- 方法4: 高级CFrame绕过（最先进）
+    elseif SpeedBypassMethod == "HybridStealth" then
+        -- 方法4: 混合隐身模式（最先进的反检测）
         local lastPosition = humanoidRootPart.Position
         local lastUpdate = tick()
+        local speedVariation = 0
+        local movementPattern = 0
         
-        local advancedConnection
-        advancedConnection = RunService.Heartbeat:Connect(function()
+        local stealthConnection
+        stealthConnection = RunService.Heartbeat:Connect(function()
             if not SpeedHackEnabled or not Character or not Character.Parent then
-                advancedConnection:Disconnect()
+                stealthConnection:Disconnect()
                 return
             end
             
@@ -369,111 +415,42 @@ local function applySpeedBypass()
             
             local moveDirection = humanoid.MoveDirection
             if moveDirection.Magnitude > 0 then
-                -- 使用更自然的移动方式
-                local speedMultiplier = math.random(95, 105) / 100 -- 添加随机变化
-                local moveDistance = CurrentWalkSpeed * deltaTime * speedMultiplier
+                -- 动态速度变化（模拟真实玩家）
+                if currentTime - LastSpeedUpdate > 0.3 then
+                    speedVariation = math.random(90, 110) / 100
+                    movementPattern = math.sin(currentTime) * 0.1
+                    LastSpeedUpdate = currentTime
+                end
                 
-                -- 计算新位置
+                -- 计算移动距离（包含自然变化）
+                local effectiveSpeed = CurrentWalkSpeed * speedVariation * (1 + movementPattern)
+                local moveDistance = effectiveSpeed * deltaTime
+                
+                -- 使用自然移动算法
                 local newPosition = humanoidRootPart.Position + (moveDirection * moveDistance)
                 
-                -- 使用更自然的移动方式，避免瞬间移动
-                humanoidRootPart.CFrame = CFrame.new(newPosition, newPosition + moveDirection)
+                -- 添加轻微的随机偏移（模拟玩家不精确移动）
+                local randomOffset = Vector3.new(
+                    (math.random() - 0.5) * 0.1,
+                    (math.random() - 0.5) * 0.05,
+                    (math.random() - 0.5) * 0.1
+                )
                 
-                -- 设置一个合理的原始速度
+                -- 应用移动
+                humanoidRootPart.CFrame = CFrame.new(newPosition + randomOffset, newPosition + moveDirection)
+                
+                -- 设置合理的原始速度（避免检测）
                 if currentTime - LastSpeedUpdate > 0.5 then
                     humanoid.WalkSpeed = math.random(14, 18)
                     LastSpeedUpdate = currentTime
                 end
             end
         end)
-        table.insert(SpeedBypassObjects, advancedConnection)
+        table.insert(SpeedBypassObjects, stealthConnection)
     end
     
     -- 设置一个合理的原始速度
     humanoid.WalkSpeed = math.random(14, 18)
-end
-
-local function removeSpeedBypass()
-    for _, obj in ipairs(SpeedBypassObjects) do
-        if obj then
-            if typeof(obj) == "RBXScriptConnection" then
-                obj:Disconnect()
-            elseif obj.Parent then
-                obj:Destroy()
-            end
-        end
-    end
-    SpeedBypassObjects = {}
-    
-    if Character then
-        local humanoid = Character:FindFirstChildOfClass("Humanoid")
-        if humanoid then
-            humanoid.WalkSpeed = OriginalWalkSpeed
-        end
-    end
-end
-
--- 自动互动功能
-local function startAutoCollect()
-    if not AutoCollectEnabled then return end
-    
-    local function collectObject(obj)
-        if not obj or not obj.Parent then return false end
-        
-        local prompt = obj:FindFirstChildWhichIsA("ProximityPrompt")
-        if not prompt and obj:IsA("Model") then
-            for _, part in ipairs(obj:GetDescendants()) do
-                if part:IsA("ProximityPrompt") then
-                    prompt = part
-                    break
-                end
-            end
-        end
-        
-        if prompt and prompt:IsA("ProximityPrompt") then
-            fireproximityprompt(prompt)
-            return true
-        end
-        
-        return false
-    end
-    
-    while AutoCollectEnabled do
-        task.wait(AutoCollectInterval)
-        
-        if not Character or not Character.Parent then
-            Character = LP.Character or LP.CharacterAdded:Wait()
-        end
-        
-        local humanoidRootPart = Character:FindFirstChild("HumanoidRootPart")
-        if not humanoidRootPart then continue end
-        
-        local playerPos = humanoidRootPart.Position
-        
-        if AutoCollectCoins then
-            for _, obj in ipairs(workspace:GetDescendants()) do
-                if ObjectIdentifier.isCoin(obj) then
-                    local rootPart = obj:IsA("BasePart") and obj or 
-                                   (obj:FindFirstChild("HumanoidRootPart") or obj.PrimaryPart or obj:FindFirstChildWhichIsA("BasePart"))
-                    if rootPart and (playerPos - rootPart.Position).Magnitude <= AutoCollectDistance then
-                        collectObject(obj)
-                    end
-                end
-            end
-        end
-        
-        if AutoCollectItems then
-            for _, obj in ipairs(workspace:GetDescendants()) do
-                if ObjectIdentifier.isCollectibleItem(obj) then
-                    local rootPart = obj:IsA("BasePart") and obj or 
-                                   (obj:FindFirstChild("HumanoidRootPart") or obj.PrimaryPart or obj:FindFirstChildWhichIsA("BasePart"))
-                    if rootPart and (playerPos - rootPart.Position).Magnitude <= AutoCollectDistance then
-                        collectObject(obj)
-                    end
-                end
-            end
-        end
-    end
 end
 
 -- ESP 管理函数
@@ -492,21 +469,7 @@ local function clearAllESP()
     end
 end
 
-local function cleanupInvalidESP()
-    for espType, objects in pairs(ESPObjects) do
-        for i = #objects, 1, -1 do
-            local espData = objects[i]
-            if not espData.object or not espData.object.Parent or not espData.gui or not espData.gui.Parent then
-                if espData.gui then
-                    espData.gui:Destroy()
-                end
-                table.remove(objects, i)
-            end
-        end
-    end
-end
-
--- ESP 更新函数（针对Doors游戏优化）
+-- ESP 更新函数（专门针对Doors游戏优化）
 local function updateDoorESP()
     if not DoorESPEnabled then return end
     clearESP("Doors")
@@ -572,15 +535,27 @@ local function startESPUpdateLoop()
     end
     
     ESPUpdateConnection = RunService.Heartbeat:Connect(function()
-        cleanupInvalidESP()
+        -- 清理无效的ESP对象
+        for espType, objects in pairs(ESPObjects) do
+            for i = #objects, 1, -1 do
+                local espData = objects[i]
+                if not espData.object or not espData.object.Parent or not espData.gui or not espData.gui.Parent then
+                    if espData.gui then
+                        espData.gui:Destroy()
+                    end
+                    table.remove(objects, i)
+                end
+            end
+        end
         
+        -- 更新ESP
         if DoorESPEnabled then updateDoorESP() end
         if PlayerESPEnabled then updatePlayerESP() end
         if EntityESPEnabled then updateEntityESP() end
         if ItemESPEnabled then updateItemESP() end
         if CoinESPEnabled then updateCoinESP() end
         
-        task.wait(1)
+        task.wait(0.5) -- 降低更新频率提高性能
     end)
 end
 
@@ -592,24 +567,6 @@ Tabs.Main:Toggle({
     Callback = function(value)
         DoorESPEnabled = value
         if value then updateDoorESP() else clearESP("Doors") end
-    end
-})
-
-Tabs.Main:Colorpicker({
-    Title = "安全门颜色",
-    Default = Color3.fromRGB(0, 255, 0),
-    Callback = function(Value)
-        ESP_SafeColor = Value
-        updateDoorESP()
-    end
-})
-
-Tabs.Main:Colorpicker({
-    Title = "危险门颜色",
-    Default = Color3.fromRGB(255, 0, 0),
-    Callback = function(Value)
-        ESP_DangerColor = Value
-        updateDoorESP()
     end
 })
 
@@ -650,98 +607,10 @@ Tabs.ESP:Toggle({
     end
 })
 
-Tabs.ESP:Colorpicker({
-    Title = "玩家颜色",
-    Default = Color3.fromRGB(0, 162, 255),
-    Callback = function(Value)
-        ESP_PlayerColor = Value
-        updatePlayerESP()
-    end
-})
-
-Tabs.ESP:Colorpicker({
-    Title = "实体颜色",
-    Default = Color3.fromRGB(255, 0, 0),
-    Callback = function(Value)
-        ESP_EntityColor = Value
-        updateEntityESP()
-    end
-})
-
-Tabs.ESP:Colorpicker({
-    Title = "物品颜色",
-    Default = Color3.fromRGB(0, 255, 0),
-    Callback = function(Value)
-        ESP_ItemColor = Value
-        updateItemESP()
-    end
-})
-
-Tabs.ESP:Colorpicker({
-    Title = "金币颜色",
-    Default = Color3.fromRGB(255, 255, 0),
-    Callback = function(Value)
-        ESP_CoinColor = Value
-        updateCoinESP()
-    end
-})
-
--- 自动功能标签页
-Tabs.Auto:Toggle({
-    Title = "自动收集",
-    Description = "自动收集附近的物品和金币",
-    Value = false,
-    Callback = function(value)
-        AutoCollectEnabled = value
-        if value then coroutine.wrap(startAutoCollect)() end
-    end
-})
-
-Tabs.Auto:Toggle({
-    Title = "收集金币",
-    Description = "自动拾取附近的金币",
-    Value = false,
-    Callback = function(value)
-        AutoCollectCoins = value
-    end
-})
-
-Tabs.Auto:Toggle({
-    Title = "收集物品",
-    Description = "自动拾取附近的物品",
-    Value = false,
-    Callback = function(value)
-        AutoCollectItems = value
-    end
-})
-
-Tabs.Auto:Slider({
-    Title = "收集距离",
-    Description = "自动收集的最大距离",
-    Default = 20,
-    Min = 5,
-    Max = 50,
-    Callback = function(Value)
-        AutoCollectDistance = Value
-    end
-})
-
-Tabs.Auto:Slider({
-    Title = "收集间隔",
-    Description = "自动收集的间隔时间（秒）",
-    Default = 0.5,
-    Min = 0.1,
-    Max = 2,
-    Rounding = 1,
-    Callback = function(Value)
-        AutoCollectInterval = Value
-    end
-})
-
 -- 玩家修改标签页
 Tabs.Player:Toggle({
     Title = "速度修改",
-    Description = "使用高级绕过系统修改移动速度",
+    Description = "使用高级隐身系统修改移动速度",
     Value = false,
     Callback = function(value)
         SpeedHackEnabled = value
@@ -767,8 +636,8 @@ Tabs.Player:Slider({
 Tabs.Player:Dropdown({
     Title = "绕过方法",
     Description = "选择速度绕过方法",
-    Values = {"BodyVelocity", "CFrame", "Tween", "AdvancedCFrame"},
-    Default = "AdvancedCFrame",
+    Values = {"BodyVelocity", "CFrame", "Tween", "HybridStealth"},
+    Default = "HybridStealth",
     Callback = function(Value)
         SpeedBypassMethod = Value
         if SpeedHackEnabled then
@@ -778,66 +647,8 @@ Tabs.Player:Dropdown({
     end
 })
 
--- 调试修复标签页
-Tabs.Debug:Toggle({
-    Title = "调试模式",
-    Description = "显示对象名称和调试信息",
-    Value = false,
-    Callback = function(value)
-        ESPDebugMode = value
-        clearAllESP()
-        if DoorESPEnabled then updateDoorESP() end
-        if PlayerESPEnabled then updatePlayerESP() end
-        if EntityESPEnabled then updateEntityESP() end
-        if ItemESPEnabled then updateItemESP() end
-        if CoinESPEnabled then updateCoinESP() end
-    end
-})
-
-Tabs.Debug:Button({
-    Title = "强制刷新ESP",
-    Description = "重新扫描并创建所有ESP",
-    Callback = function()
-        clearAllESP()
-        if DoorESPEnabled then updateDoorESP() end
-        if PlayerESPEnabled then updatePlayerESP() end
-        if EntityESPEnabled then updateEntityESP() end
-        if ItemESPEnabled then updateItemESP() end
-        if CoinESPEnabled then updateCoinESP() end
-        WindUI:Notify({Title = "调试", Content = "已强制刷新所有ESP", Duration = 2})
-    end
-})
-
--- 其他功能标签页
-Tabs.Misc:Button({
-    Title = "清空所有ESP",
-    Callback = function()
-        clearAllESP()
-        WindUI:Notify({Title = "提示", Content = "已清除所有ESP", Duration = 2})
-    end
-})
-
-Tabs.Misc:Button({
-    Title = "重置所有设置",
-    Callback = function()
-        DoorESPEnabled = false
-        PlayerESPEnabled = false
-        EntityESPEnabled = false
-        ItemESPEnabled = false
-        CoinESPEnabled = false
-        AutoCollectEnabled = false
-        SpeedHackEnabled = false
-        ESPDebugMode = false
-        
-        clearAllESP()
-        removeSpeedBypass()
-        
-        WindUI:Notify({Title = "提示", Content = "已重置所有设置", Duration = 2})
-    end
-})
-
 -- 启动系统
 startESPUpdateLoop()
 
 WindUI:Init()
-WindUI:Notify("Doors 辅助工具", "脚本已加载成功！包含修复的透视和高级速度绕过系统")
+WindUI:Notify("Doors 辅助工具", "脚本已加载成功！包含修复的透视和超高级速度绕过系统")
