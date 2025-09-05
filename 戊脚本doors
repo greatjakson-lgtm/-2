@@ -1,16 +1,11 @@
 -- 加载 WindUI 主库
 local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua"))()
 
-local Players = game:GetService("Players")
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local RunService = game:GetService("RunService")
-local UserInputService = game:GetService("UserInputService")
-
 -- Create main window
 local MainWindow = Wind:CreateWindow({
     Title = "戊脚本doors",
     Center = true,
-    Size = UDim2.new(0, 500, 0, 450)
+    Size = UDim2.new(380,270)
 })
 
 -- Create tabs
