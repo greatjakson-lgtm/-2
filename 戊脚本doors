@@ -1,0 +1,716 @@
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+
+-- Create Wind UI interface
+local Wind = require(ReplicatedStorage:WaitForChild("WindUI"))
+
+-- Create main window
+local MainWindow = Wind:CreateWindow({
+    Title = "戊脚本doors",
+    Center = true,
+    Size = UDim2.new(0, 500, 0, 450)
+})
+
+-- Create tabs
+local Tabs = {
+    Visual = MainWindow:AddTab("视觉"),
+    Auto = MainWindow:AddTab("自动"),
+    Player = MainWindow:AddTab("玩家"),
+    ESP = MainWindow:AddTab("透视")
+}
+
+-- Visual tab
+Tabs.Visual:AddParagraph("视觉功能", "增强视觉体验")
+
+local DoorESP = Tabs.Visual:AddSection("door透视")
+local DoorESPEnabled = false
+local HighlightedDoors = {}
+
+DoorESP:AddToggle({
+    Text = "打开door透视",
+    Default = false,
+    Callback = function(Value)
+        DoorESPEnabled = Value
+        if not Value then
+            for door, highlight in pairs(HighlightedDoors) do
+                if highlight then
+                    highlight:Destroy()
+                end
+            end
+            HighlightedDoors = {}
+        else
+            StartDoorESP()
+        end
+    end
+})
+
+DoorESP:AddColorpicker({
+    Text = "真门颜色",
+    Default = Color3.fromRGB(0, 255, 0),
+    Callback = function(Value)
+        ESP_SafeColor = Value
+        UpdateDoorHighlights()
+    end
+})
+
+DoorESP:AddColorpicker({
+    Text = "假门颜色",
+    Default = Color3.fromRGB(255, 0, 0),
+    Callback = function(Value)
+        ESP_DangerColor = Value
+        UpdateDoorHighlights()
+    end
+})
+
+-- Auto tab
+Tabs.Auto:AddParagraph("自动功能", "自动操作")
+
+local AutoInteract = Tabs.Auto:AddSection("自动互动")
+local AutoInteractEnabled = false
+
+AutoInteract:AddToggle({
+    Text = "打开自动开门",
+    Default = false,
+    Callback = function(Value)
+        AutoInteractEnabled = Value
+        if Value then
+            StartAutoInteract()
+        end
+    end
+})
+
+AutoInteract:AddSlider({
+    Text = "交互距离",
+    Default = 10,
+    Min = 5,
+    Max = 30,
+    Callback = function(Value)
+        AutoInteractDistance = Value
+    end
+})
+
+AutoInteract:AddToggle({
+    Text = "自动躲避",
+    Default = false,
+    Callback = function(Value)
+        AutoAvoidEnabled = Value
+        if Value then
+            StartAutoAvoid()
+        end
+    end
+})
+
+-- Player tab
+Tabs.Player:AddParagraph("玩家", "改属性")
+
+local PlayerMods = Tabs.Player:AddSection("速度")
+local SpeedHackEnabled = false
+local OriginalWalkSpeed = 16
+
+PlayerMods:AddToggle({
+    Text = "改速度",
+    Default = false,
+    Callback = function(Value)
+        SpeedHackEnabled = Value
+        if Value then
+            ApplySpeedMod()
+        else
+            ResetSpeed()
+        end
+    end
+})
+
+PlayerMods:AddSlider({
+    Text = "移动速度",
+    Default = 16,
+    Min = 16,
+    Max = 100,
+    Callback = function(Value)
+        if SpeedHackEnabled then
+            SetWalkSpeed(Value)
+        end
+    end
+})
+
+PlayerMods:AddToggle({
+    Text = "无限跳",
+    Default = false,
+    Callback = function(Value)
+        InfiniteJumpEnabled = Value
+        if Value then
+            EnableInfiniteJump()
+        else
+            DisableInfiniteJump()
+        end
+    end
+})
+
+-- ESP tab
+Tabs.ESP:AddParagraph("透视功能", "透视")
+
+local ESPOptions = Tabs.ESP:AddSection("选项")
+local PlayerESPEnabled = false
+local EntityESPEnabled = false
+local ItemESPEnabled = false
+local CoinESPEnabled = false
+
+ESPOptions:AddToggle({
+    Text = "玩家透视",
+    Default = false,
+    Callback = function(Value)
+        PlayerESPEnabled = Value
+        if Value then
+            StartPlayerESP()
+        else
+            ClearPlayerESP()
+        end
+    end
+})
+
+ESPOptions:AddToggle({
+    Text = "实体透视",
+    Default = false,
+    Callback = function(Value)
+        EntityESPEnabled = Value
+        if Value then
+            StartEntityESP()
+        else
+            ClearEntityESP()
+        end
+    end
+})
+
+ESPOptions:AddToggle({
+    Text = "物品透视",
+    Default = false,
+    Callback = function(Value)
+        ItemESPEnabled = Value
+        if Value then
+            StartItemESP()
+        else
+            ClearItemESP()
+        end
+    end
+})
+
+ESPOptions:AddToggle({
+    Text = "金币透视",
+    Default = false,
+    Callback = function(Value)
+        CoinESPEnabled = Value
+        if Value then
+            StartCoinESP()
+        else
+            ClearCoinESP()
+        end
+    end
+})
+
+local ESPColors = Tabs.ESP:AddSection("ESP Colors")
+ESPColors:AddColorpicker({
+    Text = "玩家透视颜色",
+    Default = Color3.fromRGB(0, 162, 255),
+    Callback = function(Value)
+        ESP_PlayerColor = Value
+        UpdatePlayerESP()
+    end
+})
+
+ESPColors:AddColorpicker({
+    Text = "实体透视颜色",
+    Default = Color3.fromRGB(255, 0, 0),
+    Callback = function(Value)
+        ESP_EntityColor = Value
+        UpdateEntityESP()
+    end
+})
+
+ESPColors:AddColorpicker({
+    Text = "物品透视颜色",
+    Default = Color3.fromRGB(0, 255, 0),
+    Callback = function(Value)
+        ESP_ItemColor = Value
+        UpdateItemESP()
+    end
+})
+
+ESPColors:AddColorpicker({
+    Text = "金币透视颜色",
+    Default = Color3.fromRGB(255, 255, 0),
+    Callback = function(Value)
+        ESP_CoinColor = Value
+        UpdateCoinESP()
+    end
+})
+
+-- Door ESP implementation
+local ESP_SafeColor = Color3.fromRGB(0, 255, 0)
+local ESP_DangerColor = Color3.fromRGB(255, 0, 0)
+
+function StartDoorESP()
+    if not DoorESPEnabled then return end
+    
+    for door, highlight in pairs(HighlightedDoors) do
+        if highlight then
+            highlight:Destroy()
+        end
+    end
+    HighlightedDoors = {}
+    
+    local function ScanForDoors()
+        if not DoorESPEnabled then return end
+        
+        for _, obj in ipairs(workspace:GetDescendants()) do
+            if obj.Name:lower():find("door") and obj:IsA("BasePart") and not HighlightedDoors[obj] then
+                local highlight = Instance.new("Highlight")
+                highlight.Parent = obj
+                highlight.Adornee = obj
+                highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+                
+                if obj.Name:lower():find("exit") or obj.Name:lower():find("safe") then
+                    highlight.FillColor = ESP_SafeColor
+                else
+                    highlight.FillColor = ESP_DangerColor
+                end
+                
+                HighlightedDoors[obj] = highlight
+            end
+        end
+    end
+    
+    ScanForDoors()
+    
+    while DoorESPEnabled do
+        task.wait(5)
+        ScanForDoors()
+    end
+end
+
+function UpdateDoorHighlights()
+    for door, highlight in pairs(HighlightedDoors) do
+        if highlight and door.Parent then
+            if door.Name:lower():find("exit") or door.Name:lower():find("safe") then
+                highlight.FillColor = ESP_SafeColor
+            else
+                highlight.FillColor = ESP_DangerColor
+            end
+        end
+    end
+end
+
+-- Auto interact implementation
+local AutoInteractDistance = 10
+
+function StartAutoInteract()
+    if not AutoInteractEnabled then return end
+    
+    local player = Players.LocalPlayer
+    if not player then return end
+    
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+    
+    while AutoInteractEnabled do
+        task.wait(0.1)
+        
+        if not character or not humanoidRootPart then
+            character = player.Character or player.CharacterAdded:Wait()
+            humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+        end
+        
+        for _, door in ipairs(workspace:GetDescendants()) do
+            if door:IsA("Model") and door.Name:lower():find("door") and door:FindFirstChild("Door") then
+                local doorPart = door.Door
+                if (humanoidRootPart.Position - doorPart.Position).Magnitude <= AutoInteractDistance then
+                    game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode.E, false, game)
+                    task.wait(0.1)
+                    game:GetService("VirtualInputManager"):SendKeyEvent(false, Enum.KeyCode.E, false, game)
+                end
+            end
+        end
+    end
+end
+
+-- Auto avoid implementation
+local AutoAvoidEnabled = false
+
+function StartAutoAvoid()
+    if not AutoAvoidEnabled then return end
+    
+    local player = Players.LocalPlayer
+    if not player then return end
+    
+    while AutoAvoidEnabled do
+        task.wait(0.5)
+        
+        local character = player.Character
+        if not character then continue end
+        
+        local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+        if not humanoidRootPart then continue end
+        
+        for _, entity in ipairs(workspace:GetDescendants()) do
+            if entity:IsA("Model") and (entity.Name:lower():find("seek") or entity.Name:lower():find("rush") or entity.Name:lower():find("figure")) then
+                local head = entity:FindFirstChild("Head")
+                if head and (humanoidRootPart.Position - head.Position).Magnitude < 30 then
+                    local closestHidingSpot = FindClosestHidingSpot(humanoidRootPart.Position)
+                    if closestHidingSpot then
+                        humanoidRootPart.CFrame = CFrame.new(closestHidingSpot.Position)
+                    end
+                end
+            end
+        end
+    end
+end
+
+function FindClosestHidingSpot(position)
+    local closest = nil
+    local closestDistance = math.huge
+    
+    for _, obj in ipairs(workspace:GetDescendants()) do
+        if obj.Name:lower():find("closet") or obj.Name:lower():find("hide") or obj.Name:lower():find("bed") then
+            local distance = (position - obj.Position).Magnitude
+            if distance < closestDistance then
+                closest = obj
+                closestDistance = distance
+            end
+        end
+    end
+    
+    return closest
+end
+
+-- Speed mod implementation
+function ApplySpeedMod()
+    local player = Players.LocalPlayer
+    if not player then return end
+    
+    local character = player.Character
+    if not character then
+        player.CharacterAdded:Connect(function(newChar)
+            character = newChar
+            task.wait(1)
+            SetWalkSpeed(CurrentWalkSpeed)
+        end)
+        return
+    end
+    
+    local humanoid = character:FindFirstChildOfClass("Humanoid")
+    if humanoid then
+        OriginalWalkSpeed = humanoid.WalkSpeed
+        SetWalkSpeed(CurrentWalkSpeed or 25)
+    end
+end
+
+function SetWalkSpeed(speed)
+    CurrentWalkSpeed = speed
+    
+    if not SpeedHackEnabled then return end
+    
+    local player = Players.LocalPlayer
+    if not player then return end
+    
+    local character = player.Character
+    if not character then return end
+    
+    local humanoid = character:FindFirstChildOfClass("Humanoid")
+    if humanoid then
+        humanoid.WalkSpeed = speed
+    end
+end
+
+function ResetSpeed()
+    local player = Players.LocalPlayer
+    if not player then return end
+    
+    local character = player.Character
+    if not character then return end
+    
+    local humanoid = character:FindFirstChildOfClass("Humanoid")
+    if humanoid then
+        humanoid.WalkSpeed = OriginalWalkSpeed
+    end
+end
+
+-- Infinite jump implementation
+local InfiniteJumpEnabled = false
+local InfiniteJumpConnection = nil
+
+function EnableInfiniteJump()
+    if InfiniteJumpConnection then
+        InfiniteJumpConnection:Disconnect()
+    end
+    
+    InfiniteJumpConnection = UserInputService.JumpRequest:Connect(function()
+        if InfiniteJumpEnabled then
+            local player = Players.LocalPlayer
+            if player and player.Character then
+                local humanoid = player.Character:FindFirstChildOfClass("Humanoid")
+                if humanoid then
+                    humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+                end
+            end
+        end
+    end)
+end
+
+function DisableInfiniteJump()
+    if InfiniteJumpConnection then
+        InfiniteJumpConnection:Disconnect()
+        InfiniteJumpConnection = nil
+    end
+end
+
+-- ESP implementation
+local ESP_PlayerColor = Color3.fromRGB(0, 162, 255)
+local ESP_EntityColor = Color3.fromRGB(255, 0, 0)
+local ESP_ItemColor = Color3.fromRGB(0, 255, 0)
+local ESP_CoinColor = Color3.fromRGB(255, 255, 0)
+
+local PlayerHighlights = {}
+local EntityHighlights = {}
+local ItemHighlights = {}
+local CoinHighlights = {}
+
+-- Player ESP
+function StartPlayerESP()
+    if not PlayerESPEnabled then return end
+    
+    ClearPlayerESP()
+    
+    local function UpdatePlayerESP()
+        if not PlayerESPEnabled then return end
+        
+        for _, player in ipairs(Players:GetPlayers()) do
+            if player ~= Players.LocalPlayer and player.Character and not PlayerHighlights[player] then
+                local highlight = Instance.new("Highlight")
+                highlight.Parent = player.Character
+                highlight.Adornee = player.Character
+                highlight.FillColor = ESP_PlayerColor
+                highlight.OutlineColor = ESP_PlayerColor
+                highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+                
+                PlayerHighlights[player] = highlight
+            elseif PlayerHighlights[player] and (not player.Character or not player.Character.Parent) then
+                PlayerHighlights[player]:Destroy()
+                PlayerHighlights[player] = nil
+            end
+        end
+    end
+    
+    UpdatePlayerESP()
+    
+    local conn
+    conn = RunService.Heartbeat:Connect(function()
+        if not PlayerESPEnabled then
+            conn:Disconnect()
+            return
+        end
+        UpdatePlayerESP()
+    end)
+end
+
+function ClearPlayerESP()
+    for player, highlight in pairs(PlayerHighlights) do
+        if highlight then
+            highlight:Destroy()
+        end
+    end
+    PlayerHighlights = {}
+end
+
+function UpdatePlayerESP()
+    for player, highlight in pairs(PlayerHighlights) do
+        if highlight then
+            highlight.FillColor = ESP_PlayerColor
+            highlight.OutlineColor = ESP_PlayerColor
+        end
+    end
+end
+
+-- Entity ESP
+function StartEntityESP()
+    if not EntityESPEnabled then return end
+    
+    ClearEntityESP()
+    
+    local function UpdateEntityESP()
+        if not EntityESPEnabled then return end
+        
+        for _, entity in ipairs(workspace:GetDescendants()) do
+            if (entity.Name:lower():find("seek") or entity.Name:lower():find("rush") or 
+                entity.Name:lower():find("figure") or entity.Name:lower():find("screech") or
+                entity.Name:lower():find("ambush") or entity.Name:lower():find("halt")) and
+                entity:IsA("Model") and not EntityHighlights[entity] then
+                
+                local highlight = Instance.new("Highlight")
+                highlight.Parent = entity
+                highlight.Adornee = entity
+                highlight.FillColor = ESP_EntityColor
+                highlight.OutlineColor = ESP_EntityColor
+                highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+                
+                EntityHighlights[entity] = highlight
+            elseif EntityHighlights[entity] and not entity.Parent then
+                EntityHighlights[entity]:Destroy()
+                EntityHighlights[entity] = nil
+            end
+        end
+    end
+    
+    UpdateEntityESP()
+    
+    local conn
+    conn = RunService.Heartbeat:Connect(function()
+        if not EntityESPEnabled then
+            conn:Disconnect()
+            return
+        end
+        UpdateEntityESP()
+    end)
+end
+
+function ClearEntityESP()
+    for entity, highlight in pairs(EntityHighlights) do
+        if highlight then
+            highlight:Destroy()
+        end
+    end
+    EntityHighlights = {}
+end
+
+function UpdateEntityESP()
+    for entity, highlight in pairs(EntityHighlights) do
+        if highlight then
+            highlight.FillColor = ESP_EntityColor
+            highlight.OutlineColor = ESP_EntityColor
+        end
+    end
+end
+
+-- Item ESP
+function StartItemESP()
+    if not ItemESPEnabled then return end
+    
+    ClearItemESP()
+    
+    local function UpdateItemESP()
+        if not ItemESPEnabled then return end
+        
+        for _, item in ipairs(workspace:GetDescendants()) do
+            if (item.Name:lower():find("key") or item.Name:lower():find("lockpick") or 
+                item.Name:lower():find("medkit") or item.Name:lower():find("flashlight") or
+                item.Name:lower():find("vitamin") or item.Name:lower():find("book")) and
+                item:IsA("BasePart") and not ItemHighlights[item] then
+                
+                local highlight = Instance.new("Highlight")
+                highlight.Parent = item
+                highlight.Adornee = item
+                highlight.FillColor = ESP_ItemColor
+                highlight.OutlineColor = ESP_ItemColor
+                highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+                
+                ItemHighlights[item] = highlight
+            elseif ItemHighlights[item] and not item.Parent then
+                ItemHighlights[item]:Destroy()
+                ItemHighlights[item] = nil
+            end
+        end
+    end
+    
+    UpdateItemESP()
+    
+    local conn
+    conn = RunService.Heartbeat:Connect(function()
+        if not ItemESPEnabled then
+            conn:Disconnect()
+            return
+        end
+        UpdateItemESP()
+    end)
+end
+
+function ClearItemESP()
+    for item, highlight in pairs(ItemHighlights) do
+        if highlight then
+            highlight:Destroy()
+        end
+    end
+    ItemHighlights = {}
+end
+
+function UpdateItemESP()
+    for item, highlight in pairs(ItemHighlights) do
+        if highlight then
+            highlight.FillColor = ESP_ItemColor
+            highlight.OutlineColor = ESP_ItemColor
+        end
+    end
+end
+
+-- Coin ESP
+function StartCoinESP()
+    if not CoinESPEnabled then return end
+    
+    ClearCoinESP()
+    
+    local function UpdateCoinESP()
+        if not CoinESPEnabled then return end
+        
+        for _, coin in ipairs(workspace:GetDescendants()) do
+            if (coin.Name:lower():find("coin") or coin.Name:lower():find("money") or 
+                coin.Name:lower():find("currency")) and coin:IsA("BasePart") and 
+                not CoinHighlights[coin] then
+                
+                local highlight = Instance.new("Highlight")
+                highlight.Parent = coin
+                highlight.Adornee = coin
+                highlight.FillColor = ESP_CoinColor
+                highlight.OutlineColor = ESP_CoinColor
+                highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+                
+                CoinHighlights[coin] = highlight
+            elseif CoinHighlights[coin] and not coin.Parent then
+                CoinHighlights[coin]:Destroy()
+                CoinHighlights[coin] = nil
+            end
+        end
+    end
+    
+    UpdateCoinESP()
+    
+    local conn
+    conn = RunService.Heartbeat:Connect(function()
+        if not CoinESPEnabled then
+            conn:Disconnect()
+            return
+        end
+        UpdateCoinESP()
+    end)
+end
+
+function ClearCoinESP()
+    for coin, highlight in pairs(CoinHighlights) do
+        if highlight then
+            highlight:Destroy()
+        end
+    end
+    CoinHighlights = {}
+end
+
+function UpdateCoinESP()
+    for coin, highlight in pairs(CoinHighlights) do
+        if highlight then
+            highlight.FillColor = ESP_CoinColor
+            highlight.OutlineColor = ESP_CoinColor
+        end
+    end
+end
+
+-- Initialize UI
+Wind:Init()
+
+-- Notification
+Wind:Notify("戊脚本doors", "脚本已加载")
