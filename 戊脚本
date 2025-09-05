@@ -1,24 +1,27 @@
 -- 加载 WindUI 主库
 local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua"))()
 
-local Confirmed = false
-
-WindUI:Popup({
-    Title = " 戊脚本",
-    Icon = "rbxassetid://129260712070622",
-    IconThemed = true,
-    Content = "By:誓约\nQQ群:1053715085 欢迎使用戊脚本中心，遇到问题请及时反馈，汉化可以拿着源码来找誓约，作者qq：3848974452",
-    Buttons = {
-        {
-            Title = "进入脚本。",
-            Icon = "arrow-right",
-            Callback = function() Confirmed = true end,
-            Variant = "Primary",
+-- 注册自定义 Key 验证服务（如有需要）
+WindUI.Services.mysuperservicetogetkey = {
+    Name = "戊脚本",
+    Icon = "droplet", -- lucide, rbxassetid, raw img link
+    Args = { "ServiceId" },
+    New = function(ServiceId)
+        function validateKey(key)
+            if not key then
+                return false, "Key is invalid!" 
+            end
+            return true, "Key is valid!" 
+        end
+        function copyLink()
+            return setclipboard("link to key system service.")
+        end
+        return {
+            Verify = validateKey,
+            Copy = copyLink
         }
-    }
-})
-
-repeat wait() until
+    end
+}
 
 -- 创建主窗口
 local Window = WindUI:CreateWindow({
@@ -197,7 +200,7 @@ end
 --- 主页 Tab ---
 Tabs.Home:Paragraph({
     Title = "戊脚本中心",
-    Desc = "点击完没加载就是用不了",
+    Desc = "有问题及时反馈，要汉化联系作者誓约qq：3848974452 感谢使用",
     Image = "https://raw.githubusercontent.com/greatjakson-lgtm/-2/bb78fa80e202c45cbd4f127270c3884928707cb6/Lucid_Origin_A_elegant_logo_of_the_letter_W_made_of_glowing_li_1.jpg",
     ImageSize = 65,
 })
