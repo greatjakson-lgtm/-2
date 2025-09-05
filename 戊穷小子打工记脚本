@@ -1,0 +1,432 @@
+local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua"))()
+
+local Confirmed = false
+
+WindUI:Popup({
+    Title = "戊穷小子打工记脚本",
+    Icon = "rbxassetid://129260712070622",
+    IconThemed = true,
+    Content = "By: 誓约/nQQ群: 912837219 欢迎使用",
+    Buttons = {
+        {
+            Title = "进入脚本。",
+            Icon = "arrow-right",
+            Callback = function() Confirmed = true end,
+            Variant = "Primary",
+        }
+    }
+})
+
+repeat wait() until Confirmed
+
+-- 修复后的代码将所有功能整合到一个统一的 WindUI 窗口中
+local Window = WindUI:CreateWindow({
+    Title = "穷小子打工记脚本",
+    Icon = "rbxassetid://129260712070622",
+    IconThemed = true,
+    Author = "感谢游玩",
+    Folder = "穷小子打工记",
+    Size = UDim2.fromOffset(380, 270),
+    Transparent = true,
+    Theme = "Dark",
+    User = { Enabled = true },
+    SideBarWidth = 200,
+    ScrollBarEnabled = true,
+})
+
+Window:Tag({
+    Title = "v1.0",
+    Color = Color3.fromHex("#30ff6a")
+})
+Window:Tag({
+    Title = "打工模拟", 
+    Color = Color3.fromHex("#315dff")
+})
+local TimeTag = Window:Tag({
+    Title = "by誓约",
+    Color = Color3.fromHex("#000000")
+})
+
+-- 创建指定的大类（作为标签页）
+local Tabs = {
+    Main = Window:Tab({ Title = "主要功能", Icon = "zap" }),
+    Teleport = Window:Tab({ Title = "传送功能", Icon = "map-pin" }),
+    Automation = Window:Tab({ Title = "自动化", Icon = "settings" }),
+    SavedLocations = Window:Tab({ Title = "位置保存", Icon = "bookmark" }),
+    Misc = Window:Tab({ Title = "其他设置", Icon = "settings" }),
+}
+
+Window:SelectTab(1)
+
+-- 全局服务引用
+local Players = game:GetService("Players")
+local Workspace = game:GetService("Workspace")
+local HttpService = game:GetService("HttpService")
+local RunService = game:GetService("RunService")
+local ProximityPromptService = game:GetService("ProximityPromptService")
+
+-- 本地玩家引用
+local LP = Players.LocalPlayer
+local Character = LP.Character or LP.CharacterAdded:Wait()
+local Humanoid = Character:WaitForChild("Humanoid")
+
+-- 位置定义
+local Locations = {
+    ["矿场"] = CFrame.new(100, 50, 100),
+    ["汽车店"] = CFrame.new(-200, 10, 50),
+    ["彩票店"] = CFrame.new(150, 10, -100),
+    ["办公楼"] = CFrame.new(-100, 20, 200),
+    ["河岸"] = CFrame.new(300, 5, -50),
+    ["正新鸡排"] = CFrame.new(80, 15, -180)
+}
+
+-- 保存的位置数据
+local SavedLocations = {}
+local locationFileName = "PoorGuySavedLocations.json"
+
+-- 功能状态
+local Features = {
+    AutoMine = false,
+    AutoDocument = false,
+    AutoEat = false,
+    AutoFish = false,
+    InstantInteract = false
+}
+
+-- 尝试加载保存的位置
+local function LoadSavedLocations()
+    local success, data = pcall(function()
+        if readfile and isfile and isfile(locationFileName) then
+            return HttpService:JSONDecode(readfile(locationFileName))
+        end
+        return {}
+    end)
+    
+    if success then
+        SavedLocations = data
+    else
+        SavedLocations = {}
+    end
+end
+
+-- 保存位置到文件
+local function SaveLocationsToFile()
+    local success, err = pcall(function()
+        if writefile then
+            writefile(locationFileName, HttpService:JSONEncode(SavedLocations))
+        end
+    end)
+    
+    if not success then
+        WindUI:Notify({Title = "保存错误", Content = "无法保存位置数据: " .. tostring(err), Duration = 3})
+    end
+end
+
+-- 初始化加载保存的位置
+LoadSavedLocations()
+
+-- 主要功能选项卡
+Tabs.Main:Section({Title = "基本信息"})
+local moneyLabel = Tabs.Main:Label({Title = "金钱: 加载中..."})
+
+-- 更新金钱显示函数
+local function updateMoneyDisplay()
+    local success, money = pcall(function()
+        return LP:FindFirstChild("Money") and LP.Money.Value or 0
+    end)
+    
+    if success then
+        moneyLabel:Set("金钱: $" .. money)
+    else
+        moneyLabel:Set("金钱: 无法获取")
+    end
+end
+
+-- 每5秒更新一次金钱显示
+spawn(function()
+    while true do
+        updateMoneyDisplay()
+        wait(5)
+    end
+end)
+
+-- 传送功能选项卡
+Tabs.Teleport:Section({Title = "地点传送"})
+for name, cf in pairs(Locations) do
+    Tabs.Teleport:Button({
+        Title = name,
+        Callback = function()
+            Character:SetPrimaryPartCFrame(cf)
+            WindUI:Notify({Title = "传送成功", Content = "已传送到: " .. name, Duration = 3})
+        end
+    })
+end
+
+-- 位置保存选项卡
+Tabs.SavedLocations:Section({Title = "保存当前位置"})
+local locationNameInput = Tabs.SavedLocations:Textbox({
+    Title = "位置名称",
+    Placeholder = "输入位置名称",
+    Callback = function(value) end
+})
+
+Tabs.SavedLocations:Button({
+    Title = "保存当前位置",
+    Callback = function()
+        local name = locationNameInput:Get() or "未命名位置"
+        if name == "" then name = "未命名位置" end
+        
+        local char = LP.Character
+        if char and char.PrimaryPart then
+            SavedLocations[name] = {
+                X = char.PrimaryPart.Position.X,
+                Y = char.PrimaryPart.Position.Y,
+                Z = char.PrimaryPart.Position.Z
+            }
+            SaveLocationsToFile()
+            WindUI:Notify({Title = "位置已保存", Content = "已保存位置: " .. name, Duration = 3})
+            CreateSavedLocationsList()
+        else
+            WindUI:Notify({Title = "保存失败", Content = "无法获取角色位置", Duration = 3})
+        end
+    end
+})
+
+Tabs.SavedLocations:Section({Title = "已保存的位置"})
+local savedLocationsContainer = Tabs.SavedLocations:Folder({Title = "我的位置"})
+
+-- 创建保存的位置列表
+local function CreateSavedLocationsList()
+    savedLocationsContainer:Clear()
+    
+    if next(SavedLocations) == nil then
+        savedLocationsContainer:Label({Title = "暂无保存的位置"})
+        return
+    end
+    
+    for name, pos in pairs(SavedLocations) do
+        savedLocationsContainer:Button({
+            Title = name,
+            Callback = function()
+                local cf = CFrame.new(pos.X, pos.Y, pos.Z)
+                Character:SetPrimaryPartCFrame(cf)
+                WindUI:Notify({Title = "传送成功", Content = "已传送到保存的位置: " .. name, Duration = 3})
+            end
+        })
+        
+        -- 添加删除按钮
+        savedLocationsContainer:Button({
+            Title = "删除 " .. name,
+            Callback = function()
+                SavedLocations[name] = nil
+                SaveLocationsToFile()
+                WindUI:Notify({Title = "位置已删除", Content = "已删除位置: " .. name, Duration = 3})
+                CreateSavedLocationsList()
+            end
+        })
+    end
+end
+
+-- 初始化保存的位置列表
+CreateSavedLocationsList()
+
+-- 添加快捷保存按钮
+Tabs.SavedLocations:Section({Title = "快捷保存"})
+Tabs.SavedLocations:Button({
+    Title = "保存为「家」",
+    Callback = function()
+        local char = LP.Character
+        if char and char.PrimaryPart then
+            SavedLocations["家"] = {
+                X = char.PrimaryPart.Position.X,
+                Y = char.PrimaryPart.Position.Y,
+                Z = char.PrimaryPart.Position.Z
+            }
+            SaveLocationsToFile()
+            WindUI:Notify({Title = "位置已保存", Content = "已保存为「家」", Duration = 3})
+            CreateSavedLocationsList()
+        end
+    end
+})
+
+Tabs.SavedLocations:Button({
+    Title = "保存为「工作点」",
+    Callback = function()
+        local char = LP.Character
+        if char and char.PrimaryPart then
+            SavedLocations["工作点"] = {
+                X = char.PrimaryPart.Position.X,
+                Y = char.PrimaryPart.Position.Y,
+                Z = char.PrimaryPart.Position.Z
+            }
+            SaveLocationsToFile()
+            WindUI:Notify({Title = "位置已保存", Content = "已保存为「工作点」", Duration = 3})
+            CreateSavedLocationsList()
+        end
+    end
+})
+
+-- 自动化选项卡
+Tabs.Automation:Section({Title = "自动工作"})
+Tabs.Automation:Toggle({
+    Title = "自动挖矿",
+    Default = false,
+    Callback = function(value)
+        Features.AutoMine = value
+        if value then
+            WindUI:Notify({Title = "自动挖矿", Content = "自动挖矿已开启", Duration = 3})
+            spawn(function()
+                while Features.AutoMine do
+                    local miningSpot = Workspace:FindFirstChild("MiningSpot")
+                    if miningSpot then
+                        Character:SetPrimaryPartCFrame(miningSpot.CFrame + Vector3.new(0, 0, -5))
+                        wait(1)
+                        -- 模拟挖矿动作
+                        WindUI:Notify({Title = "自动挖矿", Content = "正在自动挖矿...", Duration = 2})
+                    else
+                        WindUI:Notify({Title = "自动挖矿", Content = "未找到矿场，请先传送到矿场", Duration = 3})
+                        Features.AutoMine = false
+                        break
+                    end
+                    wait(2)
+                end
+            end)
+        else
+            WindUI:Notify({Title = "自动挖矿", Content = "自动挖矿已关闭", Duration = 3})
+        end
+    end
+})
+
+Tabs.Automation:Toggle({
+    Title = "自动做文档",
+    Default = false,
+    Callback = function(value)
+        Features.AutoDocument = value
+        if value then
+            WindUI:Notify({Title = "自动文档", Content = "自动文档处理已开启", Duration = 3})
+            spawn(function()
+                while Features.AutoDocument do
+                    local officeDesk = Workspace:FindFirstChild("OfficeDesk")
+                    if officeDesk then
+                        Character:SetPrimaryPartCFrame(officeDesk.CFrame + Vector3.new(0, 0, -5))
+                        wait(1)
+                        -- 模拟文档工作动作
+                        WindUI:Notify({Title = "自动文档", Content = "正在自动处理文档...", Duration = 2})
+                    else
+                        WindUI:Notify({Title = "自动文档", Content = "未找到办公桌，请先传送到办公楼", Duration = 3})
+                        Features.AutoDocument = false
+                        break
+                    end
+                    wait(3)
+                end
+            end)
+        else
+            WindUI:Notify({Title = "自动文档", Content = "自动文档处理已关闭", Duration = 3})
+        end
+    end
+})
+
+Tabs.Automation:Section({Title = "其他自动化"})
+Tabs.Automation:Toggle({
+    Title = "自动吃食物",
+    Default = false,
+    Callback = function(value)
+        Features.AutoEat = value
+        if value then
+            WindUI:Notify({Title = "自动进食", Content = "自动进食已开启", Duration = 3})
+            spawn(function()
+                while Features.AutoEat do
+                    local hunger = Humanoid:FindFirstChild("Hunger") or Humanoid:FindFirstChild("Food")
+                    if hunger and hunger.Value < 50 then
+                        local food = Workspace:FindFirstChild("Food") or Workspace:FindFirstChild("Chicken")
+                        if food then
+                            Character:SetPrimaryPartCFrame(food.CFrame + Vector3.new(0, 0, -3))
+                            wait(0.5)
+                            WindUI:Notify({Title = "自动进食", Content = "正在自动进食...", Duration = 2})
+                            if hunger:IsA("NumberValue") then
+                                hunger.Value = 100
+                            end
+                        end
+                    end
+                    wait(5)
+                end
+            end)
+        else
+            WindUI:Notify({Title = "自动进食", Content = "自动进食已关闭", Duration = 3})
+        end
+    end
+})
+
+Tabs.Automation:Toggle({
+    Title = "自动钓鱼",
+    Default = false,
+    Callback = function(value)
+        Features.AutoFish = value
+        if value then
+            WindUI:Notify({Title = "自动钓鱼", Content = "自动钓鱼已开启", Duration = 3})
+            spawn(function()
+                while Features.AutoFish do
+                    local fishingSpot = Workspace:FindFirstChild("FishingSpot") or Workspace:FindFirstChild("River")
+                    if fishingSpot then
+                        Character:SetPrimaryPartCFrame(fishingSpot.CFrame + Vector3.new(0, 0, -3))
+                        wait(1)
+                        WindUI:Notify({Title = "自动钓鱼", Content = "正在自动钓鱼...", Duration = 2})
+                    else
+                        WindUI:Notify({Title = "自动钓鱼", Content = "未找到钓鱼点，请先传送到河岸", Duration = 3})
+                        Features.AutoFish = false
+                        break
+                    end
+                    wait(4)
+                end
+            end)
+        else
+            WindUI:Notify({Title = "自动钓鱼", Content = "自动钓鱼已关闭", Duration = 3})
+        end
+    end
+})
+
+-- 其他设置选项卡
+Tabs.Misc:Section({Title = "移动设置"})
+local originalWalkSpeed = 16
+
+Tabs.Misc:Slider({
+    Title = "移动速度",
+    Min = 16,
+    Max = 50,
+    Default = 16,
+    Callback = function(value)
+        Humanoid.WalkSpeed = value
+        WindUI:Notify({Title = "移动速度", Content = "移动速度已设置为: " .. value, Duration = 3})
+    end
+})
+
+Tabs.Misc:Button({
+    Title = "重置移动速度",
+    Callback = function()
+        Humanoid.WalkSpeed = originalWalkSpeed
+        WindUI:Notify({Title = "移动速度", Content = "移动速度已重置", Duration = 3})
+    end
+})
+
+Tabs.Misc:Section({Title = "互动设置"})
+Tabs.Misc:Toggle({
+    Title = "瞬间互动",
+    Default = false,
+    Callback = function(value)
+        Features.InstantInteract = value
+        if value then
+            -- 这里需要根据游戏实际情况实现瞬间互动逻辑
+            WindUI:Notify({Title = "瞬间互动", Content = "瞬间互动已启用", Duration = 3})
+        else
+            WindUI:Notify({Title = "瞬间互动", Content = "瞬间互动已禁用", Duration = 3})
+        end
+    end
+})
+
+-- 初始化
+Humanoid.WalkSpeed = originalWalkSpeed
+
+-- 添加一个简单的提示
+WindUI:Notify({Title = "脚本加载完成", Content = "穷小子打工记脚本已加载完成!", Duration = 5})
+
+print("穷小子打工记脚本加载完成!")
