@@ -1,16 +1,15 @@
--- 加载 WindUI 主库
 local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua"))()
 
 local Confirmed = false
 
 WindUI:Popup({
-    Title = " 戊脚本",
+    Title = "戊脚本",
     Icon = "rbxassetid://129260712070622",
     IconThemed = true,
-    Content = "By:戊\nQQ群:912837219 欢迎使用99夜",
+    Content = "by誓约\n",
     Buttons = {
         {
-            Title = "进入脚本。",
+            Title = "进入脚本",
             Icon = "arrow-right",
             Callback = function() Confirmed = true end,
             Variant = "Primary",
@@ -20,14 +19,13 @@ WindUI:Popup({
 
 repeat wait() until Confirmed
 
--- 修复后的代码将所有功能整合到一个统一的 WindUI 窗口中
 local Window = WindUI:CreateWindow({
     Title = "戊脚本",
     Icon = "rbxassetid://129260712070622",
     IconThemed = true,
-    Author = "感谢游玩",
-    Folder = "戊脚本",
-    Size = UDim2.fromOffset(540, 340),
+    Author = "戊脚本",
+    Folder = "DoorsScript",
+    Size = UDim2.fromOffset(540, 400),
     Transparent = true,
     Theme = "Dark",
     User = { Enabled = true },
@@ -35,243 +33,41 @@ local Window = WindUI:CreateWindow({
     ScrollBarEnabled = true,
 })
 
--- Create tabs
+Window:Tag({
+    Title = "v1.0",
+    Color = Color3.fromHex("#30ff6a")
+})
+Window:Tag({
+    Title = "Doors", 
+    Color = Color3.fromHex("#315dff")
+})
+
 local Tabs = {
-    Visual = MainWindow:AddTab("视觉"),
-    Auto = MainWindow:AddTab("自动"),
-    Player = MainWindow:AddTab("玩家"),
-    ESP = MainWindow:AddTab("透视")
+    Main = Window:Tab({ Title = "主要功能", Icon = "zap" }),
+    ESP = Window:Tab({ Title = "透视功能", Icon = "eye" }),
+    Auto = Window:Tab({ Title = "自动功能", Icon = "refresh-cw" }),
+    Player = Window:Tab({ Title = "玩家修改", Icon = "user" }),
+    Misc = Window:Tab({ Title = "其他功能", Icon = "settings" }),
 }
 
--- Visual tab
-Tabs.Visual:AddParagraph("视觉功能", "增强视觉体验")
+Window:SelectTab(1)
 
-local DoorESP = Tabs.Visual:AddSection("door透视")
+local Players = game:GetService("Players")
+local Workspace = game:GetService("Workspace")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+
+local LP = Players.LocalPlayer
+local Character = LP.Character or LP.CharacterAdded:Wait()
+
+-- 门透视功能
 local DoorESPEnabled = false
 local HighlightedDoors = {}
-
-DoorESP:AddToggle({
-    Text = "打开door透视",
-    Default = false,
-    Callback = function(Value)
-        DoorESPEnabled = Value
-        if not Value then
-            for door, highlight in pairs(HighlightedDoors) do
-                if highlight then
-                    highlight:Destroy()
-                end
-            end
-            HighlightedDoors = {}
-        else
-            StartDoorESP()
-        end
-    end
-})
-
-DoorESP:AddColorpicker({
-    Text = "真门颜色",
-    Default = Color3.fromRGB(0, 255, 0),
-    Callback = function(Value)
-        ESP_SafeColor = Value
-        UpdateDoorHighlights()
-    end
-})
-
-DoorESP:AddColorpicker({
-    Text = "假门颜色",
-    Default = Color3.fromRGB(255, 0, 0),
-    Callback = function(Value)
-        ESP_DangerColor = Value
-        UpdateDoorHighlights()
-    end
-})
-
--- Auto tab
-Tabs.Auto:AddParagraph("自动功能", "自动操作")
-
-local AutoInteract = Tabs.Auto:AddSection("自动互动")
-local AutoInteractEnabled = false
-
-AutoInteract:AddToggle({
-    Text = "打开自动开门",
-    Default = false,
-    Callback = function(Value)
-        AutoInteractEnabled = Value
-        if Value then
-            StartAutoInteract()
-        end
-    end
-})
-
-AutoInteract:AddSlider({
-    Text = "交互距离",
-    Default = 10,
-    Min = 5,
-    Max = 30,
-    Callback = function(Value)
-        AutoInteractDistance = Value
-    end
-})
-
-AutoInteract:AddToggle({
-    Text = "自动躲避",
-    Default = false,
-    Callback = function(Value)
-        AutoAvoidEnabled = Value
-        if Value then
-            StartAutoAvoid()
-        end
-    end
-})
-
--- Player tab
-Tabs.Player:AddParagraph("玩家", "改属性")
-
-local PlayerMods = Tabs.Player:AddSection("速度")
-local SpeedHackEnabled = false
-local OriginalWalkSpeed = 16
-
-PlayerMods:AddToggle({
-    Text = "改速度",
-    Default = false,
-    Callback = function(Value)
-        SpeedHackEnabled = Value
-        if Value then
-            ApplySpeedMod()
-        else
-            ResetSpeed()
-        end
-    end
-})
-
-PlayerMods:AddSlider({
-    Text = "移动速度",
-    Default = 16,
-    Min = 16,
-    Max = 100,
-    Callback = function(Value)
-        if SpeedHackEnabled then
-            SetWalkSpeed(Value)
-        end
-    end
-})
-
-PlayerMods:AddToggle({
-    Text = "无限跳",
-    Default = false,
-    Callback = function(Value)
-        InfiniteJumpEnabled = Value
-        if Value then
-            EnableInfiniteJump()
-        else
-            DisableInfiniteJump()
-        end
-    end
-})
-
--- ESP tab
-Tabs.ESP:AddParagraph("透视功能", "透视")
-
-local ESPOptions = Tabs.ESP:AddSection("选项")
-local PlayerESPEnabled = false
-local EntityESPEnabled = false
-local ItemESPEnabled = false
-local CoinESPEnabled = false
-
-ESPOptions:AddToggle({
-    Text = "玩家透视",
-    Default = false,
-    Callback = function(Value)
-        PlayerESPEnabled = Value
-        if Value then
-            StartPlayerESP()
-        else
-            ClearPlayerESP()
-        end
-    end
-})
-
-ESPOptions:AddToggle({
-    Text = "实体透视",
-    Default = false,
-    Callback = function(Value)
-        EntityESPEnabled = Value
-        if Value then
-            StartEntityESP()
-        else
-            ClearEntityESP()
-        end
-    end
-})
-
-ESPOptions:AddToggle({
-    Text = "物品透视",
-    Default = false,
-    Callback = function(Value)
-        ItemESPEnabled = Value
-        if Value then
-            StartItemESP()
-        else
-            ClearItemESP()
-        end
-    end
-})
-
-ESPOptions:AddToggle({
-    Text = "金币透视",
-    Default = false,
-    Callback = function(Value)
-        CoinESPEnabled = Value
-        if Value then
-            StartCoinESP()
-        else
-            ClearCoinESP()
-        end
-    end
-})
-
-local ESPColors = Tabs.ESP:AddSection("ESP Colors")
-ESPColors:AddColorpicker({
-    Text = "玩家透视颜色",
-    Default = Color3.fromRGB(0, 162, 255),
-    Callback = function(Value)
-        ESP_PlayerColor = Value
-        UpdatePlayerESP()
-    end
-})
-
-ESPColors:AddColorpicker({
-    Text = "实体透视颜色",
-    Default = Color3.fromRGB(255, 0, 0),
-    Callback = function(Value)
-        ESP_EntityColor = Value
-        UpdateEntityESP()
-    end
-})
-
-ESPColors:AddColorpicker({
-    Text = "物品透视颜色",
-    Default = Color3.fromRGB(0, 255, 0),
-    Callback = function(Value)
-        ESP_ItemColor = Value
-        UpdateItemESP()
-    end
-})
-
-ESPColors:AddColorpicker({
-    Text = "金币透视颜色",
-    Default = Color3.fromRGB(255, 255, 0),
-    Callback = function(Value)
-        ESP_CoinColor = Value
-        UpdateCoinESP()
-    end
-})
-
--- Door ESP implementation
 local ESP_SafeColor = Color3.fromRGB(0, 255, 0)
 local ESP_DangerColor = Color3.fromRGB(255, 0, 0)
 
-function StartDoorESP()
+local function StartDoorESP()
     if not DoorESPEnabled then return end
     
     for door, highlight in pairs(HighlightedDoors) do
@@ -310,7 +106,7 @@ function StartDoorESP()
     end
 end
 
-function UpdateDoorHighlights()
+local function UpdateDoorHighlights()
     for door, highlight in pairs(HighlightedDoors) do
         if highlight and door.Parent then
             if door.Name:lower():find("exit") or door.Name:lower():find("safe") then
@@ -322,10 +118,11 @@ function UpdateDoorHighlights()
     end
 end
 
--- Auto interact implementation
+-- 自动互动功能
+local AutoInteractEnabled = false
 local AutoInteractDistance = 10
 
-function StartAutoInteract()
+local function StartAutoInteract()
     if not AutoInteractEnabled then return end
     
     local player = Players.LocalPlayer
@@ -355,10 +152,10 @@ function StartAutoInteract()
     end
 end
 
--- Auto avoid implementation
+-- 自动躲避功能
 local AutoAvoidEnabled = false
 
-function StartAutoAvoid()
+local function StartAutoAvoid()
     if not AutoAvoidEnabled then return end
     
     local player = Players.LocalPlayer
@@ -387,7 +184,7 @@ function StartAutoAvoid()
     end
 end
 
-function FindClosestHidingSpot(position)
+local function FindClosestHidingSpot(position)
     local closest = nil
     local closestDistance = math.huge
     
@@ -404,8 +201,12 @@ function FindClosestHidingSpot(position)
     return closest
 end
 
--- Speed mod implementation
-function ApplySpeedMod()
+-- 速度修改功能
+local SpeedHackEnabled = false
+local OriginalWalkSpeed = 16
+local CurrentWalkSpeed = 25
+
+local function ApplySpeedMod()
     local player = Players.LocalPlayer
     if not player then return end
     
@@ -426,7 +227,7 @@ function ApplySpeedMod()
     end
 end
 
-function SetWalkSpeed(speed)
+local function SetWalkSpeed(speed)
     CurrentWalkSpeed = speed
     
     if not SpeedHackEnabled then return end
@@ -443,7 +244,7 @@ function SetWalkSpeed(speed)
     end
 end
 
-function ResetSpeed()
+local function ResetSpeed()
     local player = Players.LocalPlayer
     if not player then return end
     
@@ -456,11 +257,11 @@ function ResetSpeed()
     end
 end
 
--- Infinite jump implementation
+-- 无限跳跃功能
 local InfiniteJumpEnabled = false
 local InfiniteJumpConnection = nil
 
-function EnableInfiniteJump()
+local function EnableInfiniteJump()
     if InfiniteJumpConnection then
         InfiniteJumpConnection:Disconnect()
     end
@@ -478,14 +279,14 @@ function EnableInfiniteJump()
     end)
 end
 
-function DisableInfiniteJump()
+local function DisableInfiniteJump()
     if InfiniteJumpConnection then
         InfiniteJumpConnection:Disconnect()
         InfiniteJumpConnection = nil
     end
 end
 
--- ESP implementation
+-- ESP功能
 local ESP_PlayerColor = Color3.fromRGB(0, 162, 255)
 local ESP_EntityColor = Color3.fromRGB(255, 0, 0)
 local ESP_ItemColor = Color3.fromRGB(0, 255, 0)
@@ -496,8 +297,13 @@ local EntityHighlights = {}
 local ItemHighlights = {}
 local CoinHighlights = {}
 
--- Player ESP
-function StartPlayerESP()
+local PlayerESPEnabled = false
+local EntityESPEnabled = false
+local ItemESPEnabled = false
+local CoinESPEnabled = false
+
+-- 玩家ESP
+local function StartPlayerESP()
     if not PlayerESPEnabled then return end
     
     ClearPlayerESP()
@@ -534,7 +340,7 @@ function StartPlayerESP()
     end)
 end
 
-function ClearPlayerESP()
+local function ClearPlayerESP()
     for player, highlight in pairs(PlayerHighlights) do
         if highlight then
             highlight:Destroy()
@@ -543,7 +349,7 @@ function ClearPlayerESP()
     PlayerHighlights = {}
 end
 
-function UpdatePlayerESP()
+local function UpdatePlayerESP()
     for player, highlight in pairs(PlayerHighlights) do
         if highlight then
             highlight.FillColor = ESP_PlayerColor
@@ -552,8 +358,8 @@ function UpdatePlayerESP()
     end
 end
 
--- Entity ESP
-function StartEntityESP()
+-- 实体ESP
+local function StartEntityESP()
     if not EntityESPEnabled then return end
     
     ClearEntityESP()
@@ -594,7 +400,7 @@ function StartEntityESP()
     end)
 end
 
-function ClearEntityESP()
+local function ClearEntityESP()
     for entity, highlight in pairs(EntityHighlights) do
         if highlight then
             highlight:Destroy()
@@ -603,7 +409,7 @@ function ClearEntityESP()
     EntityHighlights = {}
 end
 
-function UpdateEntityESP()
+local function UpdateEntityESP()
     for entity, highlight in pairs(EntityHighlights) do
         if highlight then
             highlight.FillColor = ESP_EntityColor
@@ -612,8 +418,8 @@ function UpdateEntityESP()
     end
 end
 
--- Item ESP
-function StartItemESP()
+-- 物品ESP
+local function StartItemESP()
     if not ItemESPEnabled then return end
     
     ClearItemESP()
@@ -654,7 +460,7 @@ function StartItemESP()
     end)
 end
 
-function ClearItemESP()
+local function ClearItemESP()
     for item, highlight in pairs(ItemHighlights) do
         if highlight then
             highlight:Destroy()
@@ -663,7 +469,7 @@ function ClearItemESP()
     ItemHighlights = {}
 end
 
-function UpdateItemESP()
+local function UpdateItemESP()
     for item, highlight in pairs(ItemHighlights) do
         if highlight then
             highlight.FillColor = ESP_ItemColor
@@ -672,8 +478,8 @@ function UpdateItemESP()
     end
 end
 
--- Coin ESP
-function StartCoinESP()
+-- 金币ESP
+local function StartCoinESP()
     if not CoinESPEnabled then return end
     
     ClearCoinESP()
@@ -713,7 +519,7 @@ function StartCoinESP()
     end)
 end
 
-function ClearCoinESP()
+local function ClearCoinESP()
     for coin, highlight in pairs(CoinHighlights) do
         if highlight then
             highlight:Destroy()
@@ -722,7 +528,7 @@ function ClearCoinESP()
     CoinHighlights = {}
 end
 
-function UpdateCoinESP()
+local function UpdateCoinESP()
     for coin, highlight in pairs(CoinHighlights) do
         if highlight then
             highlight.FillColor = ESP_CoinColor
@@ -731,8 +537,262 @@ function UpdateCoinESP()
     end
 end
 
--- Initialize UI
-Wind:Init()
+-- 主要功能标签页
+Tabs.Main:Toggle({
+    Title = "门透视",
+    Description = "高亮显示所有门",
+    Value = false,
+    Callback = function(value)
+        DoorESPEnabled = value
+        if value then
+            StartDoorESP()
+        else
+            for door, highlight in pairs(HighlightedDoors) do
+                if highlight then
+                    highlight:Destroy()
+                end
+            end
+            HighlightedDoors = {}
+        end
+    end
+})
 
--- Notification
-Wind:Notify("戊脚本doors", "脚本已加载")
+Tabs.Main:Colorpicker({
+    Title = "真门颜色",
+    Default = Color3.fromRGB(0, 255, 0),
+    Callback = function(Value)
+        ESP_SafeColor = Value
+        UpdateDoorHighlights()
+    end
+})
+
+Tabs.Main:Colorpicker({
+    Title = "假门颜色",
+    Default = Color3.fromRGB(255, 0, 0),
+    Callback = function(Value)
+        ESP_DangerColor = Value
+        UpdateDoorHighlights()
+    end
+})
+
+-- 透视功能标签页
+Tabs.ESP:Toggle({
+    Title = "玩家透视",
+    Value = false,
+    Callback = function(value)
+        PlayerESPEnabled = value
+        if value then
+            StartPlayerESP()
+        else
+            ClearPlayerESP()
+        end
+    end
+})
+
+Tabs.ESP:Toggle({
+    Title = "实体透视",
+    Value = false,
+    Callback = function(value)
+        EntityESPEnabled = value
+        if value then
+            StartEntityESP()
+        else
+            ClearEntityESP()
+        end
+    end
+})
+
+Tabs.ESP:Toggle({
+    Title = "物品透视",
+    Value = false,
+    Callback = function(value)
+        ItemESPEnabled = value
+        if value then
+            StartItemESP()
+        else
+            ClearItemESP()
+        end
+    end
+})
+
+Tabs.ESP:Toggle({
+    Title = "金币透视",
+    Value = false,
+    Callback = function(value)
+        CoinESPEnabled = value
+        if value then
+            StartCoinESP()
+        else
+            ClearCoinESP()
+        end
+    end
+})
+
+Tabs.ESP:Colorpicker({
+    Title = "玩家颜色",
+    Default = Color3.fromRGB(0, 162, 255),
+    Callback = function(Value)
+        ESP_PlayerColor = Value
+        UpdatePlayerESP()
+    end
+})
+
+Tabs.ESP:Colorpicker({
+    Title = "实体颜色",
+    Default = Color3.fromRGB(255, 0, 0),
+    Callback = function(Value)
+        ESP_EntityColor = Value
+        UpdateEntityESP()
+    end
+})
+
+Tabs.ESP:Colorpicker({
+    Title = "物品颜色",
+    Default = Color3.fromRGB(0, 255, 0),
+    Callback = function(Value)
+        ESP_ItemColor = Value
+        UpdateItemESP()
+    end
+})
+
+Tabs.ESP:Colorpicker({
+    Title = "金币颜色",
+    Default = Color3.fromRGB(255, 255, 0),
+    Callback = function(Value)
+        ESP_CoinColor = Value
+        UpdateCoinESP()
+    end
+})
+
+-- 自动功能标签页
+Tabs.Auto:Toggle({
+    Title = "自动开门",
+    Description = "自动与附近的门互动",
+    Value = false,
+    Callback = function(value)
+        AutoInteractEnabled = value
+        if value then
+            StartAutoInteract()
+        end
+    end
+})
+
+Tabs.Auto:Slider({
+    Title = "互动距离",
+    Default = 10,
+    Min = 5,
+    Max = 30,
+    Callback = function(Value)
+        AutoInteractDistance = Value
+    end
+})
+
+Tabs.Auto:Toggle({
+    Title = "自动躲避",
+    Description = "自动躲避附近的实体",
+    Value = false,
+    Callback = function(value)
+        AutoAvoidEnabled = value
+        if value then
+            StartAutoAvoid()
+        end
+    end
+})
+
+-- 玩家修改标签页
+Tabs.Player:Toggle({
+    Title = "速度修改",
+    Description = "修改移动速度",
+    Value = false,
+    Callback = function(value)
+        SpeedHackEnabled = value
+        if value then
+            ApplySpeedMod()
+        else
+            ResetSpeed()
+        end
+    end
+})
+
+Tabs.Player:Slider({
+    Title = "移动速度",
+    Default = 16,
+    Min = 16,
+    Max = 100,
+    Callback = function(Value)
+        if SpeedHackEnabled then
+            SetWalkSpeed(Value)
+        end
+    end
+})
+
+Tabs.Player:Toggle({
+    Title = "无限跳跃",
+    Description = "无限跳跃",
+    Value = false,
+    Callback = function(value)
+        InfiniteJumpEnabled = value
+        if value then
+            EnableInfiniteJump()
+        else
+            DisableInfiniteJump()
+        end
+    end
+})
+
+-- 其他功能标签页
+Tabs.Misc:Button({
+    Title = "清空所有ESP",
+    Callback = function()
+        ClearPlayerESP()
+        ClearEntityESP()
+        ClearItemESP()
+        ClearCoinESP()
+        for door, highlight in pairs(HighlightedDoors) do
+            if highlight then
+                highlight:Destroy()
+            end
+        end
+        HighlightedDoors = {}
+        WindUI:Notify({Title = "提示", Content = "已清除所有ESP", Duration = 2})
+    end
+})
+
+Tabs.Misc:Button({
+    Title = "重置所有设置",
+    Callback = function()
+        DoorESPEnabled = false
+        AutoInteractEnabled = false
+        AutoAvoidEnabled = false
+        SpeedHackEnabled = false
+        InfiniteJumpEnabled = false
+        PlayerESPEnabled = false
+        EntityESPEnabled = false
+        ItemESPEnabled = false
+        CoinESPEnabled = false
+        
+        for door, highlight in pairs(HighlightedDoors) do
+            if highlight then
+                highlight:Destroy()
+            end
+        end
+        HighlightedDoors = {}
+        
+        ClearPlayerESP()
+        ClearEntityESP()
+        ClearItemESP()
+        ClearCoinESP()
+        
+        if InfiniteJumpConnection then
+            InfiniteJumpConnection:Disconnect()
+            InfiniteJumpConnection = nil
+        end
+        
+        ResetSpeed()
+        
+        WindUI:Notify({Title = "提示", Content = "已重置所有设置", Duration = 2})
+    end
+})
+
+WindUI:Init()
+WindUI:Notify("戊脚本Doors", "脚本已加载成功！")
