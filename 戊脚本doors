@@ -1,10 +1,10 @@
+-- 加载 WindUI 主库
+local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua"))()
+
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
-
--- Create Wind UI interface
-local Wind = require(ReplicatedStorage:WaitForChild("WindUI"))
 
 -- Create main window
 local MainWindow = Wind:CreateWindow({
