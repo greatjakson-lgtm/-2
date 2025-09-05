@@ -1,27 +1,24 @@
 -- 加载 WindUI 主库
 local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua"))()
 
--- 注册自定义 Key 验证服务（如有需要）
-WindUI.Services.mysuperservicetogetkey = {
-    Name = "戊脚本",
-    Icon = "droplet", -- lucide, rbxassetid, raw img link
-    Args = { "ServiceId" },
-    New = function(ServiceId)
-        function validateKey(key)
-            if not key then
-                return false, "Key is invalid!" 
-            end
-            return true, "Key is valid!" 
-        end
-        function copyLink()
-            return setclipboard("link to key system service.")
-        end
-        return {
-            Verify = validateKey,
-            Copy = copyLink
+local Confirmed = false
+
+WindUI:Popup({
+    Title = " 戊脚本",
+    Icon = "rbxassetid://129260712070622",
+    IconThemed = true,
+    Content = "By:誓约\nQQ群:1053715085 欢迎使用戊脚本中心，遇到问题请及时反馈，汉化可以拿着源码来找誓约，作者qq：3848974452",
+    Buttons = {
+        {
+            Title = "进入脚本。",
+            Icon = "arrow-right",
+            Callback = function() Confirmed = true end,
+            Variant = "Primary",
         }
-    end
-}
+    }
+})
+
+repeat wait() until
 
 -- 创建主窗口
 local Window = WindUI:CreateWindow({
@@ -199,14 +196,14 @@ end
 
 --- 主页 Tab ---
 Tabs.Home:Paragraph({
-    Title = "戊",
+    Title = "戊脚本中心",
     Desc = "点击完没加载就是用不了",
-    Image = "https://raw.githubusercontent.com/greatjakson-lgtm/-2/fbe1d54847da1b794e15f01fd9137aab1c43c57e/new_logo.png",
-    ImageSize = 42,
+    Image = "https://raw.githubusercontent.com/greatjakson-lgtm/-2/bb78fa80e202c45cbd4f127270c3884928707cb6/Lucid_Origin_A_elegant_logo_of_the_letter_W_made_of_glowing_li_1.jpg",
+    ImageSize = 65,
 })
 Tabs.Home:Paragraph({
     Title = "欢迎",
-    Desc = "需要时开启反挂机。作者: 戊\n脚本免费",
+    Desc = "需要时开启反挂机.作者: 誓约\n脚本免费",
 })
 -- 反挂机 (通过外部链接加载)
 Tabs.Home:Button({
@@ -956,7 +953,7 @@ Tabs.Misc:Button({
     Title = "复制作者QQ",
     Callback = function()
         setclipboard("3848974452")
-        WindUI:Notify({Title = "QQ群号", Content = "群号已复制到剪贴板", Duration = 3})
+        WindUI:Notify({Title = "QQ号", Content = "qq号已复制到剪贴板", Duration = 3})
     end
 })
 
@@ -1049,6 +1046,21 @@ local ProhaxButton = Tab:Button({
             Icon = "bird",
         })
     end
+})
+
+local Button = Tab:Button({
+    Title = "backking 汉化脚本",
+    Desc = "点击运行backking脚本",
+    Locked = false,
+    Callback = function()
+        --[[Doors Blackking And BobHub脚本汉化]]loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\112\97\115\116\101\98\105\110\46\99\111\109\47\114\97\119\47\54\53\84\119\84\56\106\97"))()
+    end
+})
+WindUI:Notify({
+    Title = "backking脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
 })
 
 -- void ware 按钮
@@ -1148,11 +1160,26 @@ local LinuxButton = Tab:Button({
 })
 
 local Button = Tab:Button({
+    Title = "99nights av hub脚本",
+    Desc = "点击运行av hub脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://get-avth-ontop.netlify.app/my-paste/script.lua"))()
+    end
+})
+WindUI:Notify({
+    Title = "av hub脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+
+local Button = Tab:Button({
     Title = "戊99nights",
     Desc = "点击运行戊99nights脚本",
     Locked = false,
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/973e40c55ced3257fbe0e88b453869ba312a272d/%E6%88%8A%E8%84%9A%E6%9C%AC99nights"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/d437edf78ebd91ba1bea8b4d2c37cbd63ee6b7e2/%E6%88%8A%E8%84%9A%E6%9C%AC99nights"))()
     end
 })
 WindUI:Notify({
@@ -1271,6 +1298,21 @@ WindUI:Notify({
     Icon = "bird",
 })
 
+local Button = Tab:Button({
+    Title = "flsch solix脚本",
+    Desc = "点击运行solix脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/debunked69/solixloader/refs/heads/main/solix%20v2%20new%20loader.lua"))()
+    end
+})
+WindUI:Notify({
+    Title = "solix脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+
 -- vape 按钮
 local VapeButton = Tab:Button({
     Title = "通用vape",
@@ -1286,6 +1328,37 @@ local VapeButton = Tab:Button({
         })
     end
 })
+
+local Button = Tab:Button({
+    Title = "bf redz脚本",
+    Desc = "点击运行redz脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/tlredz/Scripts/refs/heads/main/main.luau"))
+    end
+})
+WindUI:Notify({
+    Title = "redz脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+
+local Button = Tab:Button({
+    Title = " bf blue x脚本",
+    Desc = "点击运行blue x脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/refs/heads/main/Main.lua"))()
+    end
+})
+WindUI:Notify({
+    Title = "blue x脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+
 -- 死铁轨nat 按钮
 local NatButton = Tab:Button({
     Title = "死铁轨nat中心",
@@ -1300,6 +1373,82 @@ local NatButton = Tab:Button({
             Icon = "bird",
         })
     end
+})
+
+local Button = Tab:Button({
+    Title = "刀刃球ronixhub脚本",
+    Desc = "点击运行ronixhub脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/672a0ae340e8ce7e21a51e37c6bf0cc1.lua"))()
+    end
+})
+WindUI:Notify({
+    Title = "ronixhub脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+
+local Button = Tab:Button({
+    Title = "speed x 种植花园脚本",
+    Desc = "点击运行speed x脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
+    end
+})
+WindUI:Notify({
+    Title = "speed x脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+
+local Button = Tab:Button({
+    Title = "种植花园atv脚本",
+    Desc = "点击运行atv脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/thantzy/thanhub/refs/heads/main/thanv1"))()
+    end
+})
+
+WindUI:Notify({
+    Title = "种植花园atv脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+
+local Button = Tab:Button({
+    Title = "偷走脑红辣椒中心脚本",
+    Desc = "点击运行辣椒中心脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/tienkhanh1/spicy/main/Chilli.lua"))()
+    end
+})
+WindUI:Notify({
+    Title = "辣椒中心脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+
+local Button = Tab:Button({
+    Title = "偷走脑红dencycode脚本",
+    Desc = "点击运行dencycode脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Estevansit0/KJJK/refs/heads/main/PusarX-loader.lua"))()
+    end
+})
+WindUI:Notify({
+    Title = "dencycode脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
 })
 
 -- rb中心 按钮
@@ -1475,7 +1624,7 @@ ConfigManager:AllConfigs() -- 返回所有配置表
 local Dialog = Window:Dialog({
     Icon = "bird",
     Title = "戊",
-    Content = "点完404就是用不了",
+    Content = "点完没加载就是用不了",
     Buttons = {
         {
             Title = "Confirm",
