@@ -3,10 +3,10 @@ local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footag
 local Confirmed = false
 
 WindUI:Popup({
-    Title = "Doors 辅助脚本",
+    Title = "戊Doors",
     Icon = "rbxassetid://129260712070622",
     IconThemed = true,
-    Content = "Doors多功能辅助工具\n包含透视、模型高亮、自动互动、速度修改等功能",
+    Content = "戊doors脚本作者by誓约\n",
     Buttons = {
         {
             Title = "进入脚本",
@@ -20,10 +20,10 @@ WindUI:Popup({
 repeat task.wait() until Confirmed
 
 local Window = WindUI:CreateWindow({
-    Title = "Doors 辅助工具",
+    Title = "戊Doors",
     Icon = "rbxassetid://129260712070622",
     IconThemed = true,
-    Author = "多功能脚本",
+    Author = "功能脚本",
     Folder = "DoorsScript",
     Size = UDim2.fromOffset(420, 320),
     Transparent = true,
