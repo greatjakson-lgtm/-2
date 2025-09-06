@@ -28,7 +28,7 @@ local Window = WindUI:CreateWindow({
     Title = "戊脚本",
     Icon = "Crown",
     Author = "戊 hub",
-    Folder = "MyTestHub",
+    Folder = "戊Hub",
     Theme = "Dark",
     Size = UDim2.fromOffset(350, 270),
     Transparent = true,
@@ -77,7 +77,7 @@ Window:EditOpenButton({
     Icon = "hand",
     CornerRadius = UDim.new(0,16),
     StrokeThickness = 2,
-    Color = ColorSequence.new(Color3.fromHex("FF0F7B"), Color3.fromHex("F89B29")),
+    Color = ColorSequence.new(Color3.fromHex("#315dff"), Color3.fromHex("F89B29")),
     OnlyMobile = false,
     Enabled = true,
     Draggable = true,
@@ -87,7 +87,10 @@ Window:Tag({
     Title = "v1.0",
     Color = Color3.fromHex("#30ff6a")
 })
-
+Window:Tag({
+     Title = "戊脚本", 
+    Color = Color3.fromHex("#315dff")
+})
 Window:Tag({
     Title = "by誓约",
     Color = Color3.fromHex("#000000")
@@ -96,7 +99,7 @@ Window:Tag({
 -- 创建 Tab
 local Tab = Window:Tab({
     Title = "通用区",
-    Icon = "bird",
+    Icon = "door-open",
     Locked = false,
 })
 Window:SelectTab(1)
@@ -996,7 +999,7 @@ Tabs.Misc:Code({
 -- 创建 Tab
 local Tab = Window:Tab({
     Title = "功能区",
-    Icon = "bird",
+    Icon = "cloud",
     Locked = false,
 })
 Window:SelectTab(1)
@@ -1008,11 +1011,6 @@ local Section = Tab:Section({
     TextSize = 17,
 })
 
-local Section = Window:Section({
-    Title = "doors",
-    Icon = "bird",
-    Opened = true,
-})
 -- doors xk 按钮
 local XKButton = Tab:Button({
     Title = "doors xk",
@@ -1024,7 +1022,7 @@ local XKButton = Tab:Button({
             Title = "doors xk",
             Content = "加载成功",
             Duration = 3,
-            Icon = "bird",
+            Icon = "hand",
         })
     end
 })
@@ -1040,7 +1038,7 @@ local NZButton = Tab:Button({
             Title = "doors nz",
             Content = "加载成功",
             Duration = 3,
-            Icon = "bird",
+            Icon = "hand",
         })
     end
 })
@@ -1056,7 +1054,7 @@ local ProhaxButton = Tab:Button({
             Title = "doors prohax",
             Content = "加载成功",
             Duration = 3,
-            Icon = "bird",
+            Icon = "hand",
         })
     end
 })
@@ -1073,14 +1071,9 @@ WindUI:Notify({
     Title = "backking脚本",
     Content = "加载成功",
     Duration = 3, -- 3 seconds
-    Icon = "bird",
+    Icon = "hand",
 })
 
-local Section = Window:Section({
-    Title = "inkgame",
-    Icon = "bird",
-    Opened = true,
-})
 -- void ware 按钮
 local VoidwareButton = Tab:Button({
     Title = "inkgame void ware",
@@ -1092,7 +1085,7 @@ local VoidwareButton = Tab:Button({
             Title = "inkgame voidware",
             Content = "加载成功",
             Duration = 3,
-            Icon = "bird",
+            Icon = "hand",
         })
     end
 })
@@ -1108,7 +1101,7 @@ local AzButton = Tab:Button({
             Title = "inkgame az中心",
             Content = "加载成功",
             Duration = 3,
-            Icon = "bird",
+            Icon = "hand",
         })
     end
 })
@@ -1124,7 +1117,7 @@ local XaButton = Tab:Button({
             Title = "墨水xa脚本",
             Content = "加载成功",
             Duration = 3,
-            Icon = "bird",
+            Icon = "hand",
         })
     end
 })
@@ -1140,7 +1133,7 @@ local RingtaButton = Tab:Button({
             Title = "ringta",
             Content = "加载成功",
             Duration = 3,
-            Icon = "bird",
+            Icon = "hand",
         })
     end
 })
@@ -1156,7 +1149,7 @@ local IsisButton = Tab:Button({
             Title = "isis脚本",
             Content = "加载成功",
             Duration = 3,
-            Icon = "bird",
+            Icon = "hand",
         })
     end
 })
@@ -1172,7 +1165,7 @@ local LinuxButton = Tab:Button({
             Title = "Linux脚本",
             Content = "加载成功",
             Duration = 3,
-            Icon = "bird",
+            Icon = "hand",
         })
     end
 })
@@ -1189,7 +1182,7 @@ WindUI:Notify({
     Title = "av hub脚本",
     Content = "加载成功",
     Duration = 3, -- 3 seconds
-    Icon = "bird",
+    Icon = "hand",
 })
 
 local Button = Tab:Button({
@@ -1204,7 +1197,7 @@ WindUI:Notify({
     Title = "戊脚本99nigtes",
     Content = "加载成功",
     Duration = 3, -- 3 seconds
-    Icon = "bird",
+    Icon = "hand",
 })
 
 -- NOL 免费版 按钮
@@ -1219,7 +1212,7 @@ local NolButton = Tab:Button({
             Title = "nol免费版",
             Content = "加载成功",
             Duration = 3,
-            Icon = "bird",
+            Icon = "hand",
         })
     end
 })
@@ -1235,7 +1228,7 @@ local DieButton = Tab:Button({
             Title = "死亡之死脚本",
             Content = "加载成功",
             Duration = 3,
-            Icon = "bird",
+            Icon = "hand",
         })
     end
 })
@@ -1251,7 +1244,7 @@ local V6Button = Tab:Button({
             Title = "黑洞v6脚本",
             Content = "加载成功",
             Duration = 3,
-            Icon = "bird",
+            Icon = "hand",
         })
     end
 })
@@ -1268,7 +1261,7 @@ WindUI:Notify({
     Title = "bald脚本",
     Content = "加载成功",
     Duration = 3, -- 3 seconds
-    Icon = "bird",
+    Icon = "hand",
 })
 
 local Button = Tab:Button({
@@ -1283,7 +1276,7 @@ WindUI:Notify({
     Title = "relz脚本",
     Content = "加载成功",
     Duration = 3, -- 3 seconds
-    Icon = "bird",
+    Icon = "hand",
 })
 
 local Button = Tab:Button({
@@ -1298,7 +1291,7 @@ WindUI:Notify({
     Title = "极速传奇脚本",
     Content = "加载成功",
     Duration = 3, -- 3 seconds
-    Icon = "bird",
+    Icon = "hand",
 })
 
 local Button = Tab:Button({
@@ -1313,7 +1306,7 @@ WindUI:Notify({
     Title = "lunor脚本",
     Content = "加载成功",
     Duration = 3, -- 3 seconds
-    Icon = "bird",
+    Icon = "hand",
 })
 
 local Button = Tab:Button({
@@ -1328,7 +1321,7 @@ WindUI:Notify({
     Title = "solix脚本",
     Content = "加载成功",
     Duration = 3, -- 3 seconds
-    Icon = "bird",
+    Icon = "hand",
 })
 
 -- vape 按钮
@@ -1342,7 +1335,7 @@ local VapeButton = Tab:Button({
             Title = "vape脚本",
             Content = "加载成功",
             Duration = 3,
-            Icon = "bird",
+            Icon = "hand",
         })
     end
 })
@@ -1359,7 +1352,7 @@ WindUI:Notify({
     Title = "redz脚本",
     Content = "加载成功",
     Duration = 3, -- 3 seconds
-    Icon = "bird",
+    Icon = "hand",
 })
 
 local Button = Tab:Button({
@@ -1374,7 +1367,7 @@ WindUI:Notify({
     Title = "blue x脚本",
     Content = "加载成功",
     Duration = 3, -- 3 seconds
-    Icon = "bird",
+    Icon = "hand",
 })
 
 -- 死铁轨nat 按钮
@@ -1388,7 +1381,7 @@ local NatButton = Tab:Button({
             Title = "nat",
             Content = "加载成功",
             Duration = 3,
-            Icon = "bird",
+            Icon = "hand",
         })
     end
 })
@@ -1405,7 +1398,7 @@ WindUI:Notify({
     Title = "ronixhub脚本",
     Content = "加载成功",
     Duration = 3, -- 3 seconds
-    Icon = "bird",
+    Icon = "hand",
 })
 
 local Button = Tab:Button({
@@ -1420,7 +1413,7 @@ WindUI:Notify({
     Title = "speed x脚本",
     Content = "加载成功",
     Duration = 3, -- 3 seconds
-    Icon = "bird",
+    Icon = "hand",
 })
 
 local Button = Tab:Button({
@@ -1436,7 +1429,7 @@ WindUI:Notify({
     Title = "种植花园atv脚本",
     Content = "加载成功",
     Duration = 3, -- 3 seconds
-    Icon = "bird",
+    Icon = "hand",
 })
 
 local Button = Tab:Button({
@@ -1451,7 +1444,7 @@ WindUI:Notify({
     Title = "辣椒中心脚本",
     Content = "加载成功",
     Duration = 3, -- 3 seconds
-    Icon = "bird",
+    Icon = "hand",
 })
 
 local Button = Tab:Button({
@@ -1466,7 +1459,7 @@ WindUI:Notify({
     Title = "dencycode脚本",
     Content = "加载成功",
     Duration = 3, -- 3 seconds
-    Icon = "bird",
+    Icon = "hand",
 })
 
 -- rb中心 按钮
@@ -1480,7 +1473,7 @@ local RBButton = Tab:Button({
             Title = "rb中心",
             Content = "加载成功",
             Duration = 3,
-            Icon = "bird",
+            Icon = "hand",
         })
     end
 })
@@ -1497,7 +1490,7 @@ local PiButton = Tab:Button({
             Title = "皮脚本",
             Content = "加载成功",
             Duration = 3,
-            Icon = "bird",
+            Icon = "hand",
         })
     end
 })
@@ -1513,14 +1506,14 @@ local TxButton = Tab:Button({
             Title = "tx v4",
             Content = "加载成功",
             Duration = 3,
-            Icon = "bird",
+            Icon = "hand",
         })
     end
 })
 -- 创建 Tab
 local Tab = Window:Tab({
     Title = "设置区",
-    Icon = "bird",
+    Icon = "zap",
     Locked = false,
 })
 Window:SelectTab(1)
@@ -1640,7 +1633,7 @@ ConfigManager:AllConfigs() -- 返回所有配置表
 
 -- 弹窗、对话框示例
 local Dialog = Window:Dialog({
-    Icon = "bird",
+    Icon = "cloud",
     Title = "戊",
     Content = "点完404/没加载就是用不了",
     Buttons = {
@@ -1662,9 +1655,9 @@ Dialog:Show()
 Dialog:Close()
 
 WindUI:Popup({
-    Title = "Popup Title",
+    Title = "提示",
     Icon = "info",
-    Content = "Popup content",
+    Content = "点继续",
     Buttons = {
         {
             Title = "取消",
