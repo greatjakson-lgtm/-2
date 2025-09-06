@@ -946,26 +946,15 @@ Tabs.Misc:Button({
         })
     end
 })
-
--- 创建一个标签（Label/Tag）
-local TimeTag = Tabs.Misc:Label({
-    Title = "当前时间: 初始化中...",
-    Color = Color3.fromHex("#ffffff")
-})
-
 -- 添加一个定时器来更新标签
 spawn(function()
     while true do
         wait(5)
         local currentTime = os.date("%H:%M:%S")
-        if TimeTag then
-            TimeTag:Set({
-                Title = "当前时间: " .. currentTime,
-                Color = Color3.fromHex("#ff6a30")
-            })
-        else
-            warn("TimeTag 未初始化")
-        end
+        TimeTag:Set({
+            Title = "当前时间: " .. currentTime,
+            Color = Color3.fromHex("#ff6a30")
+        })
     end
 end)
 
