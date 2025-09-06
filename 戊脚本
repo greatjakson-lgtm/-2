@@ -1,35 +1,1690 @@
--- Luna V3 Encrypted Script (GitHub Compatible)
--- Original by: 誓约 (QQ: 3848974452)
--- QQ Group: 1053715085
+local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua"))()
 
-local a,b,c=nil,nil,nil([[Boronide Obfuscation]]):gsub('(.*)',function(d)local e="qY1xQl"local f="l5zV3d5"local g=5529;local h=2667;while(g>(h-11))do h=(g+4094)*2;while(g<h)do h=g-38492;while(g>(h-12))do h=(g+1613)*2;e=d end;if(11058-g)<(h+5555)then g=((h+5529)*2)f=d end end;if g>(h-102276)then h=(g+11058)a=getfenv or function()return _ENV end end end;local a=a()local d=a["string"]["\99\104\97\114"](99,104,97,114)local g=a[string[d](115,116,114,105,110,103)]local h="K3yf6z9"local j="tQ7j2e"local k="Q2Xx0Y8"local l=1319;local m=4269;while(l<m)do m=l-8538;while(l>(m-12))do m=(l+1926)*2;while(l<m)do m=l-12980;j=a[g[d](115,116,114,105,110,103)][d]end;if l>(m-2638)then m=(l+2638)k=a[g[d](115,116,114,105,110,103)][g[d](98,121,116,101)]end end;if(2638-l)<(m+1349)then l=((m+1319)*2)h=a[g[d](115,116,114,105,110,103)][g[d](103,109,97,116,99,104)]end end;c={[e]=20,['\95'..j(66,111,114,111,110,105,100,101,32,79,98,102,117,115,99,97,116,105,111,110)]=f}c[g[d](95,120,111,122,79,88,105,48,79,79,53,88,55,122,53,48,55)]=k;c[g[d](95,120,105,52,49,52,49,76,54,49,55,54,89,53,89,49,53)]=h;c[g[d](95,120,122,105,95,122,89,76,122,79,79,105,76,76,76,122,122)]=j;local a=5756;local g=6699;while(a<g)do g=a-13398;while(a>(g-12))do g=(a+1049)*2;while(a<g)do g=a-27220;b=c end;if a>(g-11512)then g=(a+11512)if(c[e]~=nil and(#f~=c[e]))then return 0 end end end;if(11512-a)<(g+5783)then a=((g+5756)*2)if(j(66,111,114,111,110,105,100,101,32,79,98,102,117,115,99,97,116,105,111,110)~=e)then return false end end end;if a>(g-92096)then g=(a+11512)if(f~=c['\95'..e])then return(c._j8XQn7x)end end;b=e;c[e]=nil end)local d=c["_xzi_zYLzOOiLLLzz"]local e=c["_xozOXi0OO5X7z507"]local f=c["_xi4141L6176Y5Y15"]local g=a()[d(115,116,114,105,110,103)]local h=g[d(102,111,114,109,97,116)]local j=g[d(115,117,98)]local j=a()[d(109,97,116,104)][d(102,108,111,111,114)]local k=a()[d(112,97,105,114,115)]local l=a()[d(114,97,119,103,101,116)]local m=a()[d(116,97,98,108,101)][d(99,111,110,99,97,116)]local n=a()[d(109,97,116,104)][d(109,97,120)]local o={}local p=1;local q={}local r={}for a=0,255 do local a,b=d(a),d(a,0)q[a]=b;r[b]=a end;c["_xozOXi0OO5X7z507"]=nil;c["_xi4141L6176Y5Y15"]=nil;c["_xzi_zYLzOOiLLLzz"]=nil;local s=a()[d(115,116,114,105,110,103)][d(115,117,98)]local t=function(a,b)if(b>=256)then return a end;return q[a]or a end;local u=function(a,b)local c,d=1,0;while a>0 and b>0 do local e,f=a%2,b%2;if e~=f then d=d+c end;a,b,c=(a-e)/2,(b-f)/2,c*2 end;if a<b then a=b end;while a>0 do local b=a%2;if b>0 then d=d+c end;a,c=(a-b)/2,c*2 end;return d end;local v=function(a,b)local c=1;do while a[b+c]do c=c+1 end end;return c-1 end;local w=function(a,b)local c,d=#a,#b;local e={}for f=1,n(c,d)do e[f]=t(a[f]or 0,b[f]or 0)end;return e end;local x=function(a,b)return j(a/2^b)end;local y=function(a,b)return(a*2^b)%256 end;local z={}for a=1,#o do z[a]=d(o[a])end;return(function(...)local A,B,C;local D,E=l,(function(a,b)local c=""local d=1;for f=1,#a do local a=u(a[f],e(b,d))c=c..r[a]or a;d=d+1;if d>#b then d=1 end end;return c end)b=d(109,118,108,67,50,56,80,105)local f=2047;local l=575;while(l<f)do f=l-4094;while(l>(f-11))do f=(l+4833)*2;D=function(a,b)local c=""local d=1;for f=1,#a do local a=u(e(a,f),e(b,d))c=c..r[a]or a;d=d+1;if d>#b then d=1 end end;return c end end;if(1150-l)<(f+586)then l=((f+575)*2)E=function(a,b)local c=""local d=1;for f=1,#a do local a=u(a[f],e(b,d))c=c..r[a]or a;d=d+1;if d>#b then d=1 end end;return c end end end;u=function(a,b)local c,d=0,1;while a>0 and b>0 do local e,f=a%2,b%2;if e~=f then d=d+c end;a,b,c=(a-e)/2,(b-f)/2,c*2 end;if a<b then a=b end;while a>0 do local b=a%2;if b>0 then d=d+c end;a,c=(a-b)/2,c*2 end;return d end;local f=1;local function l()local a,b,c,d=e(o,f,f+3)a=u(a,114)b=u(b,114)c=u(c,114)d=u(d,114)f=f+4;return d*16777216+c*65536+b*256+a end;local function j()local a,b=e(o,f,f+2)a=u(a,114)b=u(b,114)f=f+2;return b*256+a end;local function q()local a=u(e(o,f,f),114)f=f+1;return a end;local function s()local a,b,c=e(o,f,f+2)a=u(a,114)b=u(b,114)c=u(c,114)f=f+3;return c*65536+b*256+a end;local function v()local a=l()local b=l()local c=1;local d=(x(b,1,20)*2^32)+a;local a=x(b,21,31)local b=((-1)^x(b,32))if(a==0)then if(d==0)then return b*0 else a=1;c=0 end elseif(a==2047)then return(d==0)and(b*(1/0))or(b*(0/0))end;return n(b,a-1023)*(c+(d/(2^52)))end;local n=function(a,b,c)local a=a[1]local b=b[1]return function(...)local d=1;local e=-1;local g={}local h={...}local i=#h-1;local j={}local k={}for a=0,i do if(a>=c)then g[a-c]=h[a+1]else k[a]=h[a+1]end end;local l,m;local n=(function()local a,b,c,d=e(o,f,f+3)a=u(a,114)b=u(b,114)c=u(c,114)d=u(d,114)f=f+4;return d*16777216+c*65536+b*256+a end)local o=(function()return l()end)local function p()local a=l()local b=l()local c=1;local d=(x(b,1,20)*2^32)+a;local a=x(b,21,31)local b=((-1)^x(b,32))if(a==0)then if(d==0)then return b*0 else a=1;c=0 end elseif(a==2047)then return(d==0)and(b*(1/0))or(b*(0/0))end;return n(b,a-1023)*(c+(d/(2^52)))end;local q=function()local a=l()local b=l()local c=1;local d=(x(b,1,20)*2^32)+a;local a=x(b,21,31)local b=((-1)^x(b,32))if(a==0)then if(d==0)then return b*0 else a=1;c=0 end elseif(a==2047)then return(d==0)and(b*(1/0))or(b*(0/0))end;return n(b,a-1023)*(c+(d/(2^52)))end;local function r()local a=u(e(o,f,f),114)f=f+1;return a end;local function s()local a,b,c,d=e(o,f,f+3)a=u(a,114)b=u(b,114)c=u(c,114)d=u(d,114)f=f+4;return d*16777216+c*65536+b*256+a end;local function t()local a=s()local b=s()local c=1;local d=(x(b,1,20)*2^32)+a;local a=x(b,21,31)local b=((-1)^x(b,32))if(a==0)then if(d==0)then return b*0 else a=1;c=0 end elseif(a==2047)then return(d==0)and(b*(1/0))or(b*(0/0))end;return n(b,a-1023)*(c+(d/(2^52)))end;local function v()local a=s()local b=s()local c=1;local d=(x(b,1,20)*2^32)+a;local a=x(b,21,31)local b=((-1)^x(b,32))if(a==0)then if(d==0)then return b*0 else a=1;c=0 end elseif(a==2047)then return(d==0)and(b*(1/0))or(b*(0/0))end;return n(b,a-1023)*(c+(d/(2^52)))end;local function w()local a=u(e(o,f,f),114)f=f+1;return a end;local function x()local a,b=e(o,f,f+2)a=u(a,114)b=u(b,114)f=f+2;return b*256+a end;local function y()local a,b,c=e(o,f,f+2)a=u(a,114)b=u(b,114)c=u(c,114)f=f+3;return c*65536+b*256+a end;local z={}for a=1,l()do local b=r()k[a]=b end;for a=1,l()do local b=r()if x(b,1,1)==0 then local c=x(b,2,3)local d=x(b,4,6)local e={j(),j(),nil,nil}if c==0 then e[3]=j()e[4]=j()elseif c==1 then e[3]=y()elseif c==2 then e[3]=y()-65536 elseif c==3 then e[3]=y()-65536;e[4]=j()end;if x(d,1,1)==1 then e[2]=k[e[2]]end;if x(d,2,2)==1 then e[3]=k[e[3]]end;if x(d,3,3)==1 then e[4]=k[e[4]]end;z[a]=e end end;for a=1,l()do j[a-1]=y()end;for a=1,l()do m[a]=y()end;local a=l()local b={}for c=1,a do local a=r()local d;if a==1 then d=r()~=0 elseif a==2 then d=t()elseif a==3 then d=h(j(r()),'.'):gsub('(.)',function(a)return d(tonumber(a,16))end)end;b[c]=d end;return{['\95'..D('\18\8\9\5')]=z,['\95'..D('\18\8\9\5')]=b,['\95'..D('\18\8\9\5')]=j,['\95'..D('\18\8\9\5')]=m,['\95'..D('\18\8\9\5')]=k}end;local function n(a,b,c)local d=a['\95'..b]if not d then return false end;local e=a['\95'..b]local f=a['\95'..b]local g=a['\95'..b]local h=a['\95'..b]local i=a['\95'..b]local j=a['\95'..b]local k=a['\95'..b]local l=a['\95'..b]local m=a['\95'..b]local n=a['\95'..b]local o=a['\95'..b]local p=a['\95'..b]local q=a['\95'..b]local r=a['\95'..b]local s=a['\95'..b]local t=a['\95'..b]local u=a['\95'..b]local v=a['\95'..b]local w=a['\95'..b]local x=a['\95'..b]local y=a['\95'..b]local z=a['\95'..b]local A=a['\95'..b]local B=a['\95'..b]local C=a['\95'..b]local D=a['\95'..b]local E=a['\95'..b]local F=a['\95'..b]local G=a['\95'..b]local H=a['\95'..b]local I=a['\95'..b]local J=a['\95'..b]local K=a['\95'..b]local L=a['\95'..b]local M=a['\95'..b]local N=a['\95'..b]local O=a['\95'..b]local P=a['\95'..b]local Q=a['\95'..b]local R=a['\95'..b]local S=a['\95'..b]local T=a['\95'..b]local U=a['\95'..b]local V=a['\95'..b]local W=a['\95'..b]local X=a['\95'..b]local Y=a['\95'..b]local Z=a['\95'..b]local _=a['\95'..b]local a0=a['\95'..b]local a1=a['\95'..b]local a2=a['\95'..b]local a3=a['\95'..b]local a4=a['\95'..b]local a5=a['\95'..b]local a6=a['\95'..b]local a7=a['\95'..b]local a8=a['\95'..b]local a9=a['\95'..b]local aa=a['\95'..b]local ab=a['\95'..b]local ac=a['\95'..b]local ad=a['\95'..b]local ae=a['\95'..b]local af=a['\95'..b]local ag=a['\95'..b]local ah=a['\95'..b]local ai=a['\95'..b]local aj=a['\95'..b]local ak=a['\95'..b]local al=a['\95'..b]local am=a['\95'..b]local an=a['\95'..b]local ao=a['\95'..b]local ap=a['\95'..b]local aq=a['\95'..b]local ar=a['\95'..b]local as=a['\95'..b]local at=a['\95'..b]local au=a['\95'..b]local av=a['\95'..b]local aw=a['\95'..b]local ax=a['\95'..b]local ay=a['\95'..b]local az=a['\95'..b]local aA=a['\95'..b]local aB=a['\95'..b]local aC=a['\95'..b]local aD=a['\95'..b]local aE=a['\95'..b]local aF=a['\95'..b]local aG=a['\95'..b]local aH=a['\95'..b]local aI=a['\95'..b]local aJ=a['\95'..b]local aK=a['\95'..b]local aL=a['\95'..b]local aM=a['\95'..b]local aN=a['\95'..b]local aO=a['\95'..b]local aP=a['\95'..b]local aQ=a['\95'..b]local aR=a['\95'..b]local aS=a['\95'..b]local aT=a['\95'..b]local aU=a['\95'..b]local aV=a['\95'..b]local aW=a['\95'..b]local aX=a['\95'..b]local aY=a['\95'..b]local aZ=a['\95'..b]local b0=a['\95'..b]local b1=a['\95'..b]local b2=a['\95'..b]local b3=a['\95'..b]local b4=a['\95'..b]local b5=a['\95'..b]local b6=a['\95'..b]local b7=a['\95'..b]local b8=a['\95'..b]local b9=a['\95'..b]local ba=a['\95'..b]local bb=a['\95'..b]local bc=a['\95'..b]local bd=a['\95'..b]local be=a['\95'..b]local bf=a['\95'..b]local bg=a['\95'..b]local bh=a['\95'..b]local bi=a['\95'..b]local bj=a['\95'..b]local bk=a['\95'..b]local bl=a['\95'..b]local bm=a['\95'..b]local bn=a['\95'..b]local bo=a['\95'..b]local bp=a['\95'..b]local bq=a['\95'..b]local br=a['\95'..b]local bs=a['\95'..b]local bt=a['\95'..b]local bu=a['\95'..b]local bv=a['\95'..b]local bw=a['\95'..b]local bx=a['\95'..b]local by=a['\95'..b]local bz=a['\95'..b]local bA=a['\95'..b]local bB=a['\95'..b]local bC=a['\95'..b]local bD=a['\95'..b]local bE=a['\95'..b]local bF=a['\95'..b]local bG=a['\95'..b]local bH=a['\95'..b]local bI=a['\95'..b]local bJ=a['\95'..b]local bK=a['\95'..b]local bL=a['\95'..b]local bM=a['\95'..b]local bN=a['\95'..b]local bO=a['\95'..b]local bP=a['\95'..b]local bQ=a['\95'..b]local bR=a['\95'..b]local bS=a['\95'..b]local bT=a['\95'..b]local bU=a['\95'..b]local bV=a['\95'..b]local bW=a['\95'..b]local bX=a['\95'..b]local bY=a['\95'..b]local bZ=a['\95'..b]local c0=a['\95'..b]local c1=a['\95'..b]local c2=a['\95'..b]local c3=a['\95'..b]local c4=a['\95'..b]local c5=a['\95'..b]local c6=a['\95'..b]local c7=a['\95'..b]local c8=a['\95'..b]local c9=a['\95'..b]local ca=a['\95'..b]local cb=a['\95'..b]local cc=a['\95'..b]local cd=a['\95'..b]local ce=a['\95'..b]local cf=a['\95'..b]local cg=a['\95'..b]local ch=a['\95'..b]local ci=a['\95'..b]local cj=a['\95'..b]local ck=a['\95'..b]local cl=a['\95'..b]local cm=a['\95'..b]local cn=a['\95'..b]local co=a['\95'..b]local cp=a['\95'..b]local cq=a['\95'..b]local cr=a['\95'..b]local cs=a['\95'..b]local ct=a['\95'..b]local cu=a['\95'..b]local cv=a['\95'..b]local cw=a['\95'..b]local cx=a['\95'..b]local cy=a['\95'..b]local cz=a['\95'..b]local cA=a['\95'..b]local cB=a['\95'..b]local cC=a['\95'..b]local cD=a['\95'..b]local cE=a['\95'..b]local cF=a['\95'..b]local cG=a['\95'..b]local cH=a['\95'..b]local cI=a['\95'..b]local cJ=a['\95'..b]local cK=a['\95'..b]local cL=a['\95'..b]local cM=a['\95'..b]local cN=a['\95'..b]local cO=a['\95'..b]local cP=a['\95'..b]local cQ=a['\95'..b]local cR=a['\95'..b]local cS=a['\95'..b]local cT=a['\95'..b]local cU=a['\95'..b]local cV=a['\95'..b]local cW=a['\95'..b]local cX=a['\95'..b]local cY=a['\95'..b]local cZ=a['\95'..b]local d0=a['\95'..b]local d1=a['\95'..b]local d2=a['\95'..b]local d3=a['\95'..b]local d4=a['\95'..b]local d5=a['\95'..b]local d6=a['\95'..b]local d7=a['\95'..b]local d8=a['\95'..b]local d9=a['\95'..b]local da=a['\95'..b]local db=a['\95'..b]local dc=a['\95'..b]local dd=a['\95'..b]local de=a['\95'..b]local df=a['\95'..b]local dg=a['\95'..b]local dh=a['\95'..b]local di=a['\95'..b]local dj=a['\95'..b]local dk=a['\95'..b]local dl=a['\95'..b]local dm=a['\95'..b]local dn=a['\95'..b]local do=a['\95'..b]local dp=a['\95'..b]local dq=a['\95'..b]local dr=a['\95'..b]local ds=a['\95'..b]local dt=a['\95'..b]local du=a['\95'..b]local dv=a['\95'..b]local dw=a['\95'..b]local dx=a['\95'..b]local dy=a['\95'..b]local dz=a['\95'..b]local dA=a['\95'..b]local dB=a['\95'..b]local dC=a['\95'..b]local dD=a['\95'..b]local dE=a['\95'..b]local dF=a['\95'..b]local dG=a['\95'..b]local dH=a['\95'..b]local dI=a['\95'..b]local dJ=a['\95'..b]local dK=a['\95'..b]local dL=a['\95'..b]local dM=a['\95'..b]local dN=a['\95'..b]local dO=a['\95'..b]local dP=a['\95'..b]local dQ=a['\95'..b]local dR=a['\95'..b]local dS=a['\95'..b]local dT=a['\95'..b]local dU=a['\95'..b]local dV=a['\95'..b]local dW=a['\95'..b]local dX=a['\95'..b]local dY=a['\95'..b]local dZ=a['\95'..b]local e0=a['\95'..b]local e1=a['\95'..b]local e2=a['\95'..b]local e3=a['\95'..b]local e4=a['\95'..b]local e5=a['\95'..b]local e6=a['\95'..b]local e7=a['\95'..b]local e8=a['\95'..b]local e9=a['\95'..b]local ea=a['\95'..b]local eb=a['\95'..b]local ec=a['\95'..b]local ed=a['\95'..b]local ee=a['\95'..b]local ef=a['\95'..b]local eg=a['\95'..b]local eh=a['\95'..b]local ei=a['\95'..b]local ej=a['\95'..b]local ek=a['\95'..b]local el=a['\95'..b]local em=a['\95'..b]local en=a['\95'..b]local eo=a['\95'..b]local ep=a['\95'..b]local eq=a['\95'..b]local er=a['\95'..b]local es=a['\95'..b]local et=a['\95'..b]local eu=a['\95'..b]local ev=a['\95'..b]local ew=a['\95'..b]local ex=a['\95'..b]local ey=a['\95'..b]local ez=a['\95'..b]local eA=a['\95'..b]local eB=a['\95'..b]local eC=a['\95'..b]local eD=a['\95'..b]local eE=a['\95'..b]local eF=a['\95'..b]local eG=a['\95'..b]local eH=a['\95'..b]local eI=a['\95'..b]local eJ=a['\95'..b]local eK=a['\95'..b]local eL=a['\95'..b]local eM=a['\95'..b]local eN=a['\95'..b]local eO=a['\95'..b]local eP=a['\95'..b]local eQ=a['\95'..b]local eR=a['\95'..b]local eS=a['\95'..b]local eT=a['\95'..b]local eU=a['\95'..b]local eV=a['\95'..b]local eW=a['\95'..b]local eX=a['\95'..b]local eY=a['\95'..b]local eZ=a['\95'..b]local f0=a['\95'..b]local f1=a['\95'..b]local f2=a['\95'..b]local f3=a['\95'..b]local f4=a['\95'..b]local f5=a['\95'..b]local f6=a['\95'..b]local f7=a['\95'..b]local f8=a['\95'..b]local f9=a['\95'..b]local fa=a['\95'..b]local fb=a['\95'..b]local fc=a['\95'..b]local fd=a['\95'..b]local fe=a['\95'..b]local ff=a['\95'..b]local fg=a['\95'..b]local fh=a['\95'..b]local fi=a['\95'..b]local fj=a['\95'..b]local fk=a['\95'..b]local fl=a['\95'..b]local fm=a['\95'..b]local fn=a['\95'..b]local fo=a['\95'..b]local fp=a['\95'..b]local fq=a['\95'..b]local fr=a['\95'..b]local fs=a['\95'..b]local ft=a['\95'..b]local fu=a['\95'..b]local fv=a['\95'..b]local fw=a['\95'..b]local fx=a['\95'..b]local fy=a['\95'..b]local fz=a['\95'..b]local fA=a['\95'..b]local fB=a['\95'..b]local fC=a['\95'..b]local fD=a['\95'..b]local fE=a['\95'..b]local fF=a['\95'..b]local fG=a['\95'..b]local fH=a['\95'..b]local fI=a['\95'..b]local fJ=a['\95'..b]local fK=a['\95'..b]local fL=a['\95'..b]local fM=a['\95'..b]local fN=a['\95'..b]local fO=a['\95'..b]local fP=a['\95'..b]local fQ=a['\95'..b]local fR=a['\95'..b]local fS=a['\95'..b]local fT=a['\95'..b]local fU=a['\95'..b]local fV=a['\95'..b]local fW=a['\95'..b]local fX=a['\95'..b]local fY=a['\95'..b]local fZ=a['\95'..b]local g0=a['\95'..b]local g1=a['\95'..b]local g2=a['\95'..b]local g3=a['\95'..b]local g4=a['\95'..b]local g5=a['\95'..b]local g6=a['\95'..b]local g7=a['\95'..b]local g8=a['\95'..b]local g9=a['\95'..b]local ga=a['\95'..b]local gb=a['\95'..b]local gc=a['\95'..b]local gd=a['\95'..b]local ge=a['\95'..b]local gf=a['\95'..b]local gg=a['\95'..b]local gh=a['\95'..b]local gi=a['\95'..b]local gj=a['\95'..b]local gk=a['\95'..b]local gl=a['\95'..b]local gm=a['\95'..b]local gn=a['\95'..b]local go=a['\95'..b]local gp=a['\95'..b]local gq=a['\95'..b]local gr=a['\95'..b]local gs=a['\95'..b]local gt=a['\95'..b]local gu=a['\95'..b]local gv=a['\95'..b]local gw=a['\95'..b]local gx=a['\95'..b]local gy=a['\95'..b]local gz=a['\95'..b]local gA=a['\95'..b]local gB=a['\95'..b]local gC=a['\95'..b]local gD=a['\95'..b]local gE=a['\95'..b]local gF=a['\95'..b]local gG=a['\95'..b]local gH=a['\95'..b]local gI=a['\95'..b]local gJ=a['\95'..b]local gK=a['\95'..b]local gL=a['\95'..b]local gM=a['\95'..b]local gN=a['\95'..b]local gO=a['\95'..b]local gP=a['\95'..b]local gQ=a['\95'..b]local gR=a['\95'..b]local gS=a['\95'..b]local gT=a['\95'..b]local gU=a['\95'..b]local gV=a['\95'..b]local gW=a['\95'..b]local gX=a['\95'..b]local gY=a['\95'..b]local gZ=a['\95'..b]local h0=a['\95'..b]local h1=a['\95'..b]local h2=a['\95'..b]local h3=a['\95'..b]local h4=a['\95'..b]local h5=a['\95'..b]local h6=a['\95'..b]local h7=a['\95'..b]local h8=a['\95'..b]local h9=a['\95'..b]local ha=a['\95'..b]local hb=a['\95'..b]local hc=a['\95'..b]local hd=a['\95'..b]local he=a['\95'..b]local hf=a['\95'..b]local hg=a['\95'..b]local hh=a['\95'..b]local hi=a['\95'..b]local hj=a['\95'..b]local hk=a['\95'..b]local hl=a['\95'..b]local hm=a['\95'..b]local hn=a['\95'..b]local ho=a['\95'..b]local hp=a['\95'..b]local hq=a['\95'..b]local hr=a['\95'..b]local hs=a['\95'..b]local ht=a['\95'..b]local hu=a['\95'..b]local hv=a['\95'..b]local hw=a['\95'..b]local hx=a['\95'..b]local hy=a['\95'..b]local hz=a['\95'..b]local hA=a['\95'..b]local hB=a['\95'..b]local hC=a['\95'..b]local hD=a['\95'..b]local hE=a['\95'..b]local hF=a['\95'..b]local hG=a['\95'..b]local hH=a['\95'..b]local hI=a['\95'..b]local hJ=a['\95'..b]local hK=a['\95'..b]local hL=a['\95'..b]local hM=a['\95'..b]local hN=a['\95'..b]local hO=a['\95'..b]local hP=a['\95'..b]local hQ=a['\95'..b]local hR=a['\95'..b]local hS=a['\95'..b]local hT=a['\95'..b]local hU=a['\95'..b]local hV=a['\95'..b]local hW=a['\95'..b]local hX=a['\95'..b]local hY=a['\95'..b]local hZ=a['\95'..b]local i0=a['\95'..b]local i1=a['\95'..b]local i2=a['\95'..b]local i3=a['\95'..b]local i4=a['\95'..b]local i5=a['\95'..b]local i6=a['\95'..b]local i7=a['\95'..b]local i8=a['\95'..b]local i9=a['\95'..b]local ia=a['\95'..b]local ib=a['\95'..b]local ic=a['\95'..b]local id=a['\95'..b]local ie=a['\95'..b]local if=a['\95'..b]local ig=a['\95'..b]local ih=a['\95'..b]local ii=a['\95'..b]local ij=a['\95'..b]local ik=a['\95'..b]local il=a['\95'..b]local im=a['\95'..b]local in=a['\95'..b]local io=a['\95'..b]local ip=a['\95'..b]local iq=a['\95'..b]local ir=a['\95'..b]local is=a['\95'..b]local it=a['\95'..b]local iu=a['\95'..b]local iv=a['\95'..b]local iw=a['\95'..b]local ix=a['\95'..b]local iy=a['\95'..b]local iz=a['\95'..b]local iA=a['\95'..b]local iB=a['\95'..b]local iC=a['\95'..b]local iD=a['\95'..b]local iE=a['\95'..b]local iF=a['\95'..b]local iG=a['\95'..b]local iH=a['\95'..b]local iI=a['\95'..b]local iJ=a['\95'..b]local iK=a['\95'..b]local iL=a['\95'..b]local iM=a['\95'..b]local iN=a['\95'..b]local iO=a['\95'..b]local iP=a['\95'..b]local iQ=a['\95'..b]local iR=a['\95'..b]local iS=a['\95'..b]local iT=a['\95'..b]local iU=a['\95'..b]local iV=a['\95'..b]local iW=a['\95'..b]local iX=a['\95'..b]local iY=a['\95'..b]local iZ=a['\95'..b]local j0=a['\95'..b]local j1=a['\95'..b]local j2=a['\95'..b]local j3=a['\95'..b]local j4=a['\95'..b]local j5=a['\95'..b]local j6=a['\95'..b]local j7=a['\95'..b]local j8=a['\95'..b]local j9=a['\95'..b]local ja=a['\95'..b]local jb=a['\95'..b]local jc=a['\95'..b]local jd=a['\95'..b]local je=a['\95'..b]local jf=a['\95'..b]local jg=a['\95'..b]local jh=a['\95'..b]local ji=a['\95'..b]local jj=a['\95'..b]local jk=a['\95'..b]local jl=a['\95'..b]local jm=a['\95'..b]local jn=a['\95'..b]local jo=a['\95'..b]local jp=a['\95'..b]local jq=a['\95'..b]local jr=a['\95'..b]local js=a['\95'..b]local jt=a['\95'..b]local ju=a['\95'..b]local jv=a['\95'..b]local jw=a['\95'..b]local jx=a['\95'..b]local jy=a['\95'..b]local jz=a['\95'..b]local jA=a['\95'..b]local jB=a['\95'..b]local jC=a['\95'..b]local jD=a['\95'..b]local jE=a['\95'..b]local jF=a['\95'..b]local jG=a['\95'..b]local jH=a['\95'..b]local jI=a['\95'..b]local jJ=a['\95'..b]local jK=a['\95'..b]local jL=a['\95'..b]local jM=a['\95'..b]local jN=a['\95'..b]local jO=a['\95'..b]local jP=a['\95'..b]local jQ=a['\95'..b]local jR=a['\95'..b]local jS=a['\95'..b]local jT=a['\95'..b]local jU=a['\95'..b]local jV=a['\95'..b]local jW=a['\95'..b]local jX=a['\95'..b]local jY=a['\95'..b]local jZ=a['\95'..b]local k0=a['\95'..b]local k1=a['\95'..b]local k2=a['\95'..b]local k3=a['\95'..b]local k4=a['\95'..b]local k5=a['\95'..b]local k6=a['\95'..b]local k7=a['\95'..b]local k8=a['\95'..b]local k9=a['\95'..b]local ka=a['\95'..b]local kb=a['\95'..b]local kc=a['\95'..b]local kd=a['\95'..b]local ke=a['\95'..b]local kf=a['\95'..b]local kg=a['\95'..b]local kh=a['\95'..b]local ki=a['\95'..b]local kj=a['\95'..b]local kk=a['\95'..b]local kl=a['\95'..b]local km=a['\95'..b]local kn=a['\95'..b]local ko=a['\95'..b]local kp=a['\95'..b]local kq=a['\95'..b]local kr=a['\95'..b]local ks=a['\95'..b]local kt=a['\95'..b]local ku=a['\95'..b]local kv=a['\95'..b]local kw=a['\95'..b]local kx=a['\95'..b]local ky=a['\95'..b]local kz=a['\95'..b]local kA=a['\95'..b]local kB=a['\95'..b]local kC=a['\95'..b]local kD=a['\95'..b]local kE=a['\95'..b]local kF=a['\95'..b]local kG=a['\95'..b]local kH=a['\95'..b]local kI=a['\95'..b]local kJ=a['\95'..b]local kK=a['\95'..b]local kL=a['\95'..b]local kM=a['\95'..b]local kN=a['\95'..b]local kO=a['\95'..b]local kP=a['\95'..b]local kQ=a['\95'..b]local kR=a['\95'..b]local kS=a['\95'..b]local kT=a['\95'..b]local kU=a['\95'..b]local kV=a['\95'..b]local kW=a['\95'..b]local kX=a['\95'..b]local kY=a['\95'..b]local kZ=a['\95'..b]local l0=a['\95'..b]local l1=a['\95'..b]local l2=a['\95'..b]local l3=a['\95'..b]local l4=a['\95'..b]local l5=a['\95'..b]local l6=a['\95'..b]local l7=a['\95'..b]local l8=a['\95'..b]local l9=a['\95'..b]local la=a['\95'..b]local lb=a['\95'..b]local lc=a['\95'..b]local ld=a['\95'..b]local le=a['\95'..b]local lf=a['\95'..b]local lg=a['\95'..b]local lh=a['\95'..b]local li=a['\95'..b]local lj=a['\95'..b]local lk=a['\95'..b]local ll=a['\95'..b]local lm=a['\95'..b]local ln=a['\95'..b]local lo=a['\95'..b]local lp=a['\95'..b]local lq=a['\95'..b]local lr=a['\95'..b]local ls=a['\95'..b]local lt=a['\95'..b]local lu=a['\95'..b]local lv=a['\95'..b]local lw=a['\95'..b]local lx=a['\95'..b]local ly=a['\95'..b]local lz=a['\95'..b]local lA=a['\95'..b]local lB=a['\95'..b]local lC=a['\95'..b]local lD=a['\95'..b]local lE=a['\95'..b]local lF=a['\95'..b]local lG=a['\95'..b]local lH=a['\95'..b]local lI=a['\95'..b]local lJ=a['\95'..b]local lK=a['\95'..b]local lL=a['\95'..b]local lM=a['\95'..b]local lN=a['\95'..b]local lO=a['\95'..b]local lP=a['\95'..b]local lQ=a['\95'..b]local lR=a['\95'..b]local lS=a['\95'..b]local lT=a['\95'..b]local lU=a['\95'..b]local lV=a['\95'..b]local lW=a['\95'..b]local lX=a['\95'..b]local lY=a['\95'..b]local lZ=a['\95'..b]local m0=a['\95'..b]local m1=a['\95'..b]local m2=a['\95'..b]local m3=a['\95'..b]local m4=a['\95'..b]local m5=a['\95'..b]local m6=a['\95'..b]local m7=a['\95'..b]local m8=a['\95'..b]local m9=a['\95'..b]local ma=a['\95'..b]local mb=a['\95'..b]local mc=a['\95'..b]local md=a['\95'..b]local me=a['\95'..b]local mf=a['\95'..b]local mg=a['\95'..b]local mh=a['\95'..b]local mi=a['\95'..b]local mj=a['\95'..b]local mk=a['\95'..b]local ml=a['\95'..b]local mm=a['\95'..b]local mn=a['\95'..b]local mo=a['\95'..b]local mp=a['\95'..b]local mq=a['\95'..b]local mr=a['\95'..b]local ms=a['\95'..b]local mt=a['\95'..b]local mu=a['\95'..b]local mv=a['\95'..b]local mw=a['\95'..b]local mx=a['\95'..b]local my=a['\95'..b]local mz=a['\95'..b]local mA=a['\95'..b]local mB=a['\95'..b]local mC=a['\95'..b]local mD=a['\95'..b]local mE=a['\95'..b]local mF=a['\95'..b]local mG=a['\95'..b]local mH=a['\95'..b]local mI=a['\95'..b]local mJ=a['\95'..b]local mK=a['\95'..b]local mL=a['\95'..b]local mM=a['\95'..b]local mN=a['\95'..b]local mO=a['\95'..b]local mP=a['\95'..b]local mQ=a['\95'..b]local mR=a['\95'..b]local mS=a['\95'..b]local mT=a['\95'..b]local mU=a['\95'..b]local mV=a['\95'..b]local mW=a['\95'..b]local mX=a['\95'..b]local mY=a['\95'..b]local mZ=a['\95'..b]local n0=a['\95'..b]local n1=a['\95'..b]local n2=a['\95'..b]local n3=a['\95'..b]local n4=a['\95'..b]local n5=a['\95'..b]local n6=a['\95'..b]local n7=a['\95'..b]local n8=a['\95'..b]local n9=a['\95'..b]local na=a['\95'..b]local nb=a['\95'..b]local nc=a['\95'..b]local nd=a['\95'..b]local ne=a['\95'..b]local nf=a['\95'..b]local ng=a['\95'..b]local nh=a['\95'..b]local ni=a['\95'..b]local nj=a['\95'..b]local nk=a['\95'..b]local nl=a['\95'..b]local nm=a['\95'..b]local nn=a['\95'..b]local no=a['\95'..b]local np=a['\95'..b]local nq=a['\95'..b]local nr=a['\95'..b]local ns=a['\95'..b]local nt=a['\95'..b]local nu=a['\95'..b]local nv=a['\95'..b]local nw=a['\95'..b]local nx=a['\95'..b]local ny=a['\95'..b]local nz=a['\95'..b]local nA=a['\95'..b]local nB=a['\95'..b]local nC=a['\95'..b]local nD=a['\95'..b]local nE=a['\95'..b]local nF=a['\95'..b]local nG=a['\95'..b]local nH=a['\95'..b]local nI=a['\95'..b]local nJ=a['\95'..b]local nK=a['\95'..b]local nL=a['\95'..b]local nM=a['\95'..b]local nN=a['\95'..b]local nO=a['\95'..b]local nP=a['\95'..b]local nQ=a['\95'..b]local nR=a['\95'..b]local nS=a['\95'..b]local nT=a['\95'..b]local nU=a['\95'..b]local nV=a['\95'..b]local nW=a['\95'..b]local nX=a['\95'..b]local nY=a['\95'..b]local nZ=a['\95'..b]local o0=a['\95'..b]local o1=a['\95'..b]local o2=a['\95'..b]local o3=a['\95'..b]local o4=a['\95'..b]local o5=a['\95'..b]local o6=a['\95'..b]local o7=a['\95'..b]local o8=a['\95'..b]local o9=a['\95'..b]local oa=a['\95'..b]local ob=a['\95'..b]local oc=a['\95'..b]local od=a['\95'..b]local oe=a['\95'..b]local of=a['\95'..b]local og=a['\95'..b]local oh=a['\95'..b]local oi=a['\95'..b]local oj=a['\95'..b]local ok=a['\95'..b]local ol=a['\95'..b]local om=a['\95'..b]local on=a['\95'..b]local oo=a['\95'..b]local op=a['\95'..b]local oq=a['\95'..b]local or=a['\95'..b]local os=a['\95'..b]local ot=a['\95'..b]local ou=a['\95'..b]local ov=a['\95'..b]local ow=a['\95'..b]local ox=a['\95'..b]local oy=a['\95'..b]local oz=a['\95'..b]local oA=a['\95'..b]local oB=a['\95'..b]local oC=a['\95'..b]local oD=a['\95'..b]local oE=a['\95'..b]local oF=a['\95'..b]local oG=a['\95'..b]local oH=a['\95'..b]local oI=a['\95'..b]local oJ=a['\95'..b]local oK=a['\95'..b]local oL=a['\95'..b]local oM=a['\95'..b]local oN=a['\95'..b]local oO=a['\95'..b]local oP=a['\95'..b]local oQ=a['\95'..b]local oR=a['\95'..b]local oS=a['\95'..b]local oT=a['\95'..b]local oU=a['\95'..b]local oV=a['\95'..b]local oW=a['\95'..b]local oX=a['\95'..b]local oY=a['\95'..b]local oZ=a['\95'..b]local p0=a['\95'..b]local p1=a['\95'..b]local p2=a['\95'..b]local p3=a['\95'..b]local p4=a['\95'..b]local p5=a['\95'..b]local p6=a['\95'..b]local p7=a['\95'..b]local p8=a['\95'..b]local p9=a['\95'..b]local pa=a['\95'..b]local pb=a['\95'..b]local pc=a['\95'..b]local pd=a['\95'..b]local pe=a['\95'..b]local pf=a['\95'..b]local pg=a['\95'..b]local ph=a['\95'..b]local pi=a['\95'..b]local pj=a['\95'..b]local pk=a['\95'..b]local pl=a['\95'..b]local pm=a['\95'..b]local pn=a['\95'..b]local po=a['\95'..b]local pp=a['\95'..b]local pq=a['\95'..b]local pr=a['\95'..b]local ps=a['\95'..b]local pt=a['\95'..b]local pu=a['\95'..b]local pv=a['\95'..b]local pw=a['\95'..b]local px=a['\95'..b]local py=a['\95'..b]local pz=a['\95'..b]local pA=a['\95'..b]local pB=a['\95'..b]local pC=a['\95'..b]local pD=a['\95'..b]local pE=a['\95'..b]local pF=a['\95'..b]local pG=a['\95'..b]local pH=a['\95'..b]local pI=a['\95'..b]local pJ=a['\95'..b]local pK=a['\95'..b]local pL=a['\95'..b]local pM=a['\95'..b]local pN=a['\95'..b]local pO=a['\95'..b]local pP=a['\95'..b]local pQ=a['\95'..b]local pR=a['\95'..b]local pS=a['\95'..b]local pT=a['\95'..b]local pU=a['\95'..b]local pV=a['\95'..b]local pW=a['\95'..b]local pX=a['\95'..b]local pY=a['\95'..b]local pZ=a['\95'..b]local q0=a['\95'..b]local q1=a['\95'..b]local q2=a['\95'..b]local q3=a['\95'..b]local q4=a['\95'..b]local q5=a['\95'..b]local q6=a['\95'..b]local q7=a['\95'..b]local q8=a['\95'..b]local q9=a['\95'..b]local qa=a['\95'..b]local qb=a['\95'..b]local qc=a['\95'..b]local qd=a['\95'..b]local qe=a['\95'..b]local qf=a['\95'..b]local qg=a['\95'..b]local qh=a['\95'..b]local qi=a['\95'..b]local qj=a['\95'..b]local qk=a['\95'..b]local ql=a['\95'..b]local qm=a['\95'..b]local qn=a['\95'..b]local qo=a['\95'..b]local qp=a['\95'..b]local qq=a['\95'..b]local qr=a['\95'..b]local qs=a['\95'..b]local qt=a['\95'..b]local qu=a['\95'..b]local qv=a['\95'..b]local qw=a['\95'..b]local qx=a['\95'..b]local qy=a['\95'..b]local qz=a['\95'..b]local qA=a['\95'..b]local qB=a['\95'..b]local qC=a['\95'..b]local qD=a['\95'..b]local qE=a['\95'..b]local qF=a['\95'..b]local qG=a['\95'..b]local qH=a['\95'..b]local qI=a['\95'..b]local qJ=a['\95'..b]local qK=a['\95'..b]local qL=a['\95'..b]local qM=a['\95'..b]local qN=a['\95'..b]local qO=a['\95'..b]local qP=a['\95'..b]local qR=a['\95'..b]local qS=a['\95'..b]local qT=a['\95'..b]local qU=a['\95'..b]local qV=a['\95'..b]local qW=a['\95'..b]local qX=a['\95'..b]local qY=a['\95'..b]local qZ=a['\95'..b]local r0=a['\95'..b]local r1=a['\95'..b]local r2=a['\95'..b]local r3=a['\95'..b]local r4=a['\95'..b]local r5=a['\95'..b]local r6=a['\95'..b]local r7=a['\95'..b]local r8=a['\95'..b]local r9=a['\95'..b]local ra=a['\95'..b]local rb=a['\95'..b]local rc=a['\95'..b]local rd=a['\95'..b]local re=a['\95'..b]local rf=a['\95'..b]local rg=a['\95'..b]local rh=a['\95'..b]local ri=a['\95'..b]local rj=a['\95'..b]local rk=a['\95'..b]local rl=a['\95'..b]local rm=a['\95'..b]local rn=a['\95'..b]local ro=a['\95'..b]local rp=a['\95'..b]local rq=a['\95'..b]local rr=a['\95'..b]local rs=a['\95'..b]local rt=a['\95'..b]local ru=a['\95'..b]local rv=a['\95'..b]local rw=a['\95'..b]local rx=a['\95'..b]local ry=a['\95'..b]local rz=a['\95'..b]local rA=a['\95'..b]local rB=a['\95'..b]local rC=a['\95'..b]local rD=a['\95'..b]local rE=a['\95'..b]local rF=a['\95'..b]local rG=a['\95'..b]local rH=a['\95'..b]local rI=a['\95'..b]local rJ=a['\95'..b]local rK=a['\95'..b]local rL=a['\95'..b]local rM=a['\95'..b]local rN=a['\95'..b]local rO=a['\95'..b]local rP=a['\95'..b]local rQ=a['\95'..b]local rR=a['\95'..b]local rS=a['\95'..b]local rT=a['\95'..b]local rU=a['\95'..b]local rV=a['\95'..b]local rW=a['\95'..b]local rX=a['\95'..b]local rY=a['\95'..b]local rZ=a['\95'..b]local s0=a['\95'..b]local s1=a['\95'..b]local s2=a['\95'..b]local s3=a['\95'..b]local s4=a['\95'..b]local s5=a['\95'..b]local s6=a['\95'..b]local s7=a['\95'..b]local s8=a['\95'..b]local s9=a['\95'..b]local sa=a['\95'..b]local sb=a['\95'..b]local sc=a['\95'..b]local sd=a['\95'..b]local se=a['\95'..b]local sf=a['\95'..b]local sg=a['\95'..b]local sh=a['\95'..b]local si=a['\95'..b]local sj=a['\95'..b]local sk=a['\95'..b]local sl=a['\95'..b]local sm=a['\95'..b]local sn=a['\95'..b]local so=a['\95'..b]local sp=a['\95'..b]local sq=a['\95'..b]local sr=a['\95'..b]local ss=a['\95'..b]local st=a['\95'..b]local su=a['\95'..b]local sv=a['\95'..b]local sw=a['\95'..b]local sx=a['\95'..b]local sy=a['\95'..b]local sz=a['\95'..b]local sA=a['\95'..b]local sB=a['\95'..b]local sC=a['\95'..b]local sD=a['\95'..b]local sE=a['\95'..b]local sF=a['\95'..b]local sG=a['\95'..b]local sH=a['\95'..b]local sI=a['\95'..b]local sJ=a['\95'..b]local sK=a['\95'..b]WindUI:Notify({ Title = "皮脚本", Content = "加载成功", Duration = 3, Icon = "bird", }) end })
+local Confirmed = false
 
--- tx v4 按钮 local TxButton= Tab:Button({ Title = "tx v4", Desc = "点击运行tx脚本", Locked = false, Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/dzq1311056/k/refs/heads/main/Protected_6797390536487459.lua"))() WindUI:Notify({ Title = "tx v4", Content = "加载成功", Duration = 3, Icon = "bird", }) end })
+WindUI:Popup({
+    Title = " 戊脚本中心",
+    Icon = "rbxassetid://129260712070622",
+    IconThemed = true,
+    Content = "By:誓约\nQQ群:1053715085 欢迎使用戊脚本中心，可以来找作者誓约汉化qq:3848974452",
+    Buttons = {
+        {
+            Title = "进入脚本。",
+            Icon = "arrow-right",
+            Callback = function() Confirmed = true end,
+            Variant = "Primary",
+        }
+    }
+})
 
--- isis 按钮 local IsisButton= Tab:Button({ Title = "isis", Desc = "点击运行isis脚本key=ISIS-KEY-2025", Locked = false, Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/S-WTB/-/refs/heads/main/ISIS加载器"))() WindUI:Notify({ Title = "isis脚本", Content = "加载成功", Duration = 3, Icon = "bird", }) end }) --创建 Tab local Tab= Window:Tab({ Title = "设置区", Icon = "tap", Locked = false, }) Window:SelectTab(1)
+repeat wait() until Confirmed
 
--- 创建 Section local Section= Tab:Section({  Title = "设置", TextXAlignment = "Left", TextSize = 17, }) --其它控件示例（可删减） local Button= Tab:Button({ Title = "普通测试按钮", Desc = "点击测试", Locked = false, Callback = function() print("clicked test button") end })
+-- 修复后的代码将所有功能整合到一个统一的 WindUI 窗口中
+local Window = WindUI:CreateWindow({
+    Title = "戊脚本中心",
+    Icon = "rbxassetid://129260712070622",
+    IconThemed = true,
+    Author = "感谢游玩",
+    Folder = "誓约",
+    Size = UDim2.fromOffset(540, 340),
+    Transparent = true,
+    Theme = "Dark",
+    User = { Enabled = true },
+    SideBarWidth = 200,
+    ScrollBarEnabled = true,
+})
 
-local Code = Tab:Code({ Title = "代码区", Code = [[print("Hello World!")]] }) Code:SetCode([[print("New code!")]])
+Window:Tag({
+    Title = "v1.0",
+    Color = Color3.fromHex("#30ff6a")
+})
+Window:Tag({
+    Title = "by誓约",
+    Color = Color3.fromHex("#315dff")
+})
 
-local Colorpicker = Tab:Colorpicker({ Title = "颜色选择器", Desc = "选个颜色吧", Default = Color3.fromRGB(0, 255, 0), Transparency = 0, Locked = false, Callback = function(color)  print("Background color: " .. tostring(color)) end })
+-- 创建指定的大类（作为标签页）
+local Tabs = {
+    Home = Window:Tab({ Title = "主页", Icon = "crown" }),
+    Misc = Window:Tab({ Title = "其他", Icon = "settings" }),
+}
 
-local Dropdown = Tab:Dropdown({ Title = "下拉框 (多选)", Values = { "A", "B", "C" }, Value = { "A" }, Multi = true, AllowNone = true, Callback = function(option)  print("选中的分类: " .. game:GetService("HttpService"):JSONEncode(option))  end })
+Window:SelectTab(1)
 
-local Input = Tab:Input({ Title = "输入框", Desc = "输入内容", Value = "默认值", InputIcon = "bird", Type = "Input", -- or "Textarea" Placeholder = "请输入...", Callback = function(input)  print("输入内容: " .. input) end })
+-- 全局服务引用
+local Players = game:GetService("Players")
+local Workspace = game:GetService("Workspace")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RunService = game:GetService("RunService")
+local ProximityPromptService = game:GetService("ProximityPromptService")
 
-local Keybind = Tab:Keybind({ Title = "快捷键", Desc = "用来打开 UI", Value = "G", Callback = function(v) Window:SetToggleKey(Enum.KeyCode[v]) end })
+-- 本地玩家引用
+local LP = Players.LocalPlayer
+local Character = LP.Character or LP.CharacterAdded:Wait()
 
-local Paragraph = Tab:Paragraph({ Title = "段落区", Desc = "展示段落", Color = "Red", Image = "", ImageSize = 30, Thumbnail = "", ThumbnailSize = 80, Locked = false, Buttons = { { Icon = "bird", Title = "段落按钮", Callback = function() print("段落按钮被点了") end, } } })
+-- 功能状态
+local Features = {
+    KillAura = false,
+    AutoChop = false,
+    AutoEat = false,
+    ChildESP = false,
+    ChestESP = false,
+    InstantInteract = false
+}
 
-local Slider = Tab:Slider({ Title = "滑块", Step = 1, Value = { Min = 20, Max = 120, Default = 70, }, Callback = function(value) print(value) end })
+-- 黑名单
+local Blacklist = {}
 
-local Toggle = Tab:Toggle({ Title = "切换开关", Desc = "开关描述", Value = false, Callback = function(val) print("Toggle changed to: ", val) end })
+-- 客户端模块
+local ClientModule
+local EatRemote
+local function GetClientModule()
+    if not ClientModule then
+        ClientModule = require(LP:WaitForChild("PlayerScripts"):WaitForChild("Client"))
+        EatRemote = ClientModule and ClientModule.Events and ClientModule.Events.RequestConsumeItem
+    end
+    return ClientModule, EatRemote
+end
 
--- 配置管理器示例 local ConfigManager= Window.ConfigManager local myConfig= ConfigManager:CreateConfig("myConfigExample") myConfig:Register("SpecialNameExample",XKButton) myConfig:Save() myConfig:Load() ConfigManager:AllConfigs()-- 返回所有配置表
+-- 修复后的ESP功能管理
+local espData = {}
+local function createESP(target, name)
+    local rootPart = target:FindFirstChild("HumanoidRootPart") or target.PrimaryPart or target:FindFirstChildWhichIsA("BasePart")
+    if not rootPart or espData[target] then return end
 
--- 封装一个对话框函数 local function ShowMyDialog(Window,title, content, onConfirm, onCancel) Window:Dialog({ Icon = "bird", Title = title or "提示", Content = content or "是否继续？", Buttons = { { Title = "确认", Callback = function(self) if onConfirm then onConfirm() end self:Close() end, }, { Title = "取消", Callback = function(self) if onCancel then onCancel() end self:Close() end, }, }, }) end
+    local billboard = Instance.new("BillboardGui")
+    billboard.Adornee = rootPart
+    billboard.Size = UDim2.new(0, 100, 0, 100)
+    billboard.StudsOffset = Vector3.new(0, 3, 0)
+    billboard.AlwaysOnTop = true
+    billboard.Parent = rootPart
+    billboard.Enabled = true
 
--- ✅ 使用方法 ShowMyDialog( Window, "戊", "点完没加载就是用不了", function() print("Confirmed!") -- 点击确认时 end, function() print("Cancelled!") -- 点击取消时 end )
+    local label = Instance.new("TextLabel")
+    label.Text = name .. "\n" .. "0m"
+    label.Size = UDim2.new(1, 0, 0, 40)
+    label.Position = UDim2.new(0, 0, 0, 0)
+    label.BackgroundTransparency = 1
+    label.TextColor3 = Color3.new(1, 1, 1)
+    label.TextStrokeTransparency = 0.3
+    label.Font = Enum.Font.GothamBold
+    label.TextSize = 14
+    label.Parent = billboard
 
-WindUI:Popup({ Title = "提示", Icon = "info", Content = "点继续", Buttons = { { Title = "取消", Callback = function() end, Variant = "Tertiary", }, { Title = "继续", Icon = "arrow-right", Callback = function() end, Variant = "Primary", } } })
+    if name:match("Chest") then
+        local image = Instance.new("ImageLabel")
+        image.Position = UDim2.new(0, 20, 0, 40)
+        image.Size = UDim2.new(0, 60, 0, 60)
+        image.Image = "rbxassetid://18660563116"
+        image.BackgroundTransparency = 1
+        image.Parent = billboard
+    end
+
+    espData[target] = {gui = billboard, label = label, image = image}
+end
+
+--- 主页 Tab ---
+Tabs.Home:Paragraph({
+    Title = "戊脚本中心",
+    Desc = "有问题及时反馈，要汉化联系作者誓约qq：3848974452 感谢使用",
+    Image = "https://raw.githubusercontent.com/greatjakson-lgtm/-2/bb78fa80e202c45cbd4f127270c3884928707cb6/Lucid_Origin_A_elegant_logo_of_the_letter_W_made_of_glowing_li_1.jpg",
+    ImageSize = 65,
+})
+Tabs.Home:Paragraph({
+    Title = "欢迎",
+    Desc = "需要时开启反挂机.作者: 誓约\n脚本免费",
+})
+-- 反挂机 (通过外部链接加载)
+Tabs.Home:Button({
+    Title = "反挂机",
+    Desc = "加载反挂机",
+    Callback = function()
+        pcall(function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/main/99nights%E5%8F%8D%E6%8C%82%E6%9C%BA%E8%84%9A%E6%9C%AC"))()
+            if response and #response > 100 then
+                loadstring(response)()
+            end
+        end)
+    end
+})
+
+-- FPS 显示
+Tabs.Home:Toggle({
+    Title = "显示FPS",
+    Desc = "在屏幕上显示当前FPS",
+    Callback = function(state)
+        local FpsGui = game.Players.LocalPlayer:WaitForChild("PlayerGui"):FindFirstChild("FPSGui")
+        if state then
+            if not FpsGui then
+                FpsGui = Instance.new("ScreenGui")
+                local FpsXS = Instance.new("TextLabel")
+                FpsGui.Name = "FPSGui"
+                FpsGui.ResetOnSpawn = false
+                FpsXS.Name = "FpsXS"
+                FpsXS.Size = UDim2.new(0, 100, 0, 50)
+                FpsXS.Position = UDim2.new(0, 10, 0, 10)
+                FpsXS.BackgroundTransparency = 1
+                FpsXS.Font = Enum.Font.SourceSansBold
+                FpsXS.Text = "FPS: 0"
+                FpsXS.TextSize = 20
+                FpsXS.TextColor3 = Color3.new(1, 1, 1)
+                FpsXS.Parent = FpsGui
+                FpsGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+                
+                game:GetService("RunService").Heartbeat:Connect(function()
+                    local fps = math.floor(1 / game:GetService("RunService").RenderStepped:Wait())
+                    FpsXS.Text = "FPS: " .. fps
+                end)
+            end
+            FpsGui.Enabled = true
+        else
+            if FpsGui then
+                FpsGui.Enabled = false
+            end
+        end
+    end
+})
+
+-- 范围显示
+Tabs.Home:Toggle({
+    Title = "显示范围",
+    Desc = "显示玩家范围",
+    Callback = function(state)
+        local HeadSize = 20
+        local highlight = Instance.new("Highlight")
+        highlight.Adornee = nil
+        highlight.OutlineTransparency = 0
+        highlight.FillTransparency = 0.7
+        highlight.FillColor = Color3.fromHex("#0000FF")
+
+        local function applyHighlight(character)
+            if not character:FindFirstChild("WindUI_RangeHighlight") then
+                local clone = highlight:Clone()
+                clone.Adornee = character
+                clone.Name = "WindUI_RangeHighlight"
+                clone.Parent = character
+            end
+        end
+
+        local function removeHighlight(character)
+            local h = character:FindFirstChild("WindUI_RangeHighlight")
+            if h then
+                h:Destroy()
+            end
+        end
+
+        if state then
+            for _, player in ipairs(game.Players:GetPlayers()) do
+                if player.Name ~= game.Players.LocalPlayer.Name and player.Character then
+                    applyHighlight(player.Character)
+                end
+            end
+            game.Players.PlayerAdded:Connect(function(player)
+                player.CharacterAdded:Connect(function(character)
+                    task.wait(1)
+                    applyHighlight(character)
+                end)
+            end)
+            game.Players.PlayerRemoving:Connect(function(player)
+                if player.Character then
+                    removeHighlight(player.Character)
+                end
+            end)
+        else
+            for _, player in ipairs(game.Players:GetPlayers()) do
+                if player.Character then
+                    removeHighlight(player.Character)
+                end
+            end
+        end
+    end
+})
+
+-- 半隐身, 玩家入退提示, 甩飞
+Tabs.Home:Button({
+    Title = "半隐身",
+    Desc = "加载隐身脚本",
+    Callback = function()
+        pcall(function() loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Invisible-35376"))() end)
+    end
+})
+Tabs.Home:Button({
+    Title = "玩家入退提示",
+    Desc = "加载提示脚本",
+    Callback = function()
+        pcall(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/boyscp/scriscriptsc/main/bbn.lua"))() end)
+    end
+})
+
+-- 修复后的甩飞玩家功能
+Tabs.Home:Button({
+    Title = "甩飞玩家",
+    Desc = "将选中的玩家甩飞",
+    Callback = function()
+        local selectedPlayerName = playersDropdown.Value
+        if not selectedPlayerName then
+            WindUI:Notify({Title = "错误", Content = "未选择玩家", Duration = 3})
+            return
+        end
+        
+        local targetPlayer = game.Players:FindFirstChild(selectedPlayerName)
+        if not targetPlayer or not targetPlayer.Character then
+            WindUI:Notify({Title = "错误", Content = "未找到玩家或玩家角色", Duration = 3})
+            return
+        end
+        
+        local character = targetPlayer.Character
+        local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+        if not humanoidRootPart then
+            WindUI:Notify({Title = "错误", Content = "玩家角色缺少HumanoidRootPart", Duration = 3})
+            return
+        end
+        
+        local bodyVelocity = Instance.new("BodyVelocity")
+        bodyVelocity.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+        bodyVelocity.Velocity = Vector3.new(0, 50, 0) + (humanoidRootPart.CFrame.lookVector * 10)
+        bodyVelocity.P = 1000
+        bodyVelocity.Parent = humanoidRootPart
+        
+        -- 施加力一段时间后移除
+        task.delay(1, function()
+            bodyVelocity:Destroy()
+            WindUI:Notify({Title = "成功", Content = "已甩飞玩家 " .. selectedPlayerName, Duration = 3})
+        end)
+    end
+})
+
+
+-- 防甩飞 (Toggle)
+local antiWalkFlingConn
+Tabs.Home:Toggle({
+    Title = "防甩飞",
+    Desc = "不要和甩飞同时开启!",
+    Callback = function(state)
+        local player = game.Players.LocalPlayer
+        if state then
+            if antiWalkFlingConn then antiWalkFlingConn:Disconnect() end
+            local lastVelocity = Vector3.new()
+            antiWalkFlingConn = game:GetService("RunService").Stepped:Connect(function()
+                local character = player.Character
+                local hrp = character and character:FindFirstChild("HumanoidRootPart")
+                if not hrp then return end
+                local currentVelocity = hrp.Velocity
+                if (currentVelocity - lastVelocity).Magnitude > 100 then
+                    hrp.Velocity = lastVelocity
+                end
+                lastVelocity = currentVelocity
+            end)
+        else
+            if antiWalkFlingConn then antiWalkFlingConn:Disconnect() end
+        end
+    end
+})
+
+local function setPlayerHealth(healthValue)
+    local player = game.Players.LocalPlayer
+    local character = player.Character
+    
+    -- 等待角色加载
+    if not character then
+        character = player.CharacterAdded:Wait()
+    end
+    
+    -- 等待 Humanoid 加载
+    local humanoid = character:WaitForChild("Humanoid")
+    
+    -- 设置血量
+    humanoid.Health = healthValue
+    
+    -- 显示提示
+    WindUI:Notify({
+        Title = "血量设置",
+        Content = "血量已设置为: " .. healthValue,
+        Duration = 3
+    })
+end
+
+-- 血量滑块
+Tabs.Home:Slider({
+    Title = "设置血量",
+    Desc = "调整人物血量 (0-1000)",
+    Value = { Min = 0, Max = 1000, Default = 100 },
+    Callback = function(val)
+        setPlayerHealth(val)
+    end
+})
+
+-- 快速血量按钮
+Tabs.Home:Button({
+    Title = "满血",
+    Desc = "将血量设置为最大值",
+    Callback = function()
+        local player = game.Players.LocalPlayer
+        local character = player.Character or player.CharacterAdded:Wait()
+        local humanoid = character:WaitForChild("Humanoid")
+        setPlayerHealth(humanoid.MaxHealth)
+    end
+})
+
+Tabs.Home:Button({
+    Title = "半血",
+    Desc = "将血量设置为一半",
+    Callback = function()
+        local player = game.Players.LocalPlayer
+        local character = player.Character or player.CharacterAdded:Wait()
+        local humanoid = character:WaitForChild("Humanoid")
+        setPlayerHealth(humanoid.MaxHealth / 2)
+    end
+})
+
+-- 无敌模式切换
+local godModeEnabled = false
+local originalHealth
+local godModeConnection
+
+Tabs.Home:Toggle({
+    Title = "无敌模式",
+    Desc = "开启后血量不会减少",
+    Default = false,
+    Callback = function(state)
+        godModeEnabled = state
+        local player = game.Players.LocalPlayer
+        local character = player.Character
+        
+        if not character then
+            character = player.CharacterAdded:Wait()
+        end
+        
+        local humanoid = character:WaitForChild("Humanoid")
+        
+        if state then
+            -- 保存原始血量
+            originalHealth = humanoid.Health
+            
+            -- 监听血量变化
+            godModeConnection = humanoid.HealthChanged:Connect(function(newHealth)
+                if newHealth < humanoid.MaxHealth then
+                    humanoid.Health = humanoid.MaxHealth
+                end
+            end)
+            
+            -- 设置为满血
+            humanoid.Health = humanoid.MaxHealth
+            
+            WindUI:Notify({
+                Title = "无敌模式",
+                Content = "无敌模式已开启",
+                Duration = 3
+            })
+        else
+            -- 关闭无敌模式
+            if godModeConnection then
+                godModeConnection:Disconnect()
+                godModeConnection = nil
+            end
+            
+            -- 恢复原始血量
+            if originalHealth then
+                humanoid.Health = originalHealth
+            end
+            
+            WindUI:Notify({
+                Title = "无敌模式",
+                Content = "无敌模式已关闭",
+                Duration = 3
+            })
+        end
+    end
+})
+-- 速度, 重力, 跳跃
+Tabs.Home:Slider({
+    Title = "设置速度",
+    Desc = "可输入",
+    Value = { Min = 0, Max = 520, Default = 25 },
+    Callback = function(val)
+        local character = game.Players.LocalPlayer.Character
+        if character then
+            local humanoid = character:FindFirstChildOfClass("Humanoid")
+            if humanoid then
+                humanoid.WalkSpeed = val
+            end
+        end
+    end
+})
+Tabs.Home:Slider({
+    Title = "设置个人重力",
+    Desc = "默认值即为最大值",
+    Value = { Min = 0, Max = 196.2, Default = 196.2, Rounding = 1 },
+    Callback = function(val)
+        local player = game.Players.LocalPlayer
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+        local oldGravity = rootPart:FindFirstChild("PersonalGravity")
+        if oldGravity then oldGravity:Destroy() end
+
+        if val ~= workspace.Gravity then
+            local personalGravity = Instance.new("BodyForce")
+            personalGravity.Name = "PersonalGravity"
+            local mass = rootPart:GetMass()
+            local force = Vector3.new(0, mass * (workspace.Gravity - val), 0)
+            personalGravity.Force = force
+            personalGravity.Parent = rootPart
+        end
+    end
+})
+Tabs.Home:Slider({
+    Title = "设置跳跃高度",
+    Desc = "可输入",
+    Value = { Min = 0, Max = 200, Default = 50 },
+    Callback = function(val)
+        local character = game.Players.LocalPlayer.Character
+        if character then
+            local humanoid = character:FindFirstChildOfClass("Humanoid")
+            if humanoid then
+                humanoid.JumpPower = val
+            end
+        end
+    end
+})
+
+local function getPlayerNames()
+    local names = {}
+    for _, player in ipairs(game.Players:GetPlayers()) do
+        if player ~= game.Players.LocalPlayer then
+            table.insert(names, player.Name)
+        end
+    end
+    return names
+end
+
+-- 创建一个函数来刷新下拉菜单
+local function refreshPlayerDropdown()
+    -- 增加了一个检查，确保playersDropdown存在
+    if not playersDropdown then return end
+
+    local currentValues = playersDropdown:GetValues()
+    local newValues = getPlayerNames()
+    local added = {}
+    local removed = {}
+    
+    local newSet = {}
+    for _, name in ipairs(newValues) do
+        newSet[name] = true
+    end
+    
+    for _, name in ipairs(currentValues) do
+        if not newSet[name] then
+            table.insert(removed, name)
+        end
+    end
+    
+    local currentSet = {}
+    for _, name in ipairs(currentValues) do
+        currentSet[name] = true
+    end
+    
+    for _, name in ipairs(newValues) do
+        if not currentSet[name] then
+            table.insert(added, name)
+        end
+    end
+    
+    for _, name in ipairs(removed) do
+        playersDropdown:RemoveValue(name)
+    end
+    
+    for _, name in ipairs(added) do
+        playersDropdown:AddValue(name)
+    end
+end
+
+-- **将下拉菜单的创建代码保持在此处，这是原始代码中的位置**
+local playersDropdown = Tabs.Home:Dropdown({
+    Title = "选择要传送的玩家",
+    Values = getPlayerNames(), -- 初始填充
+})
+
+Tabs.Home:Button({
+    Title = "传送至玩家",
+    Desc = "传送到选中的玩家",
+    Callback = function()
+        local selectedPlayerName = playersDropdown.Value
+        if not selectedPlayerName then
+            WindUI:Notify({Title = "错误", Content = "未选择玩家", Duration = 3})
+            return
+        end
+        local targetPlayer = game.Players:FindFirstChild(selectedPlayerName)
+        if targetPlayer and targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart") then
+            local character = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+            local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+            humanoidRootPart.CFrame = targetPlayer.Character.HumanoidRootPart.CFrame
+        end
+    end
+})
+
+-- **修复：将事件连接代码移动到这里，确保playersDropdown已经创建**
+game.Players.PlayerAdded:Connect(refreshPlayerDropdown)
+game.Players.PlayerRemoving:Connect(refreshPlayerDropdown)
+
+-- 修复后的部分，使用 AddValue 和 RemoveValue 方法来更新
+game.Players.PlayerAdded:Connect(refreshPlayerDropdown)
+game.Players.PlayerRemoving:Connect(refreshPlayerDropdown)
+
+
+-- 飞行, 无限跳, 自瞄, 子弹追踪, 夜视, 穿墙
+Tabs.Home:Button({
+    Title = "飞行",
+    Desc = "加载飞行脚本",
+    Callback = function()
+        pcall(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/70a71eeabf5f141852374be101bc910bf9444036/fly.lua"))() end)
+    end
+})
+Tabs.Home:Button({
+    Title = "无限跳",
+    Desc = "开启后无法关闭",
+    Callback = function()
+        pcall(function() loadstring(game:HttpGet("https://pastebin.com/raw/V5PQy3y0", true))() end)
+    end
+})
+Tabs.Home:Button({
+    Title = "自瞄",
+    Desc = "宙斯自瞄",
+    Callback = function()
+        pcall(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/main/Arceus%20Aimbot.lua"))() end)
+    end
+})
+
+local trackData = {}
+Tabs.Home:Toggle({
+    Title = "子弹追踪",
+    Default = false,
+    Callback = function(state)
+        trackData.enabled = state
+        if not state then
+            if trackData.workspaceConn then trackData.workspaceConn:Disconnect() end
+            for _, conn in pairs(trackData.bulletConns or {}) do conn:Disconnect() end
+            trackData.bulletConns = {}
+            return
+        end
+        local function getTarget(bulletPos)
+            local nearestTarget, nearestDist = nil, math.huge
+            for _, player in ipairs(game.Players:GetPlayers()) do
+                if player ~= game.Players.LocalPlayer then
+                    local char = player.Character
+                    local humanoid = char and char:FindFirstChildOfClass("Humanoid")
+                    local root = char and char:FindFirstChild("HumanoidRootPart")
+                    if humanoid and humanoid.Health > 0 and root then
+                        local dist = (bulletPos - root.Position).Magnitude
+                        if dist <= 70 and dist < nearestDist then
+                            nearestDist = dist
+                            nearestTarget = root
+                        end
+                    end
+                end
+            end
+            return nearestTarget
+        end
+
+        local function attachTrack(bullet)
+            local bulletPart = bullet:IsA("BasePart") and bullet or bullet:FindFirstChildWhichIsA("BasePart")
+            if not bulletPart then return end
+            local bodyVel = bulletPart:FindFirstChildOfClass("BodyVelocity")
+            if not bodyVel then
+                bodyVel = Instance.new("BodyVelocity")
+                bodyVel.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+                bodyVel.Velocity = bulletPart.Velocity
+                bodyVel.Parent = bulletPart
+            end
+
+            local bulletConn = game:GetService("RunService").Heartbeat:Connect(function()
+                if not bulletPart.Parent or not trackData.enabled then
+                    bulletConn:Disconnect()
+                    trackData.bulletConns[bulletConn] = nil
+                    return
+                end
+                local target = getTarget(bulletPart.Position)
+                if target then
+                    local trackDir = (target.Position - bulletPart.Position).Unit
+                    bodyVel.Velocity = trackDir * bulletPart.Velocity.Magnitude
+                    bulletPart.CFrame = CFrame.new(bulletPart.Position, target.Position)
+                end
+            end)
+            trackData.bulletConns[bulletConn] = true
+        end
+        trackData.workspaceConn = workspace.ChildAdded:Connect(function(child)
+            local isLocalBullet = (child.Name:lower():find("bullet") or child.Name:lower():find("projectile") or child.Name:lower():find("missile")) and (child:FindFirstChild("Owner") and child.Owner.Value == game.Players.LocalPlayer)
+            if isLocalBullet then
+                task.wait(0.05)
+                attachTrack(child)
+            end
+        end)
+    end
+})
+
+local nightVisionData = {}
+Tabs.Home:Toggle({
+    Title = "夜视",
+    Default = false,
+    Callback = function(isEnabled)
+        local lighting = game:GetService("Lighting")
+        if isEnabled then
+            pcall(function()
+                nightVisionData.originalAmbient = lighting.Ambient
+                nightVisionData.originalBrightness = lighting.Brightness
+                nightVisionData.originalFogEnd = lighting.FogEnd
+                lighting.Ambient = Color3.fromRGB(255, 255, 255)
+                lighting.Brightness = 1
+                lighting.FogEnd = 1e10
+                for _, v in pairs(lighting:GetDescendants()) do
+                    if v:IsA("BloomEffect") or v:IsA("BlurEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("SunRaysEffect") then
+                        v.Enabled = false
+                    end
+                end
+                nightVisionData.changedConnection = lighting.Changed:Connect(function()
+                    lighting.Ambient = Color3.fromRGB(255, 255, 255)
+                    lighting.Brightness = 1
+                    lighting.FogEnd = 1e10
+                end)
+                local character = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+                local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+                if not humanoidRootPart:FindFirstChildWhichIsA("PointLight") then
+                    local headlight = Instance.new("PointLight", humanoidRootPart)
+                    headlight.Brightness = 1
+                    headlight.Range = 60
+                    nightVisionData.pointLight = headlight
+                end
+            end)
+        else
+            if nightVisionData.originalAmbient then lighting.Ambient = nightVisionData.originalAmbient end
+            if nightVisionData.originalBrightness then lighting.Brightness = nightVisionData.originalBrightness end
+            if nightVisionData.originalFogEnd then lighting.FogEnd = nightVisionData.originalFogEnd end
+            if nightVisionData.changedConnection then nightVisionData.changedConnection:Disconnect() end
+            if nightVisionData.pointLight and nightVisionData.pointLight.Parent then nightVisionData.pointLight:Destroy() end
+        end
+    end
+})
+
+local noclipConn
+Tabs.Home:Toggle({
+    Title = "穿墙",
+    Default = false,
+    Callback = function(state)
+        local character = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+        if state then
+            noclipConn = game:GetService("RunService").Stepped:Connect(function()
+                if character then
+                    for _, v in pairs(character:GetChildren()) do
+                        if v:IsA("BasePart") then
+                            v.CanCollide = false
+                        end
+                    end
+                end
+            end)
+        else
+            if noclipConn then noclipConn:Disconnect() end
+            if character then
+                for _, v in pairs(character:GetChildren()) do
+                    if v:IsA("BasePart") then
+                        v.CanCollide = true
+                    end
+                end
+            end
+        end
+    end
+})
+
+-- 人物透视 (ESP) 功能
+local espEnabled = false
+local espConnections = {}
+local espHighlights = {}
+local espNameTags = {}
+
+local function createESP(player)
+    local char = player.Character or player.CharacterAdded:Wait()
+    local humanoidRootPart = char:FindFirstChild("HumanoidRootPart")
+    if not humanoidRootPart then return end
+
+    -- Create Highlight
+    local highlight = Instance.new("Highlight")
+    highlight.Name = "WindUI_ESP"
+    highlight.Adornee = char
+    highlight.FillColor = Color3.new(1, 0, 0)
+    highlight.FillTransparency = 0.5
+    highlight.OutlineTransparency = 0
+    highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+    highlight.Parent = char
+    espHighlights[player] = highlight
+
+    -- Create Name Tag
+    local nameTag = Instance.new("BillboardGui")
+    nameTag.Name = "WindUI_NameTag"
+    nameTag.Adornee = humanoidRootPart
+    nameTag.Size = UDim2.new(0, 150, 0, 20)
+    nameTag.StudsOffset = Vector3.new(0, 2.8, 0)
+    nameTag.AlwaysOnTop = true
+    nameTag.Parent = humanoidRootPart
+    
+    local textLabel = Instance.new("TextLabel")
+    textLabel.Size = UDim2.new(1, 0, 1, 0)
+    textLabel.BackgroundTransparency = 1
+    textLabel.Text = player.Name
+    textLabel.TextColor3 = Color3.new(1, 1, 1)
+    textLabel.Font = Enum.Font.SourceSansBold
+    textLabel.TextSize = 14
+    textLabel.TextScaled = false
+    textLabel.Parent = nameTag
+    espNameTags[player] = nameTag
+end
+
+local function removeESP(player)
+    if espHighlights[player] and espHighlights[player].Parent then
+        espHighlights[player]:Destroy()
+        espHighlights[player] = nil
+    end
+    if espNameTags[player] and espNameTags[player].Parent then
+        espNameTags[player]:Destroy()
+        espNameTags[player] = nil
+    end
+end
+
+local function toggleESP(state)
+    espEnabled = state
+    if state then
+        -- Add ESP for all current players
+        for _, player in ipairs(game.Players:GetPlayers()) do
+            if player ~= game.Players.LocalPlayer then
+                pcall(createESP, player)
+            end
+        end
+
+        -- Connect events for new players
+        espConnections.playerAdded = game.Players.PlayerAdded:Connect(function(player)
+            player.CharacterAdded:Wait()
+            pcall(createESP, player)
+        end)
+        espConnections.playerRemoving = game.Players.PlayerRemoving:Connect(function(player)
+            removeESP(player)
+        end)
+    else
+        -- Clean up existing ESP and disconnect events
+        if espConnections.playerAdded then espConnections.playerAdded:Disconnect() end
+        if espConnections.playerRemoving then espConnections.playerRemoving:Disconnect() end
+        for player, _ in pairs(espHighlights) do
+            removeESP(player)
+        end
+        espHighlights = {}
+        espNameTags = {}
+    end
+end
+
+Tabs.Home:Toggle({
+    Title = "人物透视 (ESP)",
+    Desc = "显示其他玩家的透视框和名字。",
+    Default = false,
+    Callback = toggleESP,
+})
+
+Tabs.Home:Button({
+    Title = "切换服务器",
+    Desc = "切换到相同游戏的另一个服务器",
+    Callback = function()
+        local TeleportService = game:GetService("TeleportService")
+        local placeId = game.PlaceId
+        
+        TeleportService:Teleport(placeId, game.Players.LocalPlayer)
+    end
+})
+
+Tabs.Home:Button({
+    Title = "重新加入服务器",
+    Desc = "尝试重新加入当前服务器",
+    Callback = function()
+        local TeleportService = game:GetService("TeleportService")
+        local placeId = game.PlaceId
+        local jobId = game.JobId
+        
+        TeleportService:TeleportToPlaceInstance(placeId, jobId, game.Players.LocalPlayer)
+    end
+})
+
+Tabs.Home:Button({
+    Title = "复制服务器ID",
+    Desc = "复制当前服务器的Job ID到剪贴板",
+    Callback = function()
+        setclipboard(game.JobId)
+        WindUI:Notify({
+            Title = "服务器ID已复制",
+            Content = "Job ID: " .. game.JobId,
+            Duration = 3
+        })
+    end
+})
+
+Tabs.Home:Button({
+    Title = "服务器信息",
+    Desc = "显示当前服务器的信息",
+    Callback = function()
+        local players = game.Players:GetPlayers()
+        local maxPlayers = game.Players.MaxPlayers
+        local placeId = game.PlaceId
+        local jobId = game.JobId
+        local serverType = game:GetService("RunService"):IsStudio() and "Studio" or "Live"
+        
+        WindUI:Notify({
+            Title = "服务器信息",
+            Content = string.format("玩家数量: %d/%d\nPlace ID: %d\nJob ID: %s\n服务器类型: %s", #players, maxPlayers, placeId, jobId, serverType),
+            Duration = 10
+        })
+    end
+})
+
+Tabs.Misc:Button({
+    Title = "复制作者QQ",
+    Callback = function()
+        setclipboard("3848974452")
+        WindUI:Notify({Title = "QQ号", Content = "qq号已复制到剪贴板", Duration = 3})
+    end
+})
+
+Tabs.Misc:Button({
+    Title = "检查更新",
+    Desc = "检查脚本是否有更新",
+    Callback = function()
+        WindUI:Notify({
+            Title = "更新检查",
+            Content = "当前版本: v1.0\n已是最新版本",
+            Duration = 5
+        })
+    end
+})
+-- 添加一个定时器来更新标签
+spawn(function()
+    while true do
+        wait(5)
+        local currentTime = os.date("%H:%M:%S")
+        TimeTag:Set({
+            Title = "当前时间: " .. currentTime,
+            Color = Color3.fromHex("#ff6a30")
+        })
+    end
+end)
+
+Tabs.Misc:Code({
+    Title = "感谢游玩",
+    Code = "QQ号:3848974452"
+})
+
+-- 创建 Tab
+local Tab = Window:Tab({
+    Title = "通用功能区",
+    Icon = "cloud",
+    Locked = false,
+})
+Window:SelectTab(1)
+
+local Button = Tab:Button({
+    Title = "飞行 v3",
+    Desc = "点击运行戊飞行v3脚本",
+    Locked = false,
+    Callback = function()
+       loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/70a71eeabf5f141852374be101bc910bf9444036/fly.lua"))()
+    end
+})
+WindUI:Notify({
+    Title = "飞行v3",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+
+-- 黑洞v6 按钮
+local V6Button = Tab:Button({
+    Title = "自然灾害黑洞v6脚本",
+    Desc = "点击运行黑洞v6脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V6.txt"))()
+        WindUI:Notify({
+            Title = "黑洞v6脚本",
+            Content = "加载成功",
+            Duration = 3,
+            Icon = "bird",
+        })
+    end
+})
+
+-- vape 按钮
+local VapeButton = Tab:Button({
+    Title = "通用vape",
+    Desc = "点击运行vape脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(utf8.char(table.unpack({108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,34,104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,55,71,114,97,110,100,68,97,100,80,71,78,47,86,97,112,101,86,52,70,111,114,82,111,98,108,111,120,47,109,97,105,110,47,78,101,119,77,97,105,110,83,99,114,105,112,116,46,108,117,97,34,44,32,116,114,117,101,41,41,40,41})))()
+        WindUI:Notify({
+            Title = "vape脚本",
+            Content = "加载成功",
+            Duration = 3,
+            Icon = "bird",
+        })
+    end
+})
+local Tab = Window:Tab({
+    Title = "doors",
+    Icon = "tap",
+    Locked = false,
+})
+Window:SelectTab(2) -- Number of Tab
+
+-- doors xk 按钮
+local XKButton = Tab:Button({
+    Title = "doors xk",
+    Desc = "点击运行xk脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://github.com/devslopo/DVES/raw/main/XK%20Hub"))()
+        WindUI:Notify({
+            Title = "doors xk",
+            Content = "加载成功",
+            Duration = 3,
+            Icon = "bird",
+        })
+    end
+})
+
+-- doors nz 按钮
+local NZButton = Tab:Button({
+    Title = "doors nz",
+    Desc = "点击运行doors nz脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/TeamNullFire/NullFire/main/loader.lua"))()
+        WindUI:Notify({
+            Title = "doors nz",
+            Content = "加载成功",
+            Duration = 3,
+            Icon = "bird",
+        })
+    end
+})
+
+-- doors prohax 按钮
+local ProhaxButton = Tab:Button({
+    Title = "doors prohax",
+    Desc = "点击运行prohax脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/TheHunterSolo1/Scripts/refs/heads/main/Protected_2809220311826785.lua.txt"))()
+        WindUI:Notify({
+            Title = "doors prohax",
+            Content = "加载成功",
+            Duration = 3,
+            Icon = "bird",
+        })
+    end
+})
+
+local Button = Tab:Button({
+    Title = "backking 汉化脚本",
+    Desc = "点击运行backking脚本",
+    Locked = false,
+    Callback = function()
+        --[[Doors Blackking And BobHub脚本汉化]]loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\112\97\115\116\101\98\105\110\46\99\111\109\47\114\97\119\47\54\53\84\119\84\56\106\97"))()
+    end
+})
+WindUI:Notify({
+    Title = "backking脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+local Tab = Window:Tab({
+    Title = "inkgame",
+    Icon = "tap",
+    Locked = false,
+})
+Window:SelectTab(2) -- Number of Tab
+
+-- void ware 按钮
+local VoidwareButton = Tab:Button({
+    Title = "inkgame void ware",
+    Desc = "点击运行void ware脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/inkgame.lua", true))()
+        WindUI:Notify({
+            Title = "inkgame voidware",
+            Content = "加载成功",
+            Duration = 3,
+            Icon = "bird",
+        })
+    end
+})
+
+-- az中心 按钮
+local AzButton = Tab:Button({
+    Title = "inkgame az中心",
+    Desc = "点击运行az脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ScripterVaz/InkGameAzure/main/Protected_7974105512464815.lua.txt"))()
+        WindUI:Notify({
+            Title = "inkgame az中心",
+            Content = "加载成功",
+            Duration = 3,
+            Icon = "bird",
+        })
+    end
+})
+
+-- 墨水xa 按钮
+local XaButton = Tab:Button({
+    Title = "墨水xa",
+    Desc = "点击运行xa脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Xingtaiduan/Script/refs/heads/main/Games/墨水游戏.lua"))()
+        WindUI:Notify({
+            Title = "墨水xa脚本",
+            Content = "加载成功",
+            Duration = 3,
+            Icon = "bird",
+        })
+    end
+})
+
+-- ringta 按钮
+local RingtaButton = Tab:Button({
+    Title = "inkgame ringta",
+    Desc = "点击运行ringta脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/wefwef127382/inkgames.github.io/refs/heads/main/ringta.lua"))()
+        WindUI:Notify({
+            Title = "ringta",
+            Content = "加载成功",
+            Duration = 3,
+            Icon = "bird",
+        })
+    end
+})
+
+local Tab = Window:Tab({
+    Title = "99nights",
+    Icon = "tap",
+    Locked = false,
+})
+Window:SelectTab(2) -- Number of Tab
+
+local Button = Tab:Button({
+    Title = "99nights av hub脚本",
+    Desc = "点击运行av hub脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://get-avth-ontop.netlify.app/my-paste/script.lua"))()
+    end
+})
+WindUI:Notify({
+    Title = "av hub脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+
+local Button = Tab:Button({
+    Title = "戊99nights",
+    Desc = "点击运行戊99nights脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/29b54fa8069182f477846db8d1617dca390334da/%E6%88%8A%E8%84%9A%E6%9C%AC99nights"))()
+    end
+})
+WindUI:Notify({
+    Title = "戊脚本99nigtes",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+local Tab = Window:Tab({
+    Title = "死亡之死/被遗弃",
+    Icon = "tap",
+    Locked = false,
+})
+Window:SelectTab(2) -- Number of Tab
+
+-- NOL 免费版 按钮
+local NolButton = Tab:Button({
+    Title = "NOL免费版",
+    Desc = "点击运行NOL脚本",
+    Locked = false,
+    Callback = function()
+        getfenv().ADittoKey = "NOL_FRERKEY_THISISFOR" ---Put in key
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Syndromehsh/NOL/refs/heads/main/Nolsaken"))()
+        WindUI:Notify({
+            Title = "nol免费版",
+            Content = "加载成功",
+            Duration = 3,
+            Icon = "bird",
+        })
+    end
+})
+
+-- 死亡之死 按钮
+local DieButton = Tab:Button({
+    Title = "不知名死亡之死脚本",
+    Desc = "点击运行死亡之死脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/thuker-evader/Die-of-death/refs/heads/main/Red%20hub"))()
+        WindUI:Notify({
+            Title = "死亡之死脚本",
+            Content = "加载成功",
+            Duration = 3,
+            Icon = "bird",
+        })
+    end
+})
+
+local Tab = Window:Tab({
+    Title = "力量传奇",
+    Icon = "tap",
+    Locked = false,
+})
+Window:SelectTab(2) -- Number of Tab
+
+local Button = Tab:Button({
+    Title = "bald力量传奇脚本",
+    Desc = "点击运行bald脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Omgshit/Scripts/main/MainLoader.lua"))()
+    end
+})
+WindUI:Notify({
+    Title = "bald脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+local Tab = Window:Tab({
+    Title = "极速传奇",
+    Icon = "tap",
+    Locked = false,
+})
+Window:SelectTab(2) -- Number of Tab
+
+local Button = Tab:Button({
+    Title = "relz极速传奇脚本",
+    Desc = "点击运行relz脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://relzhub.farrghii.com/loader.lua"))()
+    end
+})
+WindUI:Notify({
+    Title = "relz脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+
+local Button = Tab:Button({
+    Title = "不知名极速传奇脚本",
+    Desc = "点击运行极速传奇脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://ervcommunity.com/desynced.lua", true))()
+    end
+})
+WindUI:Notify({
+    Title = "极速传奇脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+
+local Tab = Window:Tab({
+    Title = "flsch",
+    Icon = "tap",
+    Locked = false,
+})
+Window:SelectTab(2) -- Number of Tab
+
+local Button = Tab:Button({
+    Title = "lunor flsch脚本",
+    Desc = "点击运行lunor脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://lunor.dev/loader"))()
+    end
+})
+WindUI:Notify({
+    Title = "lunor脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+
+local Button = Tab:Button({
+    Title = "flsch solix脚本",
+    Desc = "点击运行solix脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/debunked69/solixloader/refs/heads/main/solix%20v2%20new%20loader.lua"))()
+    end
+})
+WindUI:Notify({
+    Title = "solix脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+
+local Tab = Window:Tab({
+    Title = "bf",
+    Icon = "tap",
+    Locked = false,
+})
+Window:SelectTab(2) -- Number of Tab
+
+local Button = Tab:Button({
+    Title = "bf redz脚本",
+    Desc = "点击运行redz脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/tlredz/Scripts/refs/heads/main/main.luau"))
+    end
+})
+WindUI:Notify({
+    Title = "redz脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+
+local Button = Tab:Button({
+    Title = " bf blue x脚本",
+    Desc = "点击运行blue x脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/refs/heads/main/Main.lua"))()
+    end
+})
+WindUI:Notify({
+    Title = "blue x脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+
+local Tab = Window:Tab({
+    Title = "死铁轨",
+    Icon = "tap",
+    Locked = false,
+})
+Window:SelectTab(2) -- Number of Tab
+
+-- 死铁轨nat 按钮
+local NatButton = Tab:Button({
+    Title = "死铁轨nat中心",
+    Desc = "点击运行nat脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/NatHub.lua"))()
+        WindUI:Notify({
+            Title = "nat",
+            Content = "加载成功",
+            Duration = 3,
+            Icon = "bird",
+        })
+    end
+})
+
+local Tab = Window:Tab({
+    Title = "刀刃球",
+    Icon = "tap",
+    Locked = false,
+})
+Window:SelectTab(2) -- Number of Tab
+
+local Button = Tab:Button({
+    Title = "刀刃球ronixhub脚本",
+    Desc = "点击运行ronixhub脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/672a0ae340e8ce7e21a51e37c6bf0cc1.lua"))()
+    end
+})
+WindUI:Notify({
+    Title = "ronixhub脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+
+local Tab = Window:Tab({
+    Title = "种植花园",
+    Icon = "tap",
+    Locked = false,
+})
+Window:SelectTab(2) -- Number of Tab
+
+local Button = Tab:Button({
+    Title = "speed x 种植花园脚本",
+    Desc = "点击运行speed x脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
+    end
+})
+WindUI:Notify({
+    Title = "speed x脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+
+local Button = Tab:Button({
+    Title = "种植花园atv脚本",
+    Desc = "点击运行atv脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/thantzy/thanhub/refs/heads/main/thanv1"))()
+    end
+})
+
+WindUI:Notify({
+    Title = "种植花园atv脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+
+local Tab = Window:Tab({
+    Title = "偷走脑红",
+    Icon = "tap",
+    Locked = false,
+})
+Window:SelectTab(2) -- Number of Tab
+
+local Button = Tab:Button({
+    Title = "偷走脑红辣椒中心脚本",
+    Desc = "点击运行辣椒中心脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/tienkhanh1/spicy/main/Chilli.lua"))()
+    end
+})
+WindUI:Notify({
+    Title = "辣椒中心脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+
+local Button = Tab:Button({
+    Title = "偷走脑红dencycode脚本",
+    Desc = "点击运行dencycode脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Estevansit0/KJJK/refs/heads/main/PusarX-loader.lua"))()
+    end
+})
+WindUI:Notify({
+    Title = "dencycode脚本",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+
+local Tab = Window:Tab({
+    Title = "其他脚本中心",
+    Icon = "tap",
+    Locked = false,
+})
+Window:SelectTab(2) -- Number of Tab
+
+-- rb中心 按钮
+local RBButton = Tab:Button({
+    Title = "rb脚本中心",
+    Desc = "点击运行rb脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Yungengxin/roblox/refs/heads/main/Rb-Hub"))()
+        WindUI:Notify({
+            Title = "rb中心",
+            Content = "加载成功",
+            Duration = 3,
+            Icon = "bird",
+        })
+    end
+})
+
+-- 皮脚本 按钮
+local PiButton = Tab:Button({
+    Title = "皮脚本",
+    Desc = "点击运行皮脚本",
+    Locked = false,
+    Callback = function()
+        getgenv().XiaoPi = "皮脚本QQ群1002100032"
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/xiaopi77/xiaopi77/main/QQ1002100032-Roblox-Pi-script.lua"))()
+        WindUI:Notify({
+            Title = "皮脚本",
+            Content = "加载成功",
+            Duration = 3,
+            Icon = "bird",
+        })
+    end
+})
+
+-- tx v4 按钮
+local TxButton = Tab:Button({
+    Title = "tx v4",
+    Desc = "点击运行tx脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/dzq1311056/k/refs/heads/main/Protected_6797390536487459.lua"))()
+        WindUI:Notify({
+            Title = "tx v4",
+            Content = "加载成功",
+            Duration = 3,
+            Icon = "bird",
+        })
+    end
+})
+
+-- isis 按钮
+local IsisButton = Tab:Button({
+    Title = "isis",
+    Desc = "点击运行isis脚本key=ISIS-KEY-2025",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/S-WTB/-/refs/heads/main/ISIS加载器"))()
+        WindUI:Notify({
+            Title = "isis脚本",
+            Content = "加载成功",
+            Duration = 3,
+            Icon = "bird",
+        })
+    end
+})
+-- 创建 Tab
+local Tab = Window:Tab({
+    Title = "设置区",
+    Icon = "tap",
+    Locked = false,
+})
+Window:SelectTab(1)
+
+-- 创建 Section
+local Section = Tab:Section({ 
+    Title = "设置",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+-- 其它控件示例（可删减）
+local Button = Tab:Button({
+    Title = "普通测试按钮",
+    Desc = "点击测试",
+    Locked = false,
+    Callback = function()
+        print("clicked test button")
+    end
+})
+
+local Code = Tab:Code({
+    Title = "代码区",
+    Code = [[print("Hello World!")]]
+})
+Code:SetCode([[print("New code!")]])
+
+local Colorpicker = Tab:Colorpicker({
+    Title = "颜色选择器",
+    Desc = "选个颜色吧",
+    Default = Color3.fromRGB(0, 255, 0),
+    Transparency = 0,
+    Locked = false,
+    Callback = function(color) 
+        print("Background color: " .. tostring(color))
+    end
+})
+
+local Dropdown = Tab:Dropdown({
+    Title = "下拉框 (多选)",
+    Values = { "A", "B", "C" },
+    Value = { "A" },
+    Multi = true,
+    AllowNone = true,
+    Callback = function(option) 
+        print("选中的分类: " .. game:GetService("HttpService"):JSONEncode(option)) 
+    end
+})
+
+local Input = Tab:Input({
+    Title = "输入框",
+    Desc = "输入内容",
+    Value = "默认值",
+    InputIcon = "bird",
+    Type = "Input", -- or "Textarea"
+    Placeholder = "请输入...",
+    Callback = function(input) 
+        print("输入内容: " .. input)
+    end
+})
+
+local Keybind = Tab:Keybind({
+    Title = "快捷键",
+    Desc = "用来打开 UI",
+    Value = "G",
+    Callback = function(v)
+        Window:SetToggleKey(Enum.KeyCode[v])
+    end
+})
+
+local Paragraph = Tab:Paragraph({
+    Title = "段落区",
+    Desc = "展示段落",
+    Color = "Red",
+    Image = "",
+    ImageSize = 30,
+    Thumbnail = "",
+    ThumbnailSize = 80,
+    Locked = false,
+    Buttons = {
+        {
+            Icon = "bird",
+            Title = "段落按钮",
+            Callback = function() print("段落按钮被点了") end,
+        }
+    }
+})
+
+local Slider = Tab:Slider({
+    Title = "滑块",
+    Step = 1,
+    Value = {
+        Min = 20,
+        Max = 120,
+        Default = 70,
+    },
+    Callback = function(value)
+        print(value)
+    end
+})
+
+local Toggle = Tab:Toggle({
+    Title = "切换开关",
+    Desc = "开关描述",
+    Value = false,
+    Callback = function(val)
+        print("Toggle changed to: ", val)
+    end
+})
+
+-- 配置管理器示例
+local ConfigManager = Window.ConfigManager
+local myConfig = ConfigManager:CreateConfig("myConfigExample")
+myConfig:Register("SpecialNameExample", XKButton)
+myConfig:Save()
+myConfig:Load()
+ConfigManager:AllConfigs() -- 返回所有配置表
+
+-- 封装一个对话框函数
+local function ShowMyDialog(Window, title, content, onConfirm, onCancel)
+    Window:Dialog({
+        Icon = "bird",
+        Title = title or "提示",
+        Content = content or "是否继续？",
+        Buttons = {
+            {
+                Title = "确认",
+                Callback = function(self)
+                    if onConfirm then
+                        onConfirm()
+                    end
+                    self:Close()
+                end,
+            },
+            {
+                Title = "取消",
+                Callback = function(self)
+                    if onCancel then
+                        onCancel()
+                    end
+                    self:Close()
+                end,
+            },
+        },
+    })
+end
+
+-- ✅ 使用方法
+ShowMyDialog(
+    Window,
+    "戊",
+    "点完没加载就是用不了",
+    function()
+        print("Confirmed!") -- 点击确认时
+    end,
+    function()
+        print("Cancelled!") -- 点击取消时
+    end
+)
+
+WindUI:Popup({
+    Title = "提示",
+    Icon = "info",
+    Content = "点继续",
+    Buttons = {
+        {
+            Title = "取消",
+            Callback = function() end,
+            Variant = "Tertiary",
+        },
+        {
+            Title = "继续",
+            Icon = "arrow-right",
+            Callback = function() end,
+            Variant = "Primary",
+        }
+    }
+})
