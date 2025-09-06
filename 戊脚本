@@ -26,7 +26,7 @@ WindUI.Services.mysuperservicetogetkey = {
 -- 创建主窗口
 local Window = WindUI:CreateWindow({
     Title = "戊脚本",
-    Icon = "door-open",
+    Icon = "Crown",
     Author = "戊 hub",
     Folder = "MyTestHub",
     Theme = "Dark",
@@ -74,7 +74,7 @@ Window:ToggleTransparency(true)
 Window:IsResizable(false)
 Window:EditOpenButton({
     Title = "戊脚本中心",
-    Icon = "monitor",
+    Icon = "hand",
     CornerRadius = UDim.new(0,16),
     StrokeThickness = 2,
     Color = ColorSequence.new(Color3.fromHex("FF0F7B"), Color3.fromHex("F89B29")),
@@ -1008,6 +1008,12 @@ local Section = Tab:Section({
     TextSize = 17,
 })
 
+local Section = Window:Section({
+    Title = "doors",
+    Icon = "bird",
+    Opened = true,
+})
+
 -- doors xk 按钮
 local XKButton = Tab:Button({
     Title = "doors xk",
@@ -1632,16 +1638,16 @@ ConfigManager:AllConfigs() -- 返回所有配置表
 local Dialog = Window:Dialog({
     Icon = "bird",
     Title = "戊",
-    Content = "点完没加载就是用不了",
+    Content = "点完404/没加载就是用不了",
     Buttons = {
         {
-            Title = "Confirm",
+            Title = "确认",
             Callback = function()
                 print("Confirmed!")
             end,
         },
         {
-            Title = "Cancel",
+            Title = "取消",
             Callback = function()
                 print("Cancelled!")
             end,
@@ -1657,12 +1663,12 @@ WindUI:Popup({
     Content = "Popup content",
     Buttons = {
         {
-            Title = "Cancel",
+            Title = "取消",
             Callback = function() end,
             Variant = "Tertiary",
         },
         {
-            Title = "Continue",
+            Title = "继续",
             Icon = "arrow-right",
             Callback = function() end,
             Variant = "Primary",
