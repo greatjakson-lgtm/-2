@@ -993,24 +993,24 @@ Tabs.Misc:Code({
     Code = "QQ号:3848974452"
 })
 
+-- 创建 Section
+local Section = Tab:Section({ 
+    Title = "功能区",
+    TextXAlignment = "cloud",
+    TextSize = 17,
+})
+
 -- 创建 Tab
 local Tab = Window:Tab({
-    Title = "功能区",
+    Title = "doors",
     Icon = "bird",
     Locked = false,
 })
 Window:SelectTab(1)
 
--- 创建 Section
-local Section = Tab:Section({ 
-    Title = "脚本区",
-    TextXAlignment = "Left",
-    TextSize = 17,
-})
-
 local Section = Window:Section({
     Title = "doors",
-    Icon = "bird",
+    Icon = "crown",
     Opened = true,
 })
 
