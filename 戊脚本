@@ -92,35 +92,6 @@ Window:Tag({
     Color = Color3.fromHex("#315dff")
 })
 
--- 创建 Tab
-local Tab = Window:Tab({
-    Title = "通用区",
-    Icon = "bird",
-    Locked = false,
-})
-Window:SelectTab(1)
-
--- 创建 Section
-local Section = Tab:Section({ 
-    Title = "通用功能",
-    TextXAlignment = "Left",
-    TextSize = 17,
-})
-local Button = Tab:Button({
-    Title = "飞行 v3",
-    Desc = "点击运行戊飞行v3脚本",
-    Locked = false,
-    Callback = function()
-       loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/70a71eeabf5f141852374be101bc910bf9444036/fly.lua"))()
-    end
-})
-WindUI:Notify({
-    Title = "飞行v3",
-    Content = "加载成功",
-    Duration = 3, -- 3 seconds
-    Icon = "bird",
-})
-
 -- 创建指定的大类（作为标签页）
 local Tabs = {
     Home = Window:Tab({ Title = "主页", Icon = "crown" }),
@@ -1007,6 +978,65 @@ local Section = Tab:Section({
     TextSize = 17,
 })
 
+local Button = Tab:Button({
+    Title = "飞行 v3",
+    Desc = "点击运行戊飞行v3脚本",
+    Locked = false,
+    Callback = function()
+       loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/70a71eeabf5f141852374be101bc910bf9444036/fly.lua"))()
+    end
+})
+WindUI:Notify({
+    Title = "飞行v3",
+    Content = "加载成功",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})
+
+-- 黑洞v6 按钮
+local V6Button = Tab:Button({
+    Title = "自然灾害黑洞v6脚本",
+    Desc = "点击运行黑洞v6脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V6.txt"))()
+        WindUI:Notify({
+            Title = "黑洞v6脚本",
+            Content = "加载成功",
+            Duration = 3,
+            Icon = "bird",
+        })
+    end
+})
+
+-- vape 按钮
+local VapeButton = Tab:Button({
+    Title = "通用vape",
+    Desc = "点击运行vape脚本",
+    Locked = false,
+    Callback = function()
+        loadstring(utf8.char(table.unpack({108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,34,104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,55,71,114,97,110,100,68,97,100,80,71,78,47,86,97,112,101,86,52,70,111,114,82,111,98,108,111,120,47,109,97,105,110,47,78,101,119,77,97,105,110,83,99,114,105,112,116,46,108,117,97,34,44,32,116,114,117,101,41,41,40,41})))()
+        WindUI:Notify({
+            Title = "vape脚本",
+            Content = "加载成功",
+            Duration = 3,
+            Icon = "bird",
+        })
+    end
+})
+local Tab = Window:Tab({
+    Title = "doors",
+    Icon = "bird",
+    Locked = false,
+})
+Window:SelectTab(2) -- Number of Tab
+
+local Section = Window:Section({
+    Title = "doors",
+    Icon = "bird",
+    Opened = true,
+})
+
 -- doors xk 按钮
 local XKButton = Tab:Button({
     Title = "doors xk",
@@ -1068,6 +1098,18 @@ WindUI:Notify({
     Content = "加载成功",
     Duration = 3, -- 3 seconds
     Icon = "bird",
+})
+local Tab = Window:Tab({
+    Title = "inkgame",
+    Icon = "bird",
+    Locked = false,
+})
+Window:SelectTab(2) -- Number of Tab
+
+local Section = Window:Section({
+    Title = "inkgame",
+    Icon = "bird",
+    Opened = true,
 })
 
 -- void ware 按钮
@@ -1134,20 +1176,17 @@ local RingtaButton = Tab:Button({
     end
 })
 
--- isis 按钮
-local IsisButton = Tab:Button({
-    Title = "isis",
-    Desc = "点击运行isis脚本key=ISIS-KEY-2025",
+local Tab = Window:Tab({
+    Title = "99nights",
+    Icon = "bird",
     Locked = false,
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/S-WTB/-/refs/heads/main/ISIS加载器"))()
-        WindUI:Notify({
-            Title = "isis脚本",
-            Content = "加载成功",
-            Duration = 3,
-            Icon = "bird",
-        })
-    end
+})
+Window:SelectTab(2) -- Number of Tab
+
+local Section = Window:Section({
+    Title = "99nights",
+    Icon = "bird",
+    Opened = true,
 })
 
 -- Linux脚本 按钮
@@ -1195,6 +1234,18 @@ WindUI:Notify({
     Duration = 3, -- 3 seconds
     Icon = "bird",
 })
+local Tab = Window:Tab({
+    Title = "死亡之死/被遗弃",
+    Icon = "bird",
+    Locked = false,
+})
+Window:SelectTab(2) -- Number of Tab
+
+local Section = Window:Section({
+    Title = "Section for the tabs",
+    Icon = "bird",
+    Opened = true,
+})
 
 -- NOL 免费版 按钮
 local NolButton = Tab:Button({
@@ -1229,20 +1280,17 @@ local DieButton = Tab:Button({
     end
 })
 
--- 黑洞v6 按钮
-local V6Button = Tab:Button({
-    Title = "自然灾害黑洞v6脚本",
-    Desc = "点击运行黑洞v6脚本",
+local Tab = Window:Tab({
+    Title = "力量传奇",
+    Icon = "bird",
     Locked = false,
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V6.txt"))()
-        WindUI:Notify({
-            Title = "黑洞v6脚本",
-            Content = "加载成功",
-            Duration = 3,
-            Icon = "bird",
-        })
-    end
+})
+Window:SelectTab(2) -- Number of Tab
+
+local Section = Window:Section({
+    Title = "力量传奇",
+    Icon = "bird",
+    Opened = true,
 })
 
 local Button = Tab:Button({
@@ -1258,6 +1306,18 @@ WindUI:Notify({
     Content = "加载成功",
     Duration = 3, -- 3 seconds
     Icon = "bird",
+})
+local Tab = Window:Tab({
+    Title = "极速传奇",
+    Icon = "bird",
+    Locked = false,
+})
+Window:SelectTab(2) -- Number of Tab
+
+local Section = Window:Section({
+    Title = "极速传奇",
+    Icon = "bird",
+    Opened = true,
 })
 
 local Button = Tab:Button({
@@ -1290,6 +1350,19 @@ WindUI:Notify({
     Icon = "bird",
 })
 
+local Tab = Window:Tab({
+    Title = "flsch",
+    Icon = "bird",
+    Locked = false,
+})
+Window:SelectTab(2) -- Number of Tab
+
+local Section = Window:Section({
+    Title = "flsch",
+    Icon = "bird",
+    Opened = true,
+})
+
 local Button = Tab:Button({
     Title = "lunor flsch脚本",
     Desc = "点击运行lunor脚本",
@@ -1320,20 +1393,17 @@ WindUI:Notify({
     Icon = "bird",
 })
 
--- vape 按钮
-local VapeButton = Tab:Button({
-    Title = "通用vape",
-    Desc = "点击运行vape脚本",
+local Tab = Window:Tab({
+    Title = "bf",
+    Icon = "bird",
     Locked = false,
-    Callback = function()
-        loadstring(utf8.char(table.unpack({108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,34,104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,55,71,114,97,110,100,68,97,100,80,71,78,47,86,97,112,101,86,52,70,111,114,82,111,98,108,111,120,47,109,97,105,110,47,78,101,119,77,97,105,110,83,99,114,105,112,116,46,108,117,97,34,44,32,116,114,117,101,41,41,40,41})))()
-        WindUI:Notify({
-            Title = "vape脚本",
-            Content = "加载成功",
-            Duration = 3,
-            Icon = "bird",
-        })
-    end
+})
+Window:SelectTab(2) -- Number of Tab
+
+local Section = Window:Section({
+    Title = "bf",
+    Icon = "bird",
+    Opened = true,
 })
 
 local Button = Tab:Button({
@@ -1366,6 +1436,19 @@ WindUI:Notify({
     Icon = "bird",
 })
 
+local Tab = Window:Tab({
+    Title = "死铁轨",
+    Icon = "bird",
+    Locked = false,
+})
+Window:SelectTab(2) -- Number of Tab
+
+local Section = Window:Section({
+    Title = "死铁轨",
+    Icon = "bird",
+    Opened = true,
+})
+
 -- 死铁轨nat 按钮
 local NatButton = Tab:Button({
     Title = "死铁轨nat中心",
@@ -1382,6 +1465,19 @@ local NatButton = Tab:Button({
     end
 })
 
+local Tab = Window:Tab({
+    Title = "刀刃球",
+    Icon = "bird",
+    Locked = false,
+})
+Window:SelectTab(2) -- Number of Tab
+
+local Section = Window:Section({
+    Title = "刀刃球",
+    Icon = "bird",
+    Opened = true,
+})
+
 local Button = Tab:Button({
     Title = "刀刃球ronixhub脚本",
     Desc = "点击运行ronixhub脚本",
@@ -1395,6 +1491,19 @@ WindUI:Notify({
     Content = "加载成功",
     Duration = 3, -- 3 seconds
     Icon = "bird",
+})
+
+local Tab = Window:Tab({
+    Title = "种植花园",
+    Icon = "bird",
+    Locked = false,
+})
+Window:SelectTab(2) -- Number of Tab
+
+local Section = Window:Section({
+    Title = "种植花园",
+    Icon = "bird",
+    Opened = true,
 })
 
 local Button = Tab:Button({
@@ -1428,6 +1537,19 @@ WindUI:Notify({
     Icon = "bird",
 })
 
+local Tab = Window:Tab({
+    Title = "偷走脑红",
+    Icon = "bird",
+    Locked = false,
+})
+Window:SelectTab(2) -- Number of Tab
+
+local Section = Window:Section({
+    Title = "偷走脑红",
+    Icon = "bird",
+    Opened = true,
+})
+
 local Button = Tab:Button({
     Title = "偷走脑红辣椒中心脚本",
     Desc = "点击运行辣椒中心脚本",
@@ -1456,6 +1578,19 @@ WindUI:Notify({
     Content = "加载成功",
     Duration = 3, -- 3 seconds
     Icon = "bird",
+})
+
+local Tab = Window:Tab({
+    Title = "其他脚本中心",
+    Icon = "bird",
+    Locked = false,
+})
+Window:SelectTab(2) -- Number of Tab
+
+local Section = Window:Section({
+    Title = "其他脚本中心",
+    Icon = "bird",
+    Opened = true,
 })
 
 -- rb中心 按钮
@@ -1500,6 +1635,22 @@ local TxButton = Tab:Button({
         loadstring(game:HttpGet("https://raw.githubusercontent.com/dzq1311056/k/refs/heads/main/Protected_6797390536487459.lua"))()
         WindUI:Notify({
             Title = "tx v4",
+            Content = "加载成功",
+            Duration = 3,
+            Icon = "bird",
+        })
+    end
+})
+
+-- isis 按钮
+local IsisButton = Tab:Button({
+    Title = "isis",
+    Desc = "点击运行isis脚本key=ISIS-KEY-2025",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/S-WTB/-/refs/heads/main/ISIS加载器"))()
+        WindUI:Notify({
+            Title = "isis脚本",
             Content = "加载成功",
             Duration = 3,
             Icon = "bird",
