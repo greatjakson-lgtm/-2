@@ -205,9 +205,9 @@ local function TryEatFood(food)
     end)
 
     if success and result and result.Success then
-        WindUI:Notify({Title = "AlienX", Content = "✅成功吃下 " .. food.Name, Duration = 5})
+        WindUI:Notify({Title = "戊", Content = "✅成功吃下 " .. food.Name, Duration = 5})
     else
-        WindUI:Notify({Title = "AlienX", Content = "❌️进食失败", Duration = 5})
+        WindUI:Notify({Title = "戊", Content = "❌️进食失败", Duration = 5})
     end
 end
 
