@@ -996,7 +996,7 @@ Tabs.Misc:Code({
 -- 创建 Tab
 local Tab = Window:Tab({
     Title = "功能区",
-    Icon = "cloud",
+    Icon = "bird",
     Locked = false,
 })
 Window:SelectTab(1)
@@ -1004,7 +1004,7 @@ Window:SelectTab(1)
 -- 创建 Section
 local Section = Tab:Section({ 
     Title = "脚本区",
-    TextXAlignment = "left",
+    TextXAlignment = "Left",
     TextSize = 17,
 })
 
