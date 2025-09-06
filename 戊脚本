@@ -1008,12 +1008,6 @@ local Section = Tab:Section({
     TextSize = 17,
 })
 
-local Section = Window:Section({
-    Title = "doors",
-    Icon = "crown",
-    Opened = true,
-})
-
 -- doors xk 按钮
 local XKButton = Tab:Button({
     Title = "doors xk",
@@ -1075,12 +1069,6 @@ WindUI:Notify({
     Content = "加载成功",
     Duration = 3, -- 3 seconds
     Icon = "bird",
-})
-
-local Section = Window:Section({
-    Title = "墨水",
-    Icon = "bird",
-    Opened = true,
 })
 
 -- void ware 按钮
