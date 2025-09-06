@@ -965,18 +965,11 @@ Tabs.Misc:Code({
 
 -- 创建 Tab
 local Tab = Window:Tab({
-    Title = "功能区",
+    Title = "通用功能区",
     Icon = "cloud",
     Locked = false,
 })
 Window:SelectTab(1)
-
--- 创建 Section
-local Section = Tab:Section({ 
-    Title = "脚本区",
-    TextXAlignment = "Left",
-    TextSize = 17,
-})
 
 local Button = Tab:Button({
     Title = "飞行 v3",
@@ -1026,16 +1019,10 @@ local VapeButton = Tab:Button({
 })
 local Tab = Window:Tab({
     Title = "doors",
-    Icon = "bird",
+    Icon = "tap",
     Locked = false,
 })
 Window:SelectTab(2) -- Number of Tab
-
-local Section = Window:Section({
-    Title = "doors",
-    Icon = "bird",
-    Opened = true,
-})
 
 -- doors xk 按钮
 local XKButton = Tab:Button({
@@ -1101,16 +1088,10 @@ WindUI:Notify({
 })
 local Tab = Window:Tab({
     Title = "inkgame",
-    Icon = "bird",
+    Icon = "tap",
     Locked = false,
 })
 Window:SelectTab(2) -- Number of Tab
-
-local Section = Window:Section({
-    Title = "inkgame",
-    Icon = "bird",
-    Opened = true,
-})
 
 -- void ware 按钮
 local VoidwareButton = Tab:Button({
@@ -1178,32 +1159,10 @@ local RingtaButton = Tab:Button({
 
 local Tab = Window:Tab({
     Title = "99nights",
-    Icon = "bird",
+    Icon = "tap",
     Locked = false,
 })
 Window:SelectTab(2) -- Number of Tab
-
-local Section = Window:Section({
-    Title = "99nights",
-    Icon = "bird",
-    Opened = true,
-})
-
--- Linux脚本 按钮
-local LinuxButton = Tab:Button({
-    Title = "99夜Linux脚本",
-    Desc = "点击运行Linux脚本",
-    Locked = false,
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/LinuxDevBr/99-Nights-In-the-Forest/refs/heads/main/Script.txt"))()
-        WindUI:Notify({
-            Title = "Linux脚本",
-            Content = "加载成功",
-            Duration = 3,
-            Icon = "bird",
-        })
-    end
-})
 
 local Button = Tab:Button({
     Title = "99nights av hub脚本",
@@ -1236,16 +1195,10 @@ WindUI:Notify({
 })
 local Tab = Window:Tab({
     Title = "死亡之死/被遗弃",
-    Icon = "bird",
+    Icon = "tap",
     Locked = false,
 })
 Window:SelectTab(2) -- Number of Tab
-
-local Section = Window:Section({
-    Title = "Section for the tabs",
-    Icon = "bird",
-    Opened = true,
-})
 
 -- NOL 免费版 按钮
 local NolButton = Tab:Button({
@@ -1282,16 +1235,10 @@ local DieButton = Tab:Button({
 
 local Tab = Window:Tab({
     Title = "力量传奇",
-    Icon = "bird",
+    Icon = "tap",
     Locked = false,
 })
 Window:SelectTab(2) -- Number of Tab
-
-local Section = Window:Section({
-    Title = "力量传奇",
-    Icon = "bird",
-    Opened = true,
-})
 
 local Button = Tab:Button({
     Title = "bald力量传奇脚本",
@@ -1309,16 +1256,10 @@ WindUI:Notify({
 })
 local Tab = Window:Tab({
     Title = "极速传奇",
-    Icon = "bird",
+    Icon = "tap",
     Locked = false,
 })
 Window:SelectTab(2) -- Number of Tab
-
-local Section = Window:Section({
-    Title = "极速传奇",
-    Icon = "bird",
-    Opened = true,
-})
 
 local Button = Tab:Button({
     Title = "relz极速传奇脚本",
@@ -1352,16 +1293,10 @@ WindUI:Notify({
 
 local Tab = Window:Tab({
     Title = "flsch",
-    Icon = "bird",
+    Icon = "tap",
     Locked = false,
 })
 Window:SelectTab(2) -- Number of Tab
-
-local Section = Window:Section({
-    Title = "flsch",
-    Icon = "bird",
-    Opened = true,
-})
 
 local Button = Tab:Button({
     Title = "lunor flsch脚本",
@@ -1395,16 +1330,10 @@ WindUI:Notify({
 
 local Tab = Window:Tab({
     Title = "bf",
-    Icon = "bird",
+    Icon = "tap",
     Locked = false,
 })
 Window:SelectTab(2) -- Number of Tab
-
-local Section = Window:Section({
-    Title = "bf",
-    Icon = "bird",
-    Opened = true,
-})
 
 local Button = Tab:Button({
     Title = "bf redz脚本",
@@ -1438,16 +1367,10 @@ WindUI:Notify({
 
 local Tab = Window:Tab({
     Title = "死铁轨",
-    Icon = "bird",
+    Icon = "tap",
     Locked = false,
 })
 Window:SelectTab(2) -- Number of Tab
-
-local Section = Window:Section({
-    Title = "死铁轨",
-    Icon = "bird",
-    Opened = true,
-})
 
 -- 死铁轨nat 按钮
 local NatButton = Tab:Button({
@@ -1467,16 +1390,10 @@ local NatButton = Tab:Button({
 
 local Tab = Window:Tab({
     Title = "刀刃球",
-    Icon = "bird",
+    Icon = "tap",
     Locked = false,
 })
 Window:SelectTab(2) -- Number of Tab
-
-local Section = Window:Section({
-    Title = "刀刃球",
-    Icon = "bird",
-    Opened = true,
-})
 
 local Button = Tab:Button({
     Title = "刀刃球ronixhub脚本",
@@ -1495,16 +1412,10 @@ WindUI:Notify({
 
 local Tab = Window:Tab({
     Title = "种植花园",
-    Icon = "bird",
+    Icon = "tap",
     Locked = false,
 })
 Window:SelectTab(2) -- Number of Tab
-
-local Section = Window:Section({
-    Title = "种植花园",
-    Icon = "bird",
-    Opened = true,
-})
 
 local Button = Tab:Button({
     Title = "speed x 种植花园脚本",
@@ -1539,16 +1450,10 @@ WindUI:Notify({
 
 local Tab = Window:Tab({
     Title = "偷走脑红",
-    Icon = "bird",
+    Icon = "tap",
     Locked = false,
 })
 Window:SelectTab(2) -- Number of Tab
-
-local Section = Window:Section({
-    Title = "偷走脑红",
-    Icon = "bird",
-    Opened = true,
-})
 
 local Button = Tab:Button({
     Title = "偷走脑红辣椒中心脚本",
@@ -1582,16 +1487,10 @@ WindUI:Notify({
 
 local Tab = Window:Tab({
     Title = "其他脚本中心",
-    Icon = "bird",
+    Icon = "tap",
     Locked = false,
 })
 Window:SelectTab(2) -- Number of Tab
-
-local Section = Window:Section({
-    Title = "其他脚本中心",
-    Icon = "bird",
-    Opened = true,
-})
 
 -- rb中心 按钮
 local RBButton = Tab:Button({
