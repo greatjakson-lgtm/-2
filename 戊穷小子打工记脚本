@@ -40,11 +40,11 @@ Window:Tag({ Title = "开发者制作", Color = Color3.fromHex("#000000") })
 local Tabs = {
     Home = Window:Tab({ Title = "主页", Icon = "crown" })，
     Teleport = Window:Tab({ Title = "传送", Icon = "zap" })，
-    Automation = Window:Tab({ Title = "自动化", Icon = "cloud" })
-    Saved = Window:Tab({ Title = "设置", Icon = "setti" })
-    Player = Window:Tab({ Title = "玩家", Icon = "user" })
-    Visual = Window:Tab({ Title = "视觉", Icon = "sun" })
-    Misc = Window:Tab({ Title = "其他", Icon = "star" })
+    Automation = Window:Tab({ Title = "自动化", Icon = "cloud" })，
+    Saved = Window:Tab({ Title = "设置", Icon = "setti" })，
+    Player = Window:Tab({ Title = "玩家", Icon = "user" })，
+    Visual = Window:Tab({ Title = "视觉", Icon = "sun" })，
+    Misc = Window:Tab({ Title = "其他", Icon = "star" })，
 }
 
 Window:SelectTab(1)
