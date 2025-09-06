@@ -26,7 +26,7 @@ local Window = WindUI:CreateWindow({
     IconThemed = true,
     Author = "感谢游玩",
     Folder = "穷小子打工记",
-    Size = UDim2.fromOffset(540, 340),
+    Size = UDim2.fromOffset(380, 270),
     Transparent = true,
     Theme = "Dark",
     User = { Enabled = true },
@@ -39,7 +39,7 @@ Window:Tag({
         Color = Color3.fromHex("#30ff6a")
     })
     Window:Tag({
-        Title = "99nights", 
+        Title = "穷小子打工记", 
         Color = Color3.fromHex("#315dff")
     })
     local TimeTag = Window:Tag({
