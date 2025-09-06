@@ -1,86 +1,37 @@
--- 加载 WindUI 主库
 local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua"))()
 
--- 注册自定义 Key 验证服务（如有需要）
-WindUI.Services.mysuperservicetogetkey = {
-    Name = "戊脚本",
-    Icon = "droplet", -- lucide, rbxassetid, raw img link
-    Args = { "ServiceId" },
-    New = function(ServiceId)
-        function validateKey(key)
-            if not key then
-                return false, "Key is invalid!" 
-            end
-            return true, "Key is valid!" 
-        end
-        function copyLink()
-            return setclipboard("link to key system service.")
-        end
-        return {
-            Verify = validateKey,
-            Copy = copyLink
+local Confirmed = false
+
+WindUI:Popup({
+    Title = " 戊脚本",
+    Icon = "rbxassetid://129260712070622",
+    IconThemed = true,
+    Content = "By:誓约\nQQ群:1053715085 欢迎使用99夜",
+    Buttons = {
+        {
+            Title = "进入脚本。",
+            Icon = "arrow-right",
+            Callback = function() Confirmed = true end,
+            Variant = "Primary",
         }
-    end
-}
-
--- 创建主窗口
-local Window = WindUI:CreateWindow({
-    Title = "戊脚本",
-    Icon = "crown",
-    Author = "誓约",
-    Folder = "MyTestHub",
-    Theme = "Dark",
-    Size = UDim2.fromOffset(350, 270),
-    Transparent = true,
-    Resizable = true,
-    SideBarWidth = 200,
-    BackgroundImageTransparency = 0.42,
-    HideSearchBar = true,
-    ScrollBarEnabled = false,
-
-    User = {
-        Enabled = true,
-        Anonymous = true,
-        Callback = function()
-            print("clicked user icon")
-        end,
-    },
-
-    KeySystem = {
-        Note = "Example Key System. With your custom service.",
-        API = {
-            {
-                Type = "mysuperservicetogetkey",
-                ServiceId = 1234,
-            },
-            {
-                Type = "platoboost",
-                ServiceId = 1234,
-                Secret = "platoboost-secret",
-            },
-            {
-                Type = "pandadevelopment",
-                ServiceId = "myServiceId",
-            },
-        },
     }
 })
 
--- 设置窗口背景
-Window:SetBackgroundImage("rbxassetid://id-here")
-Window:SetBackgroundImageTransparency(0.5)
-Window:SetToggleKey(Enum.KeyCode.H)
-Window:ToggleTransparency(true)
-Window:IsResizable(false)
-Window:EditOpenButton({
-    Title = "戊脚本中心",
-    Icon = "hand",
-    CornerRadius = UDim.new(0,16),
-    StrokeThickness = 2,
-    Color = ColorSequence.new(Color3.fromHex("FF0F7B"), Color3.fromHex("F89B29")),
-    OnlyMobile = false,
-    Enabled = true,
-    Draggable = true,
+repeat wait() until Confirmed
+
+-- 修复后的代码将所有功能整合到一个统一的 WindUI 窗口中
+local Window = WindUI:CreateWindow({
+    Title = "戊脚本",
+    Icon = "rbxassetid://129260712070622",
+    IconThemed = true,
+    Author = "感谢游玩",
+    Folder = "戊脚本",
+    Size = UDim2.fromOffset(540, 340),
+    Transparent = true,
+    Theme = "Dark",
+    User = { Enabled = true },
+    SideBarWidth = 200,
+    ScrollBarEnabled = true,
 })
 
 Window:Tag({
