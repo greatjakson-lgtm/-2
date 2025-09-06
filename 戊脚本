@@ -82,12 +82,56 @@ Window:EditOpenButton({
     Enabled = true,
     Draggable = true,
 })
+-- 创建用户信息 Section
+local UserSection = UserTab:Section({ 
+    Title = "个人信息",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+-- 获取本地玩家信息
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+-- 显示用户名
+UserSection:Paragraph({
+    Title = "用户名",
+    Desc = LocalPlayer.Name,
+    Image = "https://img.icons8.com/ios-filled/50/FFFFFF/user.png",
+    ImageSize = 30,
+})
+
+-- 显示显示名称（昵称）
+local displayName = LocalPlayer.DisplayName
+if displayName ~= LocalPlayer.Name then
+    UserSection:Paragraph({
+        Title = "昵称",
+        Desc = displayName,
+        Image = "https://img.icons8.com/ios-filled/50/FFFFFF/name.png",
+        ImageSize = 30,
+    })
+end
+
+-- 显示用户ID
+UserSection:Paragraph({
+    Title = "用户ID",
+    Desc = tostring(LocalPlayer.UserId),
+    Image = "https://img.icons8.com/ios-filled/50/FFFFFF/id-card.png",
+    ImageSize = 30,
+})
 
 Window:Tag({
     Title = "v1.0",
     Color = Color3.fromHex("#30ff6a")
 })
-
+Window:Tag({
+    Title = "戊脚本",
+    Color = Color6.fromHex("#30ff6a")
+})
+Window:Tag({
+    Title = "by誓约",
+    Color = Color4.fromHex("#30ff6a")
+})
 -- 创建 Tab
 local Tab = Window:Tab({
     Title = "通用区",
