@@ -82,25 +82,17 @@ Window:EditOpenButton({
     Enabled = true,
     Draggable = true,
 })
--- 创建用户信息 Section
-local UserSection = UserTab:Section({ 
-    Title = "个人信息",
-    TextXAlignment = "Left",
-    TextSize = 17,
-})
 
 Window:Tag({
     Title = "v1.0",
     Color = Color3.fromHex("#30ff6a")
 })
-Window:Tag({
-    Title = "戊脚本",
-    Color = Color6.fromHex("#30ff6a")
-})
+
 Window:Tag({
     Title = "by誓约",
-    Color = Color4.fromHex("#30ff6a")
+    Color = Color3.fromHex("#000000")
 })
+
 -- 创建 Tab
 local Tab = Window:Tab({
     Title = "通用区",
