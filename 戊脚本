@@ -1,4 +1,4 @@
-- 鍔犺浇 WindUI 涓诲簱
+-- 鍔犺浇 WindUI 涓诲簱
 local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua"))()
 
 
