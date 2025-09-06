@@ -949,6 +949,9 @@ Tabs.Misc:Button({
 -- 添加一个定时器来更新标签
 spawn(function()
     while true do
+    task.wait(1)  -- 每 1 秒执行一次，避免卡死
+    print("循环中...")
+end
         wait(5)
         local currentTime = os.date("%H:%M:%S")
         TimeTag:Set({
