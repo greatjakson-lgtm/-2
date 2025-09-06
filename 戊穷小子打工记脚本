@@ -3,10 +3,10 @@ local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footag
 
 local Confirmed = false
 WindUI:Popup({
-    Title = "穷小子打工记脚本 v3.2",
+    Title = "戊穷小子打工记脚本 v1.0",
     Icon = "rbxassetid://129260712070622",
     IconThemed = true,
-    Content = "By: 开发者\nQQ群: 912837219\n欢迎使用完整版 v3.2",
+    Content = "By: 誓约\nQQ群:1053715085 \n欢迎使用完整版 v1.0",
     Buttons = {
         {
             Title = "进入脚本",
@@ -20,10 +20,10 @@ repeat task.wait() until Confirmed
 
 -- 主窗口
 local Window = WindUI:CreateWindow({
-    Title = "穷小子打工记 v3.2",
+    Title = "穷小子打工记 v1.0",
     Icon = "rbxassetid://129260712070622",
     IconThemed = true,
-    Author = "开发者",
+    Author = "誓约",
     Folder = "穷小子打工记",
     Size = UDim2.fromOffset(380, 270),
     Transparent = true,
