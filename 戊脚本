@@ -1,4 +1,4 @@
--- 加载 WindUI 主库
+- 加载 WindUI 主库
 local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua"))()
 
 -- 注册自定义 Key 验证服务（如有需要）
@@ -27,9 +27,9 @@ WindUI.Services.mysuperservicetogetkey = {
 local Window = WindUI:CreateWindow({
     Title = "戊脚本",
     Icon = "Crown",
-    Author = "誓约",
-    Folder = "MyTextHub",
-    Theme = "bright",
+    Author = "戊 hub",
+    Folder = "MyTestHub",
+    Theme = "Dark",
     Size = UDim2.fromOffset(350, 270),
     Transparent = true,
     Resizable = true,
@@ -87,15 +87,11 @@ Window:Tag({
     Title = "v1.0",
     Color = Color3.fromHex("#30ff6a")
 })
-Window:Tag({
-    Title = "by誓约",
-    Color = Color3.fromHex("#000000")
-})
 
 -- 创建 Tab
 local Tab = Window:Tab({
     Title = "通用区",
-    Icon = "Crown",
+    Icon = "bird",
     Locked = false,
 })
 Window:SelectTab(1)
@@ -1509,7 +1505,7 @@ local TxButton = Tab:Button({
 -- 创建 Tab
 local Tab = Window:Tab({
     Title = "设置区",
-    Icon = "bird",
+    Icon = "tap",
     Locked = false,
 })
 Window:SelectTab(1)
@@ -1527,34 +1523,6 @@ local Button = Tab:Button({
     Locked = false,
     Callback = function()
         print("clicked test button")
-    end
-})
-
-local Code = Tab:Code({
-    Title = "代码区",
-    Code = [[print("Hello World!")]]
-})
-Code:SetCode([[print("New code!")]])
-
-local Colorpicker = Tab:Colorpicker({
-    Title = "颜色选择器",
-    Desc = "选个颜色吧",
-    Default = Color3.fromRGB(0, 255, 0),
-    Transparency = 0,
-    Locked = false,
-    Callback = function(color) 
-        print("Background color: " .. tostring(color))
-    end
-})
-
-local Dropdown = Tab:Dropdown({
-    Title = "下拉框 (多选)",
-    Values = { "A", "B", "C" },
-    Value = { "A" },
-    Multi = true,
-    AllowNone = true,
-    Callback = function(option) 
-        print("选中的分类: " .. game:GetService("HttpService"):JSONEncode(option)) 
     end
 })
 
@@ -1577,24 +1545,6 @@ local Keybind = Tab:Keybind({
     Callback = function(v)
         Window:SetToggleKey(Enum.KeyCode[v])
     end
-})
-
-local Paragraph = Tab:Paragraph({
-    Title = "段落区",
-    Desc = "展示段落",
-    Color = "Red",
-    Image = "",
-    ImageSize = 30,
-    Thumbnail = "",
-    ThumbnailSize = 80,
-    Locked = false,
-    Buttons = {
-        {
-            Icon = "bird",
-            Title = "段落按钮",
-            Callback = function() print("段落按钮被点了") end,
-        }
-    }
 })
 
 local Slider = Tab:Slider({
@@ -1631,7 +1581,7 @@ ConfigManager:AllConfigs() -- 返回所有配置表
 local Dialog = Window:Dialog({
     Icon = "bird",
     Title = "戊",
-    Content = "点完404/没加载就是用不了",
+    Content = "点完没加载就是用不了",
     Buttons = {
         {
             Title = "确认",
@@ -1651,9 +1601,9 @@ Dialog:Show()
 Dialog:Close()
 
 WindUI:Popup({
-    Title = "提示",
+    Title = "Popup Title",
     Icon = "info",
-    Content = "点继续",
+    Content = "Popup content",
     Buttons = {
         {
             Title = "取消",
