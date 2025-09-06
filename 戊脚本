@@ -1,4 +1,4 @@
-- 加载 WindUI 主库
+-- 加载 WindUI 主库
 local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua"))()
 
 -- 注册自定义 Key 验证服务（如有需要）
@@ -26,7 +26,7 @@ WindUI.Services.mysuperservicetogetkey = {
 -- 创建主窗口
 local Window = WindUI:CreateWindow({
     Title = "戊脚本",
-    Icon = "Crown",
+    Icon = "crown",
     Author = "戊 hub",
     Folder = "MyTestHub",
     Theme = "Dark",
@@ -87,7 +87,6 @@ Window:Tag({
     Title = "v1.0",
     Color = Color3.fromHex("#30ff6a")
 })
-
 Window:Tag({
     Title = "by誓约",
     Color = Color3.fromHex("#315dff")
@@ -1510,7 +1509,7 @@ local TxButton = Tab:Button({
 -- 创建 Tab
 local Tab = Window:Tab({
     Title = "设置区",
-    Icon = "tap",
+    Icon = "bird",
     Locked = false,
 })
 Window:SelectTab(1)
@@ -1528,6 +1527,34 @@ local Button = Tab:Button({
     Locked = false,
     Callback = function()
         print("clicked test button")
+    end
+})
+
+local Code = Tab:Code({
+    Title = "代码区",
+    Code = [[print("Hello World!")]]
+})
+Code:SetCode([[print("New code!")]])
+
+local Colorpicker = Tab:Colorpicker({
+    Title = "颜色选择器",
+    Desc = "选个颜色吧",
+    Default = Color3.fromRGB(0, 255, 0),
+    Transparency = 0,
+    Locked = false,
+    Callback = function(color) 
+        print("Background color: " .. tostring(color))
+    end
+})
+
+local Dropdown = Tab:Dropdown({
+    Title = "下拉框 (多选)",
+    Values = { "A", "B", "C" },
+    Value = { "A" },
+    Multi = true,
+    AllowNone = true,
+    Callback = function(option) 
+        print("选中的分类: " .. game:GetService("HttpService"):JSONEncode(option)) 
     end
 })
 
@@ -1550,6 +1577,24 @@ local Keybind = Tab:Keybind({
     Callback = function(v)
         Window:SetToggleKey(Enum.KeyCode[v])
     end
+})
+
+local Paragraph = Tab:Paragraph({
+    Title = "段落区",
+    Desc = "展示段落",
+    Color = "Red",
+    Image = "",
+    ImageSize = 30,
+    Thumbnail = "",
+    ThumbnailSize = 80,
+    Locked = false,
+    Buttons = {
+        {
+            Icon = "bird",
+            Title = "段落按钮",
+            Callback = function() print("段落按钮被点了") end,
+        }
+    }
 })
 
 local Slider = Tab:Slider({
@@ -1589,13 +1634,13 @@ local Dialog = Window:Dialog({
     Content = "点完没加载就是用不了",
     Buttons = {
         {
-            Title = "确认",
+            Title = "Confirm",
             Callback = function()
                 print("Confirmed!")
             end,
         },
         {
-            Title = "取消",
+            Title = "Cancel",
             Callback = function()
                 print("Cancelled!")
             end,
@@ -1611,12 +1656,12 @@ WindUI:Popup({
     Content = "Popup content",
     Buttons = {
         {
-            Title = "取消",
+            Title = "Cancel",
             Callback = function() end,
             Variant = "Tertiary",
         },
         {
-            Title = "继续",
+            Title = "Continue",
             Icon = "arrow-right",
             Callback = function() end,
             Variant = "Primary",
