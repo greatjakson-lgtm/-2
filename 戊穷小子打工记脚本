@@ -1,5 +1,4 @@
--- 加载 WindUI 主库
-local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua"))()
+local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/UI-Wind/Wind-UI-Library/main/Source.lua"))()
 
 local Confirmed = false
 
@@ -20,14 +19,14 @@ WindUI:Popup({
 
 repeat wait() until Confirmed
 
--- 创建主窗口
+-- 修复后的代码将所有功能整合到一个统一的 WindUI 窗口中
 local Window = WindUI:CreateWindow({
     Title = "穷小子打工记脚本",
     Icon = "rbxassetid://129260712070622",
     IconThemed = true,
     Author = "感谢游玩",
     Folder = "穷小子打工记",
-    Size = UDim2.fromOffset(600, 450),
+    Size = UDim2.fromOffset(540, 340),
     Transparent = true,
     Theme = "Dark",
     User = { Enabled = true },
@@ -36,21 +35,22 @@ local Window = WindUI:CreateWindow({
 })
 
 Window:Tag({
-    Title = "v2.0",
-    Color = Color3.fromHex("#30ff6a")
-})
-Window:Tag({
-    Title = "功能齐全", 
-    Color = Color3.fromHex("#315dff")
-})
-Window:Tag({
-    Title = "by开发者",
-    Color = Color3.fromHex("#000000")
-})
+        Title = "v1.0",
+        Color = Color3.fromHex("#30ff6a")
+    })
+    Window:Tag({
+        Title = "99nights", 
+        Color = Color3.fromHex("#315dff")
+    })
+    local TimeTag = Window:Tag({
+        Title = "by誓约",
+        Color = Color3.fromHex("#000000")
+    })
 
 -- 创建指定的大类（作为标签页）
 local Tabs = {
-    Main = Window:Tab({ Title = "主要功能", Icon = "home" }),
+    Home = Window:Tab({ Title = "主页", Icon = "crown" }),
+    Main = Window:Tab({ Title = "主要功能", Icon = "zap" }),
     Teleport = Window:Tab({ Title = "传送功能", Icon = "map-pin" }),
     Automation = Window:Tab({ Title = "自动化", Icon = "settings" }),
     SavedLocations = Window:Tab({ Title = "位置保存", Icon = "bookmark" }),
@@ -84,6 +84,7 @@ local Locations = {
 
 -- 保存的位置数据
 local SavedLocations = {}
+local locationFileName = "PoorGuySavedLocations.json"
 
 -- 功能状态
 local Features = {
@@ -96,6 +97,19 @@ local Features = {
 
 -- 自动功能循环
 local autoLoops = {}
+
+-- 主页选项卡
+Tabs.Home:Section({Title = "脚本信息"})
+Tabs.Home:Paragraph({
+    Title = "穷小子打工记",
+    Desc = "多功能脚本 - 包含所有功能",
+    Image = "rbxassetid://129260712070622",
+    ImageSize = 42,
+})
+Tabs.Home:Paragraph({
+    Title = "欢迎使用",
+    Desc = "按RightShift打开/关闭菜单\n作者: 开发者",
+})
 
 -- 主要功能选项卡
 Tabs.Main:Section({Title = "玩家信息"})
@@ -435,4 +449,4 @@ end
 -- 添加脚本加载完成提示
 Window:Notify({Title = "脚本加载完成", Content = "穷小子打工记脚本已完全加载!\n按RightShift打开菜单", Duration = 5})
 
-print("穷小子打工记脚本完全加载完成! ")
+print("穷小子打工记脚本完全加载完成! 按RightShift打开菜单")
