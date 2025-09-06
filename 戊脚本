@@ -1671,9 +1671,9 @@ ShowMyDialog(
 )
 
 WindUI:Popup({
-    Title = "Popup Title",
+    Title = "提示",
     Icon = "info",
-    Content = "Popup content",
+    Content = "点继续",
     Buttons = {
         {
             Title = "取消",
