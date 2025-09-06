@@ -946,18 +946,29 @@ Tabs.Misc:Button({
         })
     end
 })
--- 获取 UI 元素
-local TimeTag = script.Parent:WaitForChild("TimeTag")
+
+-- 创建一个标签（Label/Tag）
+local TimeTag = Tabs.Misc:Label({
+    Title = "当前时间: 初始化中...",
+    Color = Color3.fromHex("#ffffff")
+})
 
 -- 添加一个定时器来更新标签
 spawn(function()
     while true do
         wait(5)
         local currentTime = os.date("%H:%M:%S")
-        TimeTag.Text = "当前时间: " .. currentTime
-        TimeTag.TextColor3 = Color3.fromHex("#ff6a30")
+        if TimeTag then
+            TimeTag:Set({
+                Title = "当前时间: " .. currentTime,
+                Color = Color3.fromHex("#ff6a30")
+            })
+        else
+            warn("TimeTag 未初始化")
+        end
     end
 end)
+
 Tabs.Misc:Code({
     Title = "感谢游玩",
     Code = "QQ号:3848974452"
