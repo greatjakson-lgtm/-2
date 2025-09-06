@@ -995,16 +995,16 @@ Tabs.Misc:Code({
 
 -- 创建 Tab
 local Tab = Window:Tab({
-    Title = "通用区",
-    Icon = "bird",
+    Title = "功能区",
+    Icon = "cloud",
     Locked = false,
 })
 Window:SelectTab(1)
 
 -- 创建 Section
 local Section = Tab:Section({ 
-    Title = "功能区",
-    TextXAlignment = "cloud",
+    Title = "脚本区",
+    TextXAlignment = "left",
     TextSize = 17,
 })
 
