@@ -3,10 +3,10 @@ local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footag
 local Confirmed = false
 
 WindUI:Popup({
-    Title = " 戊脚本",
+    Title = " 戊脚本中心",
     Icon = "rbxassetid://129260712070622",
     IconThemed = true,
-    Content = "By:誓约\nQQ群:1053715085 欢迎使用99夜",
+    Content = "By:誓约\nQQ群:1053715085 欢迎使用戊脚本中心，可以来找作者誓约汉化qq:3848974452",
     Buttons = {
         {
             Title = "进入脚本。",
@@ -21,11 +21,11 @@ repeat wait() until Confirmed
 
 -- 修复后的代码将所有功能整合到一个统一的 WindUI 窗口中
 local Window = WindUI:CreateWindow({
-    Title = "戊脚本",
+    Title = "戊脚本中心",
     Icon = "rbxassetid://129260712070622",
     IconThemed = true,
     Author = "感谢游玩",
-    Folder = "戊脚本",
+    Folder = "誓约",
     Size = UDim2.fromOffset(540, 340),
     Transparent = true,
     Theme = "Dark",
