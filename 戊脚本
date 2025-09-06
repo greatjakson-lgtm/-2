@@ -1,4 +1,4 @@
-- 加载 WindUI 主库
+-- 加载 WindUI 主库
 local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua"))()
 
 -- 注册自定义 Key 验证服务（如有需要）
@@ -1677,28 +1677,47 @@ myConfig:Save()
 myConfig:Load()
 ConfigManager:AllConfigs() -- 返回所有配置表
 
--- 弹窗、对话框示例
-local Dialog = Window:Dialog({
-    Icon = "bird",
-    Title = "戊",
-    Content = "点完没加载就是用不了",
-    Buttons = {
-        {
-            Title = "确认",
-            Callback = function()
-                print("Confirmed!")
-            end,
+-- 封装一个对话框函数
+local function ShowMyDialog(Window, title, content, onConfirm, onCancel)
+    Window:Dialog({
+        Icon = "bird",
+        Title = title or "提示",
+        Content = content or "是否继续？",
+        Buttons = {
+            {
+                Title = "确认",
+                Callback = function(self)
+                    if onConfirm then
+                        onConfirm()
+                    end
+                    self:Close()
+                end,
+            },
+            {
+                Title = "取消",
+                Callback = function(self)
+                    if onCancel then
+                        onCancel()
+                    end
+                    self:Close()
+                end,
+            },
         },
-        {
-            Title = "取消",
-            Callback = function()
-                print("Cancelled!")
-            end,
-        },
-    },
-})
-Dialog:Show()
-Dialog:Close()
+    })
+end
+
+-- ✅ 使用方法
+ShowMyDialog(
+    Window,
+    "戊",
+    "点完没加载就是用不了",
+    function()
+        print("Confirmed!") -- 点击确认时
+    end,
+    function()
+        print("Cancelled!") -- 点击取消时
+    end
+)
 
 WindUI:Popup({
     Title = "Popup Title",
