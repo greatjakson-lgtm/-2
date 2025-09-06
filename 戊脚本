@@ -1000,14 +1000,6 @@ local Section = Tab:Section({
     TextSize = 17,
 })
 
--- 创建 Tab
-local Tab = Window:Tab({
-    Title = "doors",
-    Icon = "bird",
-    Locked = false,
-})
-Window:SelectTab(1)
-
 local Section = Window:Section({
     Title = "doors",
     Icon = "crown",
@@ -1075,6 +1067,12 @@ WindUI:Notify({
     Content = "加载成功",
     Duration = 3, -- 3 seconds
     Icon = "bird",
+})
+
+local Section = Window:Section({
+    Title = "墨水",
+    Icon = "bird",
+    Opened = true,
 })
 
 -- void ware 按钮
