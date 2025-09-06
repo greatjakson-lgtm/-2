@@ -1,9 +1,10 @@
--- 加载 WindUI 主库
+- 鍔犺浇 WindUI 涓诲簱
 local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua"))()
 
--- 注册自定义 Key 验证服务（如有需要）
+
+-- 娉ㄥ唽鑷畾涔� Key 楠岃瘉鏈嶅姟锛堝鏈夐渶瑕侊級
 WindUI.Services.mysuperservicetogetkey = {
-    Name = "戊脚本",
+    Name = "鎴婅剼鏈�",
     Icon = "droplet", -- lucide, rbxassetid, raw img link
     Args = { "ServiceId" },
     New = function(ServiceId)
@@ -23,11 +24,12 @@ WindUI.Services.mysuperservicetogetkey = {
     end
 }
 
--- 创建主窗口
+
+-- 鍒涘缓涓荤獥鍙�
 local Window = WindUI:CreateWindow({
-    Title = "戊脚本",
+    Title = "鎴婅剼鏈�",
     Icon = "crown",
-    Author = "誓约",
+    Author = "瑾撶害",
     Folder = "MyTestHub",
     Theme = "Dark",
     Size = UDim2.fromOffset(350, 270),
@@ -38,6 +40,7 @@ local Window = WindUI:CreateWindow({
     HideSearchBar = true,
     ScrollBarEnabled = false,
 
+
     User = {
         Enabled = true,
         Anonymous = true,
@@ -45,6 +48,7 @@ local Window = WindUI:CreateWindow({
             print("clicked user icon")
         end,
     },
+
 
     KeySystem = {
         Note = "Example Key System. With your custom service.",
@@ -66,14 +70,15 @@ local Window = WindUI:CreateWindow({
     }
 })
 
--- 设置窗口背景
+
+-- 璁剧疆绐楀彛鑳屾櫙
 Window:SetBackgroundImage("rbxassetid://id-here")
 Window:SetBackgroundImageTransparency(0.5)
 Window:SetToggleKey(Enum.KeyCode.H)
 Window:ToggleTransparency(true)
 Window:IsResizable(false)
 Window:EditOpenButton({
-    Title = "戊脚本中心",
+    Title = "鎴婅剼鏈腑蹇�",
     Icon = "hand",
     CornerRadius = UDim.new(0,16),
     StrokeThickness = 2,
@@ -83,35 +88,41 @@ Window:EditOpenButton({
     Draggable = true,
 })
 
+
 Window:Tag({
     Title = "v1.0",
     Color = Color3.fromHex("#30ff6a")
 })
 Window:Tag({
-    Title = "by誓约",
+    Title = "by瑾撶害",
     Color = Color3.fromHex("#315dff")
 })
 
--- 创建指定的大类（作为标签页）
+
+-- 鍒涘缓鎸囧畾鐨勫ぇ绫伙紙浣滀负鏍囩椤碉級
 local Tabs = {
-    Home = Window:Tab({ Title = "主页", Icon = "crown" }),
-    Misc = Window:Tab({ Title = "其他", Icon = "settings" }),
+    Home = Window:Tab({ Title = "涓婚〉", Icon = "crown" }),
+    Misc = Window:Tab({ Title = "鍏朵粬", Icon = "settings" }),
 }
+
 
 Window:SelectTab(1)
 
--- 全局服务引用
+
+-- 鍏ㄥ眬鏈嶅姟寮曠敤
 local Players = game:GetService("Players")
 local Workspace = game:GetService("Workspace")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local ProximityPromptService = game:GetService("ProximityPromptService")
 
--- 本地玩家引用
+
+-- 鏈湴鐜╁寮曠敤
 local LP = Players.LocalPlayer
 local Character = LP.Character or LP.CharacterAdded:Wait()
 
--- 功能状态
+
+-- 鍔熻兘鐘舵€�
 local Features = {
     KillAura = false,
     AutoChop = false,
@@ -121,10 +132,12 @@ local Features = {
     InstantInteract = false
 }
 
--- 黑名单
+
+-- 榛戝悕鍗�
 local Blacklist = {}
 
--- 客户端模块
+
+-- 瀹㈡埛绔ā鍧�
 local ClientModule
 local EatRemote
 local function GetClientModule()
@@ -135,11 +148,13 @@ local function GetClientModule()
     return ClientModule, EatRemote
 end
 
--- 修复后的ESP功能管理
+
+-- 淇鍚庣殑ESP鍔熻兘绠＄悊
 local espData = {}
 local function createESP(target, name)
     local rootPart = target:FindFirstChild("HumanoidRootPart") or target.PrimaryPart or target:FindFirstChildWhichIsA("BasePart")
     if not rootPart or espData[target] then return end
+
 
     local billboard = Instance.new("BillboardGui")
     billboard.Adornee = rootPart
@@ -148,6 +163,7 @@ local function createESP(target, name)
     billboard.AlwaysOnTop = true
     billboard.Parent = rootPart
     billboard.Enabled = true
+
 
     local label = Instance.new("TextLabel")
     label.Text = name .. "\n" .. "0m"
@@ -160,6 +176,7 @@ local function createESP(target, name)
     label.TextSize = 14
     label.Parent = billboard
 
+
     if name:match("Chest") then
         local image = Instance.new("ImageLabel")
         image.Position = UDim2.new(0, 20, 0, 40)
@@ -169,24 +186,26 @@ local function createESP(target, name)
         image.Parent = billboard
     end
 
+
     espData[target] = {gui = billboard, label = label, image = image}
 end
 
---- 主页 Tab ---
+
+--- 涓婚〉 Tab ---
 Tabs.Home:Paragraph({
-    Title = "戊脚本中心",
-    Desc = "有问题及时反馈，要汉化联系作者誓约qq：3848974452 感谢使用",
+    Title = "鎴婅剼鏈腑蹇�",
+    Desc = "鏈夐棶棰樺強鏃跺弽棣堬紝瑕佹眽鍖栬仈绯讳綔鑰呰獡绾q锛�3848974452 鎰熻阿浣跨敤",
     Image = "https://raw.githubusercontent.com/greatjakson-lgtm/-2/bb78fa80e202c45cbd4f127270c3884928707cb6/Lucid_Origin_A_elegant_logo_of_the_letter_W_made_of_glowing_li_1.jpg",
     ImageSize = 65,
 })
 Tabs.Home:Paragraph({
-    Title = "欢迎",
-    Desc = "需要时开启反挂机.作者: 誓约\n脚本免费",
+    Title = "娆㈣繋",
+    Desc = "闇€瑕佹椂寮€鍚弽鎸傛満.浣滆€�: 瑾撶害\n鑴氭湰鍏嶈垂",
 })
--- 反挂机 (通过外部链接加载)
+-- 鍙嶆寕鏈� (閫氳繃澶栭儴閾炬帴鍔犺浇)
 Tabs.Home:Button({
-    Title = "反挂机",
-    Desc = "加载反挂机",
+    Title = "鍙嶆寕鏈�",
+    Desc = "鍔犺浇鍙嶆寕鏈�",
     Callback = function()
         pcall(function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/main/99nights%E5%8F%8D%E6%8C%82%E6%9C%BA%E8%84%9A%E6%9C%AC"))()
@@ -197,10 +216,11 @@ Tabs.Home:Button({
     end
 })
 
--- FPS 显示
+
+-- FPS 鏄剧ず
 Tabs.Home:Toggle({
-    Title = "显示FPS",
-    Desc = "在屏幕上显示当前FPS",
+    Title = "鏄剧ずFPS",
+    Desc = "鍦ㄥ睆骞曚笂鏄剧ず褰撳墠FPS",
     Callback = function(state)
         local FpsGui = game.Players.LocalPlayer:WaitForChild("PlayerGui"):FindFirstChild("FPSGui")
         if state then
@@ -234,10 +254,11 @@ Tabs.Home:Toggle({
     end
 })
 
--- 范围显示
+
+-- 鑼冨洿鏄剧ず
 Tabs.Home:Toggle({
-    Title = "显示范围",
-    Desc = "显示玩家范围",
+    Title = "鏄剧ず鑼冨洿",
+    Desc = "鏄剧ず鐜╁鑼冨洿",
     Callback = function(state)
         local HeadSize = 20
         local highlight = Instance.new("Highlight")
@@ -245,6 +266,7 @@ Tabs.Home:Toggle({
         highlight.OutlineTransparency = 0
         highlight.FillTransparency = 0.7
         highlight.FillColor = Color3.fromHex("#0000FF")
+
 
         local function applyHighlight(character)
             if not character:FindFirstChild("WindUI_RangeHighlight") then
@@ -255,12 +277,14 @@ Tabs.Home:Toggle({
             end
         end
 
+
         local function removeHighlight(character)
             local h = character:FindFirstChild("WindUI_RangeHighlight")
             if h then
                 h:Destroy()
             end
         end
+
 
         if state then
             for _, player in ipairs(game.Players:GetPlayers()) do
@@ -289,43 +313,45 @@ Tabs.Home:Toggle({
     end
 })
 
--- 半隐身, 玩家入退提示, 甩飞
+
+-- 鍗婇殣韬�, 鐜╁鍏ラ€€鎻愮ず, 鐢╅
 Tabs.Home:Button({
-    Title = "半隐身",
-    Desc = "加载隐身脚本",
+    Title = "鍗婇殣韬�",
+    Desc = "鍔犺浇闅愯韩鑴氭湰",
     Callback = function()
         pcall(function() loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Invisible-35376"))() end)
     end
 })
 Tabs.Home:Button({
-    Title = "玩家入退提示",
-    Desc = "加载提示脚本",
+    Title = "鐜╁鍏ラ€€鎻愮ず",
+    Desc = "鍔犺浇鎻愮ず鑴氭湰",
     Callback = function()
         pcall(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/boyscp/scriscriptsc/main/bbn.lua"))() end)
     end
 })
 
--- 修复后的甩飞玩家功能
+
+-- 淇鍚庣殑鐢╅鐜╁鍔熻兘
 Tabs.Home:Button({
-    Title = "甩飞玩家",
-    Desc = "将选中的玩家甩飞",
+    Title = "鐢╅鐜╁",
+    Desc = "灏嗛€変腑鐨勭帺瀹剁敥椋�",
     Callback = function()
         local selectedPlayerName = playersDropdown.Value
         if not selectedPlayerName then
-            WindUI:Notify({Title = "错误", Content = "未选择玩家", Duration = 3})
+            WindUI:Notify({Title = "閿欒", Content = "鏈€夋嫨鐜╁", Duration = 3})
             return
         end
         
         local targetPlayer = game.Players:FindFirstChild(selectedPlayerName)
         if not targetPlayer or not targetPlayer.Character then
-            WindUI:Notify({Title = "错误", Content = "未找到玩家或玩家角色", Duration = 3})
+            WindUI:Notify({Title = "閿欒", Content = "鏈壘鍒扮帺瀹舵垨鐜╁瑙掕壊", Duration = 3})
             return
         end
         
         local character = targetPlayer.Character
         local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
         if not humanoidRootPart then
-            WindUI:Notify({Title = "错误", Content = "玩家角色缺少HumanoidRootPart", Duration = 3})
+            WindUI:Notify({Title = "閿欒", Content = "鐜╁瑙掕壊缂哄皯HumanoidRootPart", Duration = 3})
             return
         end
         
@@ -335,20 +361,22 @@ Tabs.Home:Button({
         bodyVelocity.P = 1000
         bodyVelocity.Parent = humanoidRootPart
         
-        -- 施加力一段时间后移除
+        -- 鏂藉姞鍔涗竴娈垫椂闂村悗绉婚櫎
         task.delay(1, function()
             bodyVelocity:Destroy()
-            WindUI:Notify({Title = "成功", Content = "已甩飞玩家 " .. selectedPlayerName, Duration = 3})
+            WindUI:Notify({Title = "鎴愬姛", Content = "宸茬敥椋炵帺瀹� " .. selectedPlayerName, Duration = 3})
         end)
     end
 })
 
 
--- 防甩飞 (Toggle)
+
+
+-- 闃茬敥椋� (Toggle)
 local antiWalkFlingConn
 Tabs.Home:Toggle({
-    Title = "防甩飞",
-    Desc = "不要和甩飞同时开启!",
+    Title = "闃茬敥椋�",
+    Desc = "涓嶈鍜岀敥椋炲悓鏃跺紑鍚�!",
     Callback = function(state)
         local player = game.Players.LocalPlayer
         if state then
@@ -370,43 +398,46 @@ Tabs.Home:Toggle({
     end
 })
 
+
 local function setPlayerHealth(healthValue)
     local player = game.Players.LocalPlayer
     local character = player.Character
     
-    -- 等待角色加载
+    -- 绛夊緟瑙掕壊鍔犺浇
     if not character then
         character = player.CharacterAdded:Wait()
     end
     
-    -- 等待 Humanoid 加载
+    -- 绛夊緟 Humanoid 鍔犺浇
     local humanoid = character:WaitForChild("Humanoid")
     
-    -- 设置血量
+    -- 璁剧疆琛€閲�
     humanoid.Health = healthValue
     
-    -- 显示提示
+    -- 鏄剧ず鎻愮ず
     WindUI:Notify({
-        Title = "血量设置",
-        Content = "血量已设置为: " .. healthValue,
+        Title = "琛€閲忚缃�",
+        Content = "琛€閲忓凡璁剧疆涓�: " .. healthValue,
         Duration = 3
     })
 end
 
--- 血量滑块
+
+-- 琛€閲忔粦鍧�
 Tabs.Home:Slider({
-    Title = "设置血量",
-    Desc = "调整人物血量 (0-1000)",
+    Title = "璁剧疆琛€閲�",
+    Desc = "璋冩暣浜虹墿琛€閲� (0-1000)",
     Value = { Min = 0, Max = 1000, Default = 100 },
     Callback = function(val)
         setPlayerHealth(val)
     end
 })
 
--- 快速血量按钮
+
+-- 蹇€熻閲忔寜閽�
 Tabs.Home:Button({
-    Title = "满血",
-    Desc = "将血量设置为最大值",
+    Title = "婊¤",
+    Desc = "灏嗚閲忚缃负鏈€澶у€�",
     Callback = function()
         local player = game.Players.LocalPlayer
         local character = player.Character or player.CharacterAdded:Wait()
@@ -415,9 +446,10 @@ Tabs.Home:Button({
     end
 })
 
+
 Tabs.Home:Button({
-    Title = "半血",
-    Desc = "将血量设置为一半",
+    Title = "鍗婅",
+    Desc = "灏嗚閲忚缃负涓€鍗�",
     Callback = function()
         local player = game.Players.LocalPlayer
         local character = player.Character or player.CharacterAdded:Wait()
@@ -426,14 +458,16 @@ Tabs.Home:Button({
     end
 })
 
--- 无敌模式切换
+
+-- 鏃犳晫妯″紡鍒囨崲
 local godModeEnabled = false
 local originalHealth
 local godModeConnection
 
+
 Tabs.Home:Toggle({
-    Title = "无敌模式",
-    Desc = "开启后血量不会减少",
+    Title = "鏃犳晫妯″紡",
+    Desc = "寮€鍚悗琛€閲忎笉浼氬噺灏�",
     Default = false,
     Callback = function(state)
         godModeEnabled = state
@@ -447,48 +481,48 @@ Tabs.Home:Toggle({
         local humanoid = character:WaitForChild("Humanoid")
         
         if state then
-            -- 保存原始血量
+            -- 淇濆瓨鍘熷琛€閲�
             originalHealth = humanoid.Health
             
-            -- 监听血量变化
+            -- 鐩戝惉琛€閲忓彉鍖�
             godModeConnection = humanoid.HealthChanged:Connect(function(newHealth)
                 if newHealth < humanoid.MaxHealth then
                     humanoid.Health = humanoid.MaxHealth
                 end
             end)
             
-            -- 设置为满血
+            -- 璁剧疆涓烘弧琛€
             humanoid.Health = humanoid.MaxHealth
             
             WindUI:Notify({
-                Title = "无敌模式",
-                Content = "无敌模式已开启",
+                Title = "鏃犳晫妯″紡",
+                Content = "鏃犳晫妯″紡宸插紑鍚�",
                 Duration = 3
             })
         else
-            -- 关闭无敌模式
+            -- 鍏抽棴鏃犳晫妯″紡
             if godModeConnection then
                 godModeConnection:Disconnect()
                 godModeConnection = nil
             end
             
-            -- 恢复原始血量
+            -- 鎭㈠鍘熷琛€閲�
             if originalHealth then
                 humanoid.Health = originalHealth
             end
             
             WindUI:Notify({
-                Title = "无敌模式",
-                Content = "无敌模式已关闭",
+                Title = "鏃犳晫妯″紡",
+                Content = "鏃犳晫妯″紡宸插叧闂�",
                 Duration = 3
             })
         end
     end
 })
--- 速度, 重力, 跳跃
+-- 閫熷害, 閲嶅姏, 璺宠穬
 Tabs.Home:Slider({
-    Title = "设置速度",
-    Desc = "可输入",
+    Title = "璁剧疆閫熷害",
+    Desc = "鍙緭鍏�",
     Value = { Min = 0, Max = 520, Default = 25 },
     Callback = function(val)
         local character = game.Players.LocalPlayer.Character
@@ -501,8 +535,8 @@ Tabs.Home:Slider({
     end
 })
 Tabs.Home:Slider({
-    Title = "设置个人重力",
-    Desc = "默认值即为最大值",
+    Title = "璁剧疆涓汉閲嶅姏",
+    Desc = "榛樿鍊煎嵆涓烘渶澶у€�",
     Value = { Min = 0, Max = 196.2, Default = 196.2, Rounding = 1 },
     Callback = function(val)
         local player = game.Players.LocalPlayer
@@ -510,6 +544,7 @@ Tabs.Home:Slider({
         local rootPart = character:WaitForChild("HumanoidRootPart")
         local oldGravity = rootPart:FindFirstChild("PersonalGravity")
         if oldGravity then oldGravity:Destroy() end
+
 
         if val ~= workspace.Gravity then
             local personalGravity = Instance.new("BodyForce")
@@ -522,8 +557,8 @@ Tabs.Home:Slider({
     end
 })
 Tabs.Home:Slider({
-    Title = "设置跳跃高度",
-    Desc = "可输入",
+    Title = "璁剧疆璺宠穬楂樺害",
+    Desc = "鍙緭鍏�",
     Value = { Min = 0, Max = 200, Default = 50 },
     Callback = function(val)
         local character = game.Players.LocalPlayer.Character
@@ -536,6 +571,7 @@ Tabs.Home:Slider({
     end
 })
 
+
 local function getPlayerNames()
     local names = {}
     for _, player in ipairs(game.Players:GetPlayers()) do
@@ -546,10 +582,12 @@ local function getPlayerNames()
     return names
 end
 
--- 创建一个函数来刷新下拉菜单
+
+-- 鍒涘缓涓€涓嚱鏁版潵鍒锋柊涓嬫媺鑿滃崟
 local function refreshPlayerDropdown()
-    -- 增加了一个检查，确保playersDropdown存在
+    -- 澧炲姞浜嗕竴涓鏌ワ紝纭繚playersDropdown瀛樺湪
     if not playersDropdown then return end
+
 
     local currentValues = playersDropdown:GetValues()
     local newValues = getPlayerNames()
@@ -587,19 +625,21 @@ local function refreshPlayerDropdown()
     end
 end
 
--- **将下拉菜单的创建代码保持在此处，这是原始代码中的位置**
+
+-- **灏嗕笅鎷夎彍鍗曠殑鍒涘缓浠ｇ爜淇濇寔鍦ㄦ澶勶紝杩欐槸鍘熷浠ｇ爜涓殑浣嶇疆**
 local playersDropdown = Tabs.Home:Dropdown({
-    Title = "选择要传送的玩家",
-    Values = getPlayerNames(), -- 初始填充
+    Title = "閫夋嫨瑕佷紶閫佺殑鐜╁",
+    Values = getPlayerNames(), -- 鍒濆濉厖
 })
 
+
 Tabs.Home:Button({
-    Title = "传送至玩家",
-    Desc = "传送到选中的玩家",
+    Title = "浼犻€佽嚦鐜╁",
+    Desc = "浼犻€佸埌閫変腑鐨勭帺瀹�",
     Callback = function()
         local selectedPlayerName = playersDropdown.Value
         if not selectedPlayerName then
-            WindUI:Notify({Title = "错误", Content = "未选择玩家", Duration = 3})
+            WindUI:Notify({Title = "閿欒", Content = "鏈€夋嫨鐜╁", Duration = 3})
             return
         end
         local targetPlayer = game.Players:FindFirstChild(selectedPlayerName)
@@ -611,41 +651,46 @@ Tabs.Home:Button({
     end
 })
 
--- **修复：将事件连接代码移动到这里，确保playersDropdown已经创建**
+
+-- **淇锛氬皢浜嬩欢杩炴帴浠ｇ爜绉诲姩鍒拌繖閲岋紝纭繚playersDropdown宸茬粡鍒涘缓**
 game.Players.PlayerAdded:Connect(refreshPlayerDropdown)
 game.Players.PlayerRemoving:Connect(refreshPlayerDropdown)
 
--- 修复后的部分，使用 AddValue 和 RemoveValue 方法来更新
+
+-- 淇鍚庣殑閮ㄥ垎锛屼娇鐢� AddValue 鍜� RemoveValue 鏂规硶鏉ユ洿鏂�
 game.Players.PlayerAdded:Connect(refreshPlayerDropdown)
 game.Players.PlayerRemoving:Connect(refreshPlayerDropdown)
 
 
--- 飞行, 无限跳, 自瞄, 子弹追踪, 夜视, 穿墙
+
+
+-- 椋炶, 鏃犻檺璺�, 鑷瀯, 瀛愬脊杩借釜, 澶滆, 绌垮
 Tabs.Home:Button({
-    Title = "飞行",
-    Desc = "加载飞行脚本",
+    Title = "椋炶",
+    Desc = "鍔犺浇椋炶鑴氭湰",
     Callback = function()
         pcall(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/70a71eeabf5f141852374be101bc910bf9444036/fly.lua"))() end)
     end
 })
 Tabs.Home:Button({
-    Title = "无限跳",
-    Desc = "开启后无法关闭",
+    Title = "鏃犻檺璺�",
+    Desc = "寮€鍚悗鏃犳硶鍏抽棴",
     Callback = function()
         pcall(function() loadstring(game:HttpGet("https://pastebin.com/raw/V5PQy3y0", true))() end)
     end
 })
 Tabs.Home:Button({
-    Title = "自瞄",
-    Desc = "宙斯自瞄",
+    Title = "鑷瀯",
+    Desc = "瀹欐柉鑷瀯",
     Callback = function()
         pcall(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/main/Arceus%20Aimbot.lua"))() end)
     end
 })
 
+
 local trackData = {}
 Tabs.Home:Toggle({
-    Title = "子弹追踪",
+    Title = "瀛愬脊杩借釜",
     Default = false,
     Callback = function(state)
         trackData.enabled = state
@@ -674,6 +719,7 @@ Tabs.Home:Toggle({
             return nearestTarget
         end
 
+
         local function attachTrack(bullet)
             local bulletPart = bullet:IsA("BasePart") and bullet or bullet:FindFirstChildWhichIsA("BasePart")
             if not bulletPart then return end
@@ -684,6 +730,7 @@ Tabs.Home:Toggle({
                 bodyVel.Velocity = bulletPart.Velocity
                 bodyVel.Parent = bulletPart
             end
+
 
             local bulletConn = game:GetService("RunService").Heartbeat:Connect(function()
                 if not bulletPart.Parent or not trackData.enabled then
@@ -710,9 +757,10 @@ Tabs.Home:Toggle({
     end
 })
 
+
 local nightVisionData = {}
 Tabs.Home:Toggle({
-    Title = "夜视",
+    Title = "澶滆",
     Default = false,
     Callback = function(isEnabled)
         local lighting = game:GetService("Lighting")
@@ -753,9 +801,10 @@ Tabs.Home:Toggle({
     end
 })
 
+
 local noclipConn
 Tabs.Home:Toggle({
-    Title = "穿墙",
+    Title = "绌垮",
     Default = false,
     Callback = function(state)
         local character = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
@@ -782,16 +831,19 @@ Tabs.Home:Toggle({
     end
 })
 
--- 人物透视 (ESP) 功能
+
+-- 浜虹墿閫忚 (ESP) 鍔熻兘
 local espEnabled = false
 local espConnections = {}
 local espHighlights = {}
 local espNameTags = {}
 
+
 local function createESP(player)
     local char = player.Character or player.CharacterAdded:Wait()
     local humanoidRootPart = char:FindFirstChild("HumanoidRootPart")
     if not humanoidRootPart then return end
+
 
     -- Create Highlight
     local highlight = Instance.new("Highlight")
@@ -803,6 +855,7 @@ local function createESP(player)
     highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
     highlight.Parent = char
     espHighlights[player] = highlight
+
 
     -- Create Name Tag
     local nameTag = Instance.new("BillboardGui")
@@ -825,6 +878,7 @@ local function createESP(player)
     espNameTags[player] = nameTag
 end
 
+
 local function removeESP(player)
     if espHighlights[player] and espHighlights[player].Parent then
         espHighlights[player]:Destroy()
@@ -836,6 +890,7 @@ local function removeESP(player)
     end
 end
 
+
 local function toggleESP(state)
     espEnabled = state
     if state then
@@ -845,6 +900,7 @@ local function toggleESP(state)
                 pcall(createESP, player)
             end
         end
+
 
         -- Connect events for new players
         espConnections.playerAdded = game.Players.PlayerAdded:Connect(function(player)
@@ -866,16 +922,18 @@ local function toggleESP(state)
     end
 end
 
+
 Tabs.Home:Toggle({
-    Title = "人物透视 (ESP)",
-    Desc = "显示其他玩家的透视框和名字。",
+    Title = "浜虹墿閫忚 (ESP)",
+    Desc = "鏄剧ず鍏朵粬鐜╁鐨勯€忚妗嗗拰鍚嶅瓧銆�",
     Default = false,
     Callback = toggleESP,
 })
 
+
 Tabs.Home:Button({
-    Title = "切换服务器",
-    Desc = "切换到相同游戏的另一个服务器",
+    Title = "鍒囨崲鏈嶅姟鍣�",
+    Desc = "鍒囨崲鍒扮浉鍚屾父鎴忕殑鍙︿竴涓湇鍔″櫒",
     Callback = function()
         local TeleportService = game:GetService("TeleportService")
         local placeId = game.PlaceId
@@ -884,9 +942,10 @@ Tabs.Home:Button({
     end
 })
 
+
 Tabs.Home:Button({
-    Title = "重新加入服务器",
-    Desc = "尝试重新加入当前服务器",
+    Title = "閲嶆柊鍔犲叆鏈嶅姟鍣�",
+    Desc = "灏濊瘯閲嶆柊鍔犲叆褰撳墠鏈嶅姟鍣�",
     Callback = function()
         local TeleportService = game:GetService("TeleportService")
         local placeId = game.PlaceId
@@ -896,22 +955,24 @@ Tabs.Home:Button({
     end
 })
 
+
 Tabs.Home:Button({
-    Title = "复制服务器ID",
-    Desc = "复制当前服务器的Job ID到剪贴板",
+    Title = "澶嶅埗鏈嶅姟鍣↖D",
+    Desc = "澶嶅埗褰撳墠鏈嶅姟鍣ㄧ殑Job ID鍒板壀璐存澘",
     Callback = function()
         setclipboard(game.JobId)
         WindUI:Notify({
-            Title = "服务器ID已复制",
+            Title = "鏈嶅姟鍣↖D宸插鍒�",
             Content = "Job ID: " .. game.JobId,
             Duration = 3
         })
     end
 })
 
+
 Tabs.Home:Button({
-    Title = "服务器信息",
-    Desc = "显示当前服务器的信息",
+    Title = "鏈嶅姟鍣ㄤ俊鎭�",
+    Desc = "鏄剧ず褰撳墠鏈嶅姟鍣ㄧ殑淇℃伅",
     Callback = function()
         local players = game.Players:GetPlayers()
         local maxPlayers = game.Players.MaxPlayers
@@ -920,98 +981,105 @@ Tabs.Home:Button({
         local serverType = game:GetService("RunService"):IsStudio() and "Studio" or "Live"
         
         WindUI:Notify({
-            Title = "服务器信息",
-            Content = string.format("玩家数量: %d/%d\nPlace ID: %d\nJob ID: %s\n服务器类型: %s", #players, maxPlayers, placeId, jobId, serverType),
+            Title = "鏈嶅姟鍣ㄤ俊鎭�",
+            Content = string.format("鐜╁鏁伴噺: %d/%d\nPlace ID: %d\nJob ID: %s\n鏈嶅姟鍣ㄧ被鍨�: %s", #players, maxPlayers, placeId, jobId, serverType),
             Duration = 10
         })
     end
 })
 
+
 Tabs.Misc:Button({
-    Title = "复制作者QQ",
+    Title = "澶嶅埗浣滆€匭Q",
     Callback = function()
         setclipboard("3848974452")
-        WindUI:Notify({Title = "QQ号", Content = "qq号已复制到剪贴板", Duration = 3})
+        WindUI:Notify({Title = "QQ鍙�", Content = "qq鍙峰凡澶嶅埗鍒板壀璐存澘", Duration = 3})
     end
 })
 
+
 Tabs.Misc:Button({
-    Title = "检查更新",
-    Desc = "检查脚本是否有更新",
+    Title = "妫€鏌ユ洿鏂�",
+    Desc = "妫€鏌ヨ剼鏈槸鍚︽湁鏇存柊",
     Callback = function()
         WindUI:Notify({
-            Title = "更新检查",
-            Content = "当前版本: v1.0\n已是最新版本",
+            Title = "鏇存柊妫€鏌�",
+            Content = "褰撳墠鐗堟湰: v1.0\n宸叉槸鏈€鏂扮増鏈�",
             Duration = 5
         })
     end
 })
--- 添加一个定时器来更新标签
+-- 娣诲姞涓€涓畾鏃跺櫒鏉ユ洿鏂版爣绛�
 spawn(function()
     while true do
         wait(5)
         local currentTime = os.date("%H:%M:%S")
         TimeTag:Set({
-            Title = "当前时间: " .. currentTime,
+            Title = "褰撳墠鏃堕棿: " .. currentTime,
             Color = Color3.fromHex("#ff6a30")
         })
     end
 end)
 
+
 Tabs.Misc:Code({
-    Title = "感谢游玩",
-    Code = "QQ号:3848974452"
+    Title = "鎰熻阿娓哥帺",
+    Code = "QQ鍙�:3848974452"
 })
 
--- 创建 Tab
+
+-- 鍒涘缓 Tab
 local Tab = Window:Tab({
-    Title = "通用功能区",
+    Title = "閫氱敤鍔熻兘鍖�",
     Icon = "cloud",
     Locked = false,
 })
 Window:SelectTab(1)
 
+
 local Button = Tab:Button({
-    Title = "飞行 v3",
-    Desc = "点击运行戊飞行v3脚本",
+    Title = "椋炶 v3",
+    Desc = "鐐瑰嚮杩愯鎴婇琛寁3鑴氭湰",
     Locked = false,
     Callback = function()
        loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/70a71eeabf5f141852374be101bc910bf9444036/fly.lua"))()
     end
 })
 WindUI:Notify({
-    Title = "飞行v3",
-    Content = "加载成功",
+    Title = "椋炶v3",
+    Content = "鍔犺浇鎴愬姛",
     Duration = 3, -- 3 seconds
     Icon = "bird",
 })
 
--- 黑洞v6 按钮
+
+-- 榛戞礊v6 鎸夐挳
 local V6Button = Tab:Button({
-    Title = "自然灾害黑洞v6脚本",
-    Desc = "点击运行黑洞v6脚本",
+    Title = "鑷劧鐏惧榛戞礊v6鑴氭湰",
+    Desc = "鐐瑰嚮杩愯榛戞礊v6鑴氭湰",
     Locked = false,
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V6.txt"))()
         WindUI:Notify({
-            Title = "黑洞v6脚本",
-            Content = "加载成功",
+            Title = "榛戞礊v6鑴氭湰",
+            Content = "鍔犺浇鎴愬姛",
             Duration = 3,
             Icon = "bird",
         })
     end
 })
 
--- vape 按钮
+
+-- vape 鎸夐挳
 local VapeButton = Tab:Button({
-    Title = "通用vape",
-    Desc = "点击运行vape脚本",
+    Title = "閫氱敤vape",
+    Desc = "鐐瑰嚮杩愯vape鑴氭湰",
     Locked = false,
     Callback = function()
         loadstring(utf8.char(table.unpack({108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,34,104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,55,71,114,97,110,100,68,97,100,80,71,78,47,86,97,112,101,86,52,70,111,114,82,111,98,108,111,120,47,109,97,105,110,47,78,101,119,77,97,105,110,83,99,114,105,112,116,46,108,117,97,34,44,32,116,114,117,101,41,41,40,41})))()
         WindUI:Notify({
-            Title = "vape脚本",
-            Content = "加载成功",
+            Title = "vape鑴氭湰",
+            Content = "鍔犺浇鎴愬姛",
             Duration = 3,
             Icon = "bird",
         })
@@ -1024,65 +1092,69 @@ local Tab = Window:Tab({
 })
 Window:SelectTab(2) -- Number of Tab
 
--- doors xk 按钮
+
+-- doors xk 鎸夐挳
 local XKButton = Tab:Button({
     Title = "doors xk",
-    Desc = "点击运行xk脚本",
+    Desc = "鐐瑰嚮杩愯xk鑴氭湰",
     Locked = false,
     Callback = function()
         loadstring(game:HttpGet("https://github.com/devslopo/DVES/raw/main/XK%20Hub"))()
         WindUI:Notify({
             Title = "doors xk",
-            Content = "加载成功",
+            Content = "鍔犺浇鎴愬姛",
             Duration = 3,
             Icon = "bird",
         })
     end
 })
 
--- doors nz 按钮
+
+-- doors nz 鎸夐挳
 local NZButton = Tab:Button({
     Title = "doors nz",
-    Desc = "点击运行doors nz脚本",
+    Desc = "鐐瑰嚮杩愯doors nz鑴氭湰",
     Locked = false,
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/TeamNullFire/NullFire/main/loader.lua"))()
         WindUI:Notify({
             Title = "doors nz",
-            Content = "加载成功",
+            Content = "鍔犺浇鎴愬姛",
             Duration = 3,
             Icon = "bird",
         })
     end
 })
 
--- doors prohax 按钮
+
+-- doors prohax 鎸夐挳
 local ProhaxButton = Tab:Button({
     Title = "doors prohax",
-    Desc = "点击运行prohax脚本",
+    Desc = "鐐瑰嚮杩愯prohax鑴氭湰",
     Locked = false,
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/TheHunterSolo1/Scripts/refs/heads/main/Protected_2809220311826785.lua.txt"))()
         WindUI:Notify({
             Title = "doors prohax",
-            Content = "加载成功",
+            Content = "鍔犺浇鎴愬姛",
             Duration = 3,
             Icon = "bird",
         })
     end
 })
 
+
 local Button = Tab:Button({
-    Title = "backking 汉化脚本",
-    Desc = "点击运行backking脚本",
+    Title = "backking 姹夊寲鑴氭湰",
+    Desc = "鐐瑰嚮杩愯backking鑴氭湰",
     Locked = false,
     Callback = function()
-        --[[Doors Blackking And BobHub脚本汉化]]loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\112\97\115\116\101\98\105\110\46\99\111\109\47\114\97\119\47\54\53\84\119\84\56\106\97"))()
+        --[[Doors Blackking And BobHub鑴氭湰姹夊寲]]loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\112\97\115\116\101\98\105\110\46\99\111\109\47\114\97\119\47\54\53\84\119\84\56\106\97"))()
     end
 })
 WindUI:Notify({
-    Title = "backking脚本",
-    Content = "加载成功",
+    Title = "backking鑴氭湰",
+    Content = "鍔犺浇鎴愬姛",
     Duration = 3, -- 3 seconds
     Icon = "bird",
 })
@@ -1093,69 +1165,74 @@ local Tab = Window:Tab({
 })
 Window:SelectTab(2) -- Number of Tab
 
--- void ware 按钮
+
+-- void ware 鎸夐挳
 local VoidwareButton = Tab:Button({
     Title = "inkgame void ware",
-    Desc = "点击运行void ware脚本",
+    Desc = "鐐瑰嚮杩愯void ware鑴氭湰",
     Locked = false,
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/inkgame.lua", true))()
         WindUI:Notify({
             Title = "inkgame voidware",
-            Content = "加载成功",
+            Content = "鍔犺浇鎴愬姛",
             Duration = 3,
             Icon = "bird",
         })
     end
 })
 
--- az中心 按钮
+
+-- az涓績 鎸夐挳
 local AzButton = Tab:Button({
-    Title = "inkgame az中心",
-    Desc = "点击运行az脚本",
+    Title = "inkgame az涓績",
+    Desc = "鐐瑰嚮杩愯az鑴氭湰",
     Locked = false,
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/ScripterVaz/InkGameAzure/main/Protected_7974105512464815.lua.txt"))()
         WindUI:Notify({
-            Title = "inkgame az中心",
-            Content = "加载成功",
+            Title = "inkgame az涓績",
+            Content = "鍔犺浇鎴愬姛",
             Duration = 3,
             Icon = "bird",
         })
     end
 })
 
--- 墨水xa 按钮
+
+-- 澧ㄦ按xa 鎸夐挳
 local XaButton = Tab:Button({
-    Title = "墨水xa",
-    Desc = "点击运行xa脚本",
+    Title = "澧ㄦ按xa",
+    Desc = "鐐瑰嚮杩愯xa鑴氭湰",
     Locked = false,
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Xingtaiduan/Script/refs/heads/main/Games/墨水游戏.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Xingtaiduan/Script/refs/heads/main/Games/澧ㄦ按娓告垙.lua"))()
         WindUI:Notify({
-            Title = "墨水xa脚本",
-            Content = "加载成功",
+            Title = "澧ㄦ按xa鑴氭湰",
+            Content = "鍔犺浇鎴愬姛",
             Duration = 3,
             Icon = "bird",
         })
     end
 })
 
--- ringta 按钮
+
+-- ringta 鎸夐挳
 local RingtaButton = Tab:Button({
     Title = "inkgame ringta",
-    Desc = "点击运行ringta脚本",
+    Desc = "鐐瑰嚮杩愯ringta鑴氭湰",
     Locked = false,
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/wefwef127382/inkgames.github.io/refs/heads/main/ringta.lua"))()
         WindUI:Notify({
             Title = "ringta",
-            Content = "加载成功",
+            Content = "鍔犺浇鎴愬姛",
             Duration = 3,
             Icon = "bird",
         })
     end
 })
+
 
 local Tab = Window:Tab({
     Title = "99nights",
@@ -1164,132 +1241,141 @@ local Tab = Window:Tab({
 })
 Window:SelectTab(2) -- Number of Tab
 
+
 local Button = Tab:Button({
-    Title = "99nights av hub脚本",
-    Desc = "点击运行av hub脚本",
+    Title = "99nights av hub鑴氭湰",
+    Desc = "鐐瑰嚮杩愯av hub鑴氭湰",
     Locked = false,
     Callback = function()
         loadstring(game:HttpGet("https://get-avth-ontop.netlify.app/my-paste/script.lua"))()
     end
 })
 WindUI:Notify({
-    Title = "av hub脚本",
-    Content = "加载成功",
+    Title = "av hub鑴氭湰",
+    Content = "鍔犺浇鎴愬姛",
     Duration = 3, -- 3 seconds
     Icon = "bird",
 })
 
+
 local Button = Tab:Button({
-    Title = "戊99nights",
-    Desc = "点击运行戊99nights脚本",
+    Title = "鎴�99nights",
+    Desc = "鐐瑰嚮杩愯鎴�99nights鑴氭湰",
     Locked = false,
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/29b54fa8069182f477846db8d1617dca390334da/%E6%88%8A%E8%84%9A%E6%9C%AC99nights"))()
     end
 })
 WindUI:Notify({
-    Title = "戊脚本99nigtes",
-    Content = "加载成功",
+    Title = "鎴婅剼鏈�99nigtes",
+    Content = "鍔犺浇鎴愬姛",
     Duration = 3, -- 3 seconds
     Icon = "bird",
 })
 local Tab = Window:Tab({
-    Title = "死亡之死/被遗弃",
+    Title = "姝讳骸涔嬫/琚仐寮�",
     Icon = "tap",
     Locked = false,
 })
 Window:SelectTab(2) -- Number of Tab
 
--- NOL 免费版 按钮
+
+-- NOL 鍏嶈垂鐗� 鎸夐挳
 local NolButton = Tab:Button({
-    Title = "NOL免费版",
-    Desc = "点击运行NOL脚本",
+    Title = "NOL鍏嶈垂鐗�",
+    Desc = "鐐瑰嚮杩愯NOL鑴氭湰",
     Locked = false,
     Callback = function()
         getfenv().ADittoKey = "NOL_FRERKEY_THISISFOR" ---Put in key
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Syndromehsh/NOL/refs/heads/main/Nolsaken"))()
         WindUI:Notify({
-            Title = "nol免费版",
-            Content = "加载成功",
+            Title = "nol鍏嶈垂鐗�",
+            Content = "鍔犺浇鎴愬姛",
             Duration = 3,
             Icon = "bird",
         })
     end
 })
 
--- 死亡之死 按钮
+
+-- 姝讳骸涔嬫 鎸夐挳
 local DieButton = Tab:Button({
-    Title = "不知名死亡之死脚本",
-    Desc = "点击运行死亡之死脚本",
+    Title = "涓嶇煡鍚嶆浜′箣姝昏剼鏈�",
+    Desc = "鐐瑰嚮杩愯姝讳骸涔嬫鑴氭湰",
     Locked = false,
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/thuker-evader/Die-of-death/refs/heads/main/Red%20hub"))()
         WindUI:Notify({
-            Title = "死亡之死脚本",
-            Content = "加载成功",
+            Title = "姝讳骸涔嬫鑴氭湰",
+            Content = "鍔犺浇鎴愬姛",
             Duration = 3,
             Icon = "bird",
         })
     end
 })
 
+
 local Tab = Window:Tab({
-    Title = "力量传奇",
+    Title = "鍔涢噺浼犲",
     Icon = "tap",
     Locked = false,
 })
 Window:SelectTab(2) -- Number of Tab
 
+
 local Button = Tab:Button({
-    Title = "bald力量传奇脚本",
-    Desc = "点击运行bald脚本",
+    Title = "bald鍔涢噺浼犲鑴氭湰",
+    Desc = "鐐瑰嚮杩愯bald鑴氭湰",
     Locked = false,
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Omgshit/Scripts/main/MainLoader.lua"))()
     end
 })
 WindUI:Notify({
-    Title = "bald脚本",
-    Content = "加载成功",
+    Title = "bald鑴氭湰",
+    Content = "鍔犺浇鎴愬姛",
     Duration = 3, -- 3 seconds
     Icon = "bird",
 })
 local Tab = Window:Tab({
-    Title = "极速传奇",
+    Title = "鏋侀€熶紶濂�",
     Icon = "tap",
     Locked = false,
 })
 Window:SelectTab(2) -- Number of Tab
 
+
 local Button = Tab:Button({
-    Title = "relz极速传奇脚本",
-    Desc = "点击运行relz脚本",
+    Title = "relz鏋侀€熶紶濂囪剼鏈�",
+    Desc = "鐐瑰嚮杩愯relz鑴氭湰",
     Locked = false,
     Callback = function()
         loadstring(game:HttpGet("https://relzhub.farrghii.com/loader.lua"))()
     end
 })
 WindUI:Notify({
-    Title = "relz脚本",
-    Content = "加载成功",
+    Title = "relz鑴氭湰",
+    Content = "鍔犺浇鎴愬姛",
     Duration = 3, -- 3 seconds
     Icon = "bird",
 })
 
+
 local Button = Tab:Button({
-    Title = "不知名极速传奇脚本",
-    Desc = "点击运行极速传奇脚本",
+    Title = "涓嶇煡鍚嶆瀬閫熶紶濂囪剼鏈�",
+    Desc = "鐐瑰嚮杩愯鏋侀€熶紶濂囪剼鏈�",
     Locked = false,
     Callback = function()
         loadstring(game:HttpGet("https://ervcommunity.com/desynced.lua", true))()
     end
 })
 WindUI:Notify({
-    Title = "极速传奇脚本",
-    Content = "加载成功",
+    Title = "鏋侀€熶紶濂囪剼鏈�",
+    Content = "鍔犺浇鎴愬姛",
     Duration = 3, -- 3 seconds
     Icon = "bird",
 })
+
 
 local Tab = Window:Tab({
     Title = "flsch",
@@ -1298,35 +1384,38 @@ local Tab = Window:Tab({
 })
 Window:SelectTab(2) -- Number of Tab
 
+
 local Button = Tab:Button({
-    Title = "lunor flsch脚本",
-    Desc = "点击运行lunor脚本",
+    Title = "lunor flsch鑴氭湰",
+    Desc = "鐐瑰嚮杩愯lunor鑴氭湰",
     Locked = false,
     Callback = function()
         loadstring(game:HttpGet("https://lunor.dev/loader"))()
     end
 })
 WindUI:Notify({
-    Title = "lunor脚本",
-    Content = "加载成功",
+    Title = "lunor鑴氭湰",
+    Content = "鍔犺浇鎴愬姛",
     Duration = 3, -- 3 seconds
     Icon = "bird",
 })
 
+
 local Button = Tab:Button({
-    Title = "flsch solix脚本",
-    Desc = "点击运行solix脚本",
+    Title = "flsch solix鑴氭湰",
+    Desc = "鐐瑰嚮杩愯solix鑴氭湰",
     Locked = false,
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/debunked69/solixloader/refs/heads/main/solix%20v2%20new%20loader.lua"))()
     end
 })
 WindUI:Notify({
-    Title = "solix脚本",
-    Content = "加载成功",
+    Title = "solix鑴氭湰",
+    Content = "鍔犺浇鎴愬姛",
     Duration = 3, -- 3 seconds
     Icon = "bird",
 })
+
 
 local Tab = Window:Tab({
     Title = "bf",
@@ -1335,260 +1424,281 @@ local Tab = Window:Tab({
 })
 Window:SelectTab(2) -- Number of Tab
 
+
 local Button = Tab:Button({
-    Title = "bf redz脚本",
-    Desc = "点击运行redz脚本",
+    Title = "bf redz鑴氭湰",
+    Desc = "鐐瑰嚮杩愯redz鑴氭湰",
     Locked = false,
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/tlredz/Scripts/refs/heads/main/main.luau"))
     end
 })
 WindUI:Notify({
-    Title = "redz脚本",
-    Content = "加载成功",
+    Title = "redz鑴氭湰",
+    Content = "鍔犺浇鎴愬姛",
     Duration = 3, -- 3 seconds
     Icon = "bird",
 })
 
+
 local Button = Tab:Button({
-    Title = " bf blue x脚本",
-    Desc = "点击运行blue x脚本",
+    Title = " bf blue x鑴氭湰",
+    Desc = "鐐瑰嚮杩愯blue x鑴氭湰",
     Locked = false,
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/refs/heads/main/Main.lua"))()
     end
 })
 WindUI:Notify({
-    Title = "blue x脚本",
-    Content = "加载成功",
+    Title = "blue x鑴氭湰",
+    Content = "鍔犺浇鎴愬姛",
     Duration = 3, -- 3 seconds
     Icon = "bird",
 })
 
+
 local Tab = Window:Tab({
-    Title = "死铁轨",
+    Title = "姝婚搧杞�",
     Icon = "tap",
     Locked = false,
 })
 Window:SelectTab(2) -- Number of Tab
 
--- 死铁轨nat 按钮
+
+-- 姝婚搧杞╪at 鎸夐挳
 local NatButton = Tab:Button({
-    Title = "死铁轨nat中心",
-    Desc = "点击运行nat脚本",
+    Title = "姝婚搧杞╪at涓績",
+    Desc = "鐐瑰嚮杩愯nat鑴氭湰",
     Locked = false,
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/NatHub.lua"))()
         WindUI:Notify({
             Title = "nat",
-            Content = "加载成功",
+            Content = "鍔犺浇鎴愬姛",
             Duration = 3,
             Icon = "bird",
         })
     end
 })
 
+
 local Tab = Window:Tab({
-    Title = "刀刃球",
+    Title = "鍒€鍒冪悆",
     Icon = "tap",
     Locked = false,
 })
 Window:SelectTab(2) -- Number of Tab
 
+
 local Button = Tab:Button({
-    Title = "刀刃球ronixhub脚本",
-    Desc = "点击运行ronixhub脚本",
+    Title = "鍒€鍒冪悆ronixhub鑴氭湰",
+    Desc = "鐐瑰嚮杩愯ronixhub鑴氭湰",
     Locked = false,
     Callback = function()
         loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/672a0ae340e8ce7e21a51e37c6bf0cc1.lua"))()
     end
 })
 WindUI:Notify({
-    Title = "ronixhub脚本",
-    Content = "加载成功",
+    Title = "ronixhub鑴氭湰",
+    Content = "鍔犺浇鎴愬姛",
     Duration = 3, -- 3 seconds
     Icon = "bird",
 })
 
+
 local Tab = Window:Tab({
-    Title = "种植花园",
+    Title = "绉嶆鑺卞洯",
     Icon = "tap",
     Locked = false,
 })
 Window:SelectTab(2) -- Number of Tab
 
+
 local Button = Tab:Button({
-    Title = "speed x 种植花园脚本",
-    Desc = "点击运行speed x脚本",
+    Title = "speed x 绉嶆鑺卞洯鑴氭湰",
+    Desc = "鐐瑰嚮杩愯speed x鑴氭湰",
     Locked = false,
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
     end
 })
 WindUI:Notify({
-    Title = "speed x脚本",
-    Content = "加载成功",
+    Title = "speed x鑴氭湰",
+    Content = "鍔犺浇鎴愬姛",
     Duration = 3, -- 3 seconds
     Icon = "bird",
 })
 
+
 local Button = Tab:Button({
-    Title = "种植花园atv脚本",
-    Desc = "点击运行atv脚本",
+    Title = "绉嶆鑺卞洯atv鑴氭湰",
+    Desc = "鐐瑰嚮杩愯atv鑴氭湰",
     Locked = false,
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/thantzy/thanhub/refs/heads/main/thanv1"))()
     end
 })
 
+
 WindUI:Notify({
-    Title = "种植花园atv脚本",
-    Content = "加载成功",
+    Title = "绉嶆鑺卞洯atv鑴氭湰",
+    Content = "鍔犺浇鎴愬姛",
     Duration = 3, -- 3 seconds
     Icon = "bird",
 })
 
+
 local Tab = Window:Tab({
-    Title = "偷走脑红",
+    Title = "鍋疯蛋鑴戠孩",
     Icon = "tap",
     Locked = false,
 })
 Window:SelectTab(2) -- Number of Tab
 
+
 local Button = Tab:Button({
-    Title = "偷走脑红辣椒中心脚本",
-    Desc = "点击运行辣椒中心脚本",
+    Title = "鍋疯蛋鑴戠孩杈ｆ涓績鑴氭湰",
+    Desc = "鐐瑰嚮杩愯杈ｆ涓績鑴氭湰",
     Locked = false,
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/tienkhanh1/spicy/main/Chilli.lua"))()
     end
 })
 WindUI:Notify({
-    Title = "辣椒中心脚本",
-    Content = "加载成功",
+    Title = "杈ｆ涓績鑴氭湰",
+    Content = "鍔犺浇鎴愬姛",
     Duration = 3, -- 3 seconds
     Icon = "bird",
 })
 
+
 local Button = Tab:Button({
-    Title = "偷走脑红dencycode脚本",
-    Desc = "点击运行dencycode脚本",
+    Title = "鍋疯蛋鑴戠孩dencycode鑴氭湰",
+    Desc = "鐐瑰嚮杩愯dencycode鑴氭湰",
     Locked = false,
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Estevansit0/KJJK/refs/heads/main/PusarX-loader.lua"))()
     end
 })
 WindUI:Notify({
-    Title = "dencycode脚本",
-    Content = "加载成功",
+    Title = "dencycode鑴氭湰",
+    Content = "鍔犺浇鎴愬姛",
     Duration = 3, -- 3 seconds
     Icon = "bird",
 })
 
+
 local Tab = Window:Tab({
-    Title = "其他脚本中心",
+    Title = "鍏朵粬鑴氭湰涓績",
     Icon = "tap",
     Locked = false,
 })
 Window:SelectTab(2) -- Number of Tab
 
--- rb中心 按钮
+
+-- rb涓績 鎸夐挳
 local RBButton = Tab:Button({
-    Title = "rb脚本中心",
-    Desc = "点击运行rb脚本",
+    Title = "rb鑴氭湰涓績",
+    Desc = "鐐瑰嚮杩愯rb鑴氭湰",
     Locked = false,
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Yungengxin/roblox/refs/heads/main/Rb-Hub"))()
         WindUI:Notify({
-            Title = "rb中心",
-            Content = "加载成功",
+            Title = "rb涓績",
+            Content = "鍔犺浇鎴愬姛",
             Duration = 3,
             Icon = "bird",
         })
     end
 })
 
--- 皮脚本 按钮
+
+-- 鐨剼鏈� 鎸夐挳
 local PiButton = Tab:Button({
-    Title = "皮脚本",
-    Desc = "点击运行皮脚本",
+    Title = "鐨剼鏈�",
+    Desc = "鐐瑰嚮杩愯鐨剼鏈�",
     Locked = false,
     Callback = function()
-        getgenv().XiaoPi = "皮脚本QQ群1002100032"
+        getgenv().XiaoPi = "鐨剼鏈琎Q缇�1002100032"
         loadstring(game:HttpGet("https://raw.githubusercontent.com/xiaopi77/xiaopi77/main/QQ1002100032-Roblox-Pi-script.lua"))()
         WindUI:Notify({
-            Title = "皮脚本",
-            Content = "加载成功",
+            Title = "鐨剼鏈�",
+            Content = "鍔犺浇鎴愬姛",
             Duration = 3,
             Icon = "bird",
         })
     end
 })
 
--- tx v4 按钮
+
+-- tx v4 鎸夐挳
 local TxButton = Tab:Button({
     Title = "tx v4",
-    Desc = "点击运行tx脚本",
+    Desc = "鐐瑰嚮杩愯tx鑴氭湰",
     Locked = false,
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/dzq1311056/k/refs/heads/main/Protected_6797390536487459.lua"))()
         WindUI:Notify({
             Title = "tx v4",
-            Content = "加载成功",
+            Content = "鍔犺浇鎴愬姛",
             Duration = 3,
             Icon = "bird",
         })
     end
 })
 
--- isis 按钮
+
+-- isis 鎸夐挳
 local IsisButton = Tab:Button({
     Title = "isis",
-    Desc = "点击运行isis脚本key=ISIS-KEY-2025",
+    Desc = "鐐瑰嚮杩愯isis鑴氭湰key=ISIS-KEY-2025",
     Locked = false,
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/S-WTB/-/refs/heads/main/ISIS加载器"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/S-WTB/-/refs/heads/main/ISIS鍔犺浇鍣�"))()
         WindUI:Notify({
-            Title = "isis脚本",
-            Content = "加载成功",
+            Title = "isis鑴氭湰",
+            Content = "鍔犺浇鎴愬姛",
             Duration = 3,
             Icon = "bird",
         })
     end
 })
--- 创建 Tab
+-- 鍒涘缓 Tab
 local Tab = Window:Tab({
-    Title = "设置区",
+    Title = "璁剧疆鍖�",
     Icon = "tap",
     Locked = false,
 })
 Window:SelectTab(1)
 
--- 创建 Section
+
+-- 鍒涘缓 Section
 local Section = Tab:Section({ 
-    Title = "设置",
+    Title = "璁剧疆",
     TextXAlignment = "Left",
     TextSize = 17,
 })
--- 其它控件示例（可删减）
+-- 鍏跺畠鎺т欢绀轰緥锛堝彲鍒犲噺锛�
 local Button = Tab:Button({
-    Title = "普通测试按钮",
-    Desc = "点击测试",
+    Title = "鏅€氭祴璇曟寜閽�",
+    Desc = "鐐瑰嚮娴嬭瘯",
     Locked = false,
     Callback = function()
         print("clicked test button")
     end
 })
 
+
 local Code = Tab:Code({
-    Title = "代码区",
+    Title = "浠ｇ爜鍖�",
     Code = [[print("Hello World!")]]
 })
 Code:SetCode([[print("New code!")]])
 
+
 local Colorpicker = Tab:Colorpicker({
-    Title = "颜色选择器",
-    Desc = "选个颜色吧",
+    Title = "棰滆壊閫夋嫨鍣�",
+    Desc = "閫変釜棰滆壊鍚�",
     Default = Color3.fromRGB(0, 255, 0),
     Transparency = 0,
     Locked = false,
@@ -1597,41 +1707,45 @@ local Colorpicker = Tab:Colorpicker({
     end
 })
 
+
 local Dropdown = Tab:Dropdown({
-    Title = "下拉框 (多选)",
+    Title = "涓嬫媺妗� (澶氶€�)",
     Values = { "A", "B", "C" },
     Value = { "A" },
     Multi = true,
     AllowNone = true,
     Callback = function(option) 
-        print("选中的分类: " .. game:GetService("HttpService"):JSONEncode(option)) 
+        print("閫変腑鐨勫垎绫�: " .. game:GetService("HttpService"):JSONEncode(option)) 
     end
 })
+
 
 local Input = Tab:Input({
-    Title = "输入框",
-    Desc = "输入内容",
-    Value = "默认值",
+    Title = "杈撳叆妗�",
+    Desc = "杈撳叆鍐呭",
+    Value = "榛樿鍊�",
     InputIcon = "bird",
     Type = "Input", -- or "Textarea"
-    Placeholder = "请输入...",
+    Placeholder = "璇疯緭鍏�...",
     Callback = function(input) 
-        print("输入内容: " .. input)
+        print("杈撳叆鍐呭: " .. input)
     end
 })
 
+
 local Keybind = Tab:Keybind({
-    Title = "快捷键",
-    Desc = "用来打开 UI",
+    Title = "蹇嵎閿�",
+    Desc = "鐢ㄦ潵鎵撳紑 UI",
     Value = "G",
     Callback = function(v)
         Window:SetToggleKey(Enum.KeyCode[v])
     end
 })
 
+
 local Paragraph = Tab:Paragraph({
-    Title = "段落区",
-    Desc = "展示段落",
+    Title = "娈佃惤鍖�",
+    Desc = "灞曠ず娈佃惤",
     Color = "Red",
     Image = "",
     ImageSize = 30,
@@ -1641,14 +1755,15 @@ local Paragraph = Tab:Paragraph({
     Buttons = {
         {
             Icon = "bird",
-            Title = "段落按钮",
-            Callback = function() print("段落按钮被点了") end,
+            Title = "娈佃惤鎸夐挳",
+            Callback = function() print("娈佃惤鎸夐挳琚偣浜�") end,
         }
     }
 })
 
+
 local Slider = Tab:Slider({
-    Title = "滑块",
+    Title = "婊戝潡",
     Step = 1,
     Value = {
         Min = 20,
@@ -1660,61 +1775,65 @@ local Slider = Tab:Slider({
     end
 })
 
+
 local Toggle = Tab:Toggle({
-    Title = "切换开关",
-    Desc = "开关描述",
+    Title = "鍒囨崲寮€鍏�",
+    Desc = "寮€鍏虫弿杩�",
     Value = false,
     Callback = function(val)
         print("Toggle changed to: ", val)
     end
 })
 
--- 配置管理器示例
+
+-- 閰嶇疆绠＄悊鍣ㄧず渚�
 local ConfigManager = Window.ConfigManager
 local myConfig = ConfigManager:CreateConfig("myConfigExample")
 myConfig:Register("SpecialNameExample", XKButton)
 myConfig:Save()
 myConfig:Load()
-ConfigManager:AllConfigs() -- 返回所有配置表
+ConfigManager:AllConfigs() -- 杩斿洖鎵€鏈夐厤缃〃
 
--- 弹窗、对话框示例
+
+-- 寮圭獥銆佸璇濇绀轰緥
 local Dialog = Window:Dialog({
     Icon = "bird",
-    Title = "戊",
-    Content = "点完没加载就是用不了",
+    Title = "鎴�",
+    Content = "鐐瑰畬娌″姞杞藉氨鏄敤涓嶄簡",
     Buttons = {
         {
-            Title = "确认",
+            Title = "纭",
             Callback = function()
                 print("Confirmed!")
             end,
         },
         {
-            Title = "取消",
-            Callback = function()
-                print("Cancelled!")
-            end,
-        },
-    },
+Title = 鈥滃彇娑堚€濓紝
+鍥炶皟 = 鍑芥暟锛堬級
+print锛堚€滃凡鍙栨秷锛�
+缁撴潫
+},
+},
 })
-Dialog:Show()
-Dialog:Close()
+瀵硅瘽妗嗭細鏄剧ず锛堬級
+瀵硅瘽妗嗭細鍏抽棴锛堬級
 
-WindUI:Popup({
-    Title = "Popup Title",
-    Icon = "info",
-    Content = "Popup content",
-    Buttons = {
+
+WindUI锛歅opup锛坽
+Title = 鈥滃脊鍑烘爣棰樷€濓紝
+鍥炬爣 = 鈥滀俊鎭€濓紝
+Content = 鈥滃脊鍑哄唴瀹光€濓紝
+鎸夐挳 = {
         {
-            Title = "取消",
-            Callback = function() end,
-            Variant = "Tertiary",
-        },
+Title = 鈥滃彇娑堚€濓紝
+鍥炶皟 = function锛堬級 缁撴潫锛�
+鍙樹綋 = 鈥滅涓夌骇鈥濓紝
+},
         {
-            Title = "继续",
-            Icon = "arrow-right",
-            Callback = function() end,
-            Variant = "Primary",
+Title = 鈥滅户缁€濓紝
+鍥炬爣 = 鈥滃悜鍙崇澶粹€濓紝
+鍥炶皟 = function锛堬級 缁撴潫锛�
+鍙樹綋 = 鈥滀富瑕佲€濓紝
         }
     }
 })
