@@ -1634,13 +1634,13 @@ local Dialog = Window:Dialog({
     Content = "点完没加载就是用不了",
     Buttons = {
         {
-            Title = "Confirm",
+            Title = "确认",
             Callback = function()
                 print("Confirmed!")
             end,
         },
         {
-            Title = "Cancel",
+            Title = "取消",
             Callback = function()
                 print("Cancelled!")
             end,
@@ -1656,12 +1656,12 @@ WindUI:Popup({
     Content = "Popup content",
     Buttons = {
         {
-            Title = "Cancel",
+            Title = "取消",
             Callback = function() end,
             Variant = "Tertiary",
         },
         {
-            Title = "Continue",
+            Title = "继续",
             Icon = "arrow-right",
             Callback = function() end,
             Variant = "Primary",
