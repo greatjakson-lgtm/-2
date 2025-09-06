@@ -27,7 +27,7 @@ WindUI.Services.mysuperservicetogetkey = {
 local Window = WindUI:CreateWindow({
     Title = "戊脚本",
     Icon = "crown",
-    Author = "戊 hub",
+    Author = "誓约",
     Folder = "MyTestHub",
     Theme = "Dark",
     Size = UDim2.fromOffset(350, 270),
@@ -1509,7 +1509,7 @@ local TxButton = Tab:Button({
 -- 创建 Tab
 local Tab = Window:Tab({
     Title = "设置区",
-    Icon = "bird",
+    Icon = "tap",
     Locked = false,
 })
 Window:SelectTab(1)
