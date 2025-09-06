@@ -27,7 +27,7 @@ WindUI.Services.mysuperservicetogetkey = {
 local Window = WindUI:CreateWindow({
     Title = "戊脚本",
     Icon = "Crown",
-    Author = "戊 hub",
+    Author = "誓约",
     Folder = "MyTextHub",
     Theme = "Dark",
     Size = UDim2.fromOffset(350, 270),
@@ -87,10 +87,7 @@ Window:Tag({
     Title = "v1.0",
     Color = Color3.fromHex("#30ff6a")
 })
-Window:Tag({
-     Title = "戊脚本", 
-    Color = Color3.fromHex("#315dff")
-})
+
 Window:Tag({
     Title = "by誓约",
     Color = Color3.fromHex("#000000")
