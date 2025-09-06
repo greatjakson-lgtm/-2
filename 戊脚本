@@ -88,6 +88,11 @@ Window:Tag({
     Color = Color3.fromHex("#30ff6a")
 })
 
+Window:Tag({
+    Title = "by誓约",
+    Color = Color3.fromHex("#315dff")
+})
+
 -- 创建 Tab
 local Tab = Window:Tab({
     Title = "通用区",
