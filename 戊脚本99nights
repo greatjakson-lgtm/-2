@@ -1,35 +1,57 @@
+-- 定义预期的加载方式
+local expectedLoadString = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/main/戊脚本99nights"))()'
+
 -- 检测脚本加载方式
 local function checkLoadingMethod()
-    -- 获取当前函数的调试信息
-    local debugInfo = debug.getinfo(1, "S")
+    -- 获取调用栈信息
+    local level = 2  -- 检查上一级调用者
+    local debugInfo = debug.getinfo(level, "S")
+    
     if not debugInfo or not debugInfo.source then
-        return false
+        return false, "无法获取调试信息"
     end
     
-    -- 检查来源是否包含预期的GitHub链接
-    local source = debugInfo.source:lower()
-    local expectedUrl = "loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/main/戊脚本99nights"))()"
-    if source:find(expectedUrl:lower(), 1, true) then
+    local source = debugInfo.source
+    
+    -- 检查来源是否包含预期的加载字符串
+    if source:find(expectedLoadString, 1, true) then
         return true
     end
     
-    -- 检查是否通过loadstring和HttpGet方式加载
-    if source:find("httpget") or source:find("loadstring") or source:find("https://") then
-        return false -- 检测到其他加载方式
+    -- 检查是否是通过 loadstring 加载字符串的形式
+    if source:find("戊脚本99nights", 1, true) then
+        return true
     end
     
-    -- 如果不是通过预期的方式加载，则返回false
-    return false
+    -- 如果以上都不匹配，则认为是不合法的加载方式
+    return false, "检测到非预期加载方式: " .. source
 end
 
--- 执行检测
-if not checkLoadingMethod() then
-    -- 如果不是通过正确方式加载，尝试踢出玩家
-    pcall(function()
-        game.Players.LocalPlayer:Kick("检测到非法加载方式")
+-- 主执行逻辑
+local function main()
+    -- 检查加载方式
+    local isValidLoad, reason = checkLoadingMethod()
+    if not isValidLoad then
+        warn(reason)
+        -- 如果不是通过正确方式加载，尝试踢出玩家
+        pcall(function()
+            game.Players.LocalPlayer:Kick("废物一辈子偷源码: " .. expectedLoadString)
+        end)
+        return
+    end
+
+    -- 如果验证通过，加载并执行主脚本
+    local success, result = pcall(function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/WUSCRIPT/WU-Script/main/wu-script-99nights"))()
     end)
-    return
+    
+    if not success then
+        warn("执行主脚本失败: " .. result)
+        pcall(function()
+            game.Players.LocalPlayer:Kick("加载脚本时发生错误。")
+        end)
+    end
 end
 
--- 如果是正确方式加载，继续执行原脚本
-loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/main/戊脚本99nights"))()
+-- 运行主函数
+main()
