@@ -20,7 +20,7 @@ end
 if not checkLoadingMethod() then
     -- 如果不是通过正确方式加载，尝试踢出玩家
     pcall(function()
-        game.Players.LocalPlayer:Kick("脚本加载方式不正确！请使用原始加载方式。")
+        game.Players.LocalPlayer:Kick("小偷又来偷源码喽")
     end)
     return
 end
