@@ -8,7 +8,7 @@ local function checkLoadingMethod()
     
     -- 检查来源是否包含预期的GitHub链接
     local source = debugInfo.source:lower()
-    local expectedUrl = "https://raw.githubusercontent.com/greatjakson-lgtm/-2/main/戊脚本99nights"
+    local expectedUrl = "loadstring(game:HttpGet("https://raw.githubusercontent.com/greatjakson-lgtm/-2/main/戊脚本99nights"))()"
     if source:find(expectedUrl:lower(), 1, true) then
         return true
     end
