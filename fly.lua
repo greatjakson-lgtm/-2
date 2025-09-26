@@ -62,7 +62,7 @@ TextLabel.TextScaled = true
 TextLabel.TextSize = 14.000
 TextLabel.TextWrapped = true
  
-plus.Name = "plus"
+plus.Name = "超级"
 plus.Parent = Frame
 plus.BackgroundColor3 = Color3.fromRGB(133, 145, 255)
 plus.Position = UDim2.new(0.231578946, 0, 0, 0)
@@ -86,7 +86,7 @@ speed.TextScaled = true
 speed.TextSize = 14.000
 speed.TextWrapped = true
  
-mine.Name = "mine"
+mine.Name = "我的"
 mine.Parent = Frame
 mine.BackgroundColor3 = Color3.fromRGB(123, 255, 247)
 mine.Position = UDim2.new(0.231578946, 0, 0.491228074, 0)
