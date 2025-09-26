@@ -11,7 +11,7 @@ local closebutton = Instance.new("TextButton")
 local mini = Instance.new("TextButton")
 local mini2 = Instance.new("TextButton")
  
-main.Name = "main"
+main.Name = "主要"
 main.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 main.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 main.ResetOnSpawn = false
@@ -22,16 +22,16 @@ Frame.BorderColor3 = Color3.fromRGB(103, 221, 213)
 Frame.Position = UDim2.new(0.100320168, 0, 0.379746825, 0)
 Frame.Size = UDim2.new(0, 190, 0, 57)
  
-up.Name = "up"
+up.Name = "上"
 up.Parent = Frame
-up.BackgroundColor3 = Color3.fromRGB(79, 255, 152)
+up.BackgroundColor3 = Color3.fromRGB(40, 60, 255)
 up.Size = UDim2.new(0, 44, 0, 28)
 up.Font = Enum.Font.SourceSans
 up.Text = "UP"
 up.TextColor3 = Color3.fromRGB(0, 0, 0)
 up.TextSize = 14.000
  
-down.Name = "down"
+down.Name = "下"
 down.Parent = Frame
 down.BackgroundColor3 = Color3.fromRGB(215, 255, 121)
 down.Position = UDim2.new(0, 0, 0.491228074, 0)
@@ -74,7 +74,7 @@ plus.TextScaled = true
 plus.TextSize = 14.000
 plus.TextWrapped = true
  
-speed.Name = "speed"
+speed.Name = "速度"
 speed.Parent = Frame
 speed.BackgroundColor3 = Color3.fromRGB(255, 85, 0)
 speed.Position = UDim2.new(0.468421042, 0, 0.491228074, 0)
@@ -98,7 +98,7 @@ mine.TextScaled = true
 mine.TextSize = 14.000
 mine.TextWrapped = true
  
-closebutton.Name = "Close"
+closebutton.Name = "关闭"
 closebutton.Parent = main.Frame
 closebutton.BackgroundColor3 = Color3.fromRGB(225, 25, 0)
 closebutton.Font = "SourceSans"
@@ -107,7 +107,7 @@ closebutton.Text = "X"
 closebutton.TextSize = 30
 closebutton.Position =  UDim2.new(0, 0, -1, 27)
  
-mini.Name = "minimize"
+mini.Name = "最小化"
 mini.Parent = main.Frame
 mini.BackgroundColor3 = Color3.fromRGB(192, 150, 230)
 mini.Font = "SourceSans"
@@ -116,7 +116,7 @@ mini.Text = "-"
 mini.TextSize = 40
 mini.Position = UDim2.new(0, 44, -1, 27)
  
-mini2.Name = "minimize2"
+mini2.Name = "最小化2"
 mini2.Parent = main.Frame
 mini2.BackgroundColor3 = Color3.fromRGB(192, 150, 230)
 mini2.Font = "SourceSans"
@@ -136,7 +136,7 @@ local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
 nowe = false
  
 game:GetService("StarterGui"):SetCore("SendNotification", { 
-    Title = "Fly GUI V3";
+    Title = "WU飞行";
     Text = "By me_ozone and Quandale The Dinglish XII#3550";
     Icon = "rbxthumb://type=Asset&id=5107182114&w=150&h=150"})
 Duration = 5;
