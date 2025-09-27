@@ -140,8 +140,8 @@ nowe = false
 
 game:GetService("StarterGui"):SetCore("SendNotification", { 
     Title = "WU飞行";
-    Text = "By me_ozone and Quandale The Dinglish XII#3550";
-    Icon = "rbxthumb://type=Asset&id=5107182114&w=150&h=150"})
+    Text = "By誓约#3550";
+    Icon = "https://raw.githubusercontent.com/greatjakson-lgtm/-2/7cedb7103ddcc0b95daf3b2302c6ac7f437e8449/IMG_20250927_110255.png"})
 Duration = 5;
 
 Frame.Active = true -- main = gui
